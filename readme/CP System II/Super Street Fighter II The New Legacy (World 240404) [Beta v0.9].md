@@ -2,4 +2,4 @@ Visit: https://newlegacy.fr/download.html for further information regarding Supe
 
         [Details]
             -Patch offsets provided in the mra file. No additional rom required.         
-            -View the above link for changelog. Super Street Fighter II: The New Legacy Beta v0.4 released 20240404.
+            -View the above link for changelog. Super Street Fighter II: The New Legacy Beta v0.9 released 20240404.
