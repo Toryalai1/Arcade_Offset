@@ -1,0 +1,129 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2024. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription default="ff,ff">
+    <about author="jotego" webpage="https://patreon.com/jotego" source="https://github.com/jotego" twitter="@topapate"/>
+    <name>Vampire: The Night Warriors Boss Hack [Yumeji] (Japan 010217)</name>
+    <setname>vampbh</setname>
+    <rbf>jtcps2</rbf>
+    <mameversion>0251</mameversion>
+    <year>2001</year>
+    <manufacturer>Capcom</manufacturer>
+    <players>2</players>
+    <joystick>8</joystick>
+    <rotation>horizontal</rotation>
+    <region>World</region>
+    <mraauthor>jotego,deepthaw</mraauthor>
+    <rom index="0" zip="vampj.zip|dstlk.zip|qsound.zip" md5="None" address="0x30000000" asm_md5="316636c0c12dc02e655cd2999d32ec65">
+        <part>
+            00 10 00 11 00 21 00 71
+            FF FF FF FF FF FF FF FF
+            32 FF 00 02 04 06 26 28
+            2A 2C 2E 00 00 30 02 04
+            08 30 FF FF FF FF FF FF
+            FC FF FF FF </part>
+        <!-- key - starts at 0x0 - length 0x14 (5 bits) -->
+        <part name="vampj.key" crc="8418cc6f"/>
+        <!-- maincpu - starts at 0x14 - length 0x400000 (22 bits) -->
+        <part name="vamj.03a" crc="f55d3722"/>
+        <part name="vamj.04b" crc="4d9c43c4"/>
+        <part name="vamj.05a" crc="6c497e92"/>
+        <part name="vamj.06a" crc="f1bbecb6"/>
+        <part name="vamj.07a" crc="1067ad84"/>
+        <part name="vamj.08a" crc="4b89f41f"/>
+        <part name="vamj.09a" crc="fc0a4aac"/>
+        <part name="vamj.10a" crc="9270c26b"/>
+        <!-- audiocpu - starts at 0x400014 - length 0x40000 (18 bits) -->
+        <part name="vam.01" crc="64b685d5"/>
+        <part name="vam.02" crc="cf7c97c7"/>
+        <!-- qsound - starts at 0x440014 - length 0x400000 (22 bits) -->
+        <interleave output="16">
+            <part name="vam.11m" crc="4a39deb2" map="12"/>
+        </interleave>
+        <interleave output="16">
+            <part name="vam.12m" crc="1a3e5c03" map="12"/>
+        </interleave>
+        <!-- gfx - starts at 0x840014 - length 0x1400000 (25 bits) -->
+        <interleave output="64">
+            <part name="vam.13m" crc="c51baf99" map="00000021"/>
+            <part name="vam.15m" crc="3ce83c77" map="00002100"/>
+            <part name="vam.17m" crc="4f2408e0" map="00210000"/>
+            <part name="vam.19m" crc="9ff60250" map="21000000"/>
+        </interleave>
+        <interleave output="64">
+            <part name="vam.14m" crc="bd87243c" map="00000021"/>
+            <part name="vam.16m" crc="afec855f" map="00002100"/>
+            <part name="vam.18m" crc="3a033625" map="00210000"/>
+            <part name="vam.20m" crc="2bff6a89" map="21000000"/>
+        </interleave>
+        <!-- firmware - starts at 0x1C40014 - length 0x2000 (13 bits) -->
+        <part name="dl-1425.bin" crc="d6cf5ef5" length="0x2000"/>
+        <!-- Total 0x1C42014 bytes - 28936 kBytes -->
+        <!-- romhack data -->
+        <patch offset="0x30b6a">bc 4e</patch>
+        <patch offset="0x31110">55 0d</patch>
+        <patch offset="0x3115e">b9 d7</patch>
+        <patch offset="0x311e0">4c e6 c8 79</patch>
+        <patch offset="0x31800">7f c9</patch>
+        <patch offset="0x31814">ae 92</patch>
+        <patch offset="0x3181e">98 57</patch>
+        <patch offset="0x31838">66 d4</patch>
+        <patch offset="0x31842">dd a6</patch>
+        <patch offset="0x3184c">ed b1</patch>
+        <patch offset="0x31858">ef 06</patch>
+        <patch offset="0x31876">e2 96</patch>
+        <patch offset="0x3187c">70 80</patch>
+        <patch offset="0x31886">08 c3</patch>
+        <patch offset="0x33352">6f 71</patch>
+        <patch offset="0x33820">13 38</patch>
+        <patch offset="0x33834">bf 53</patch>
+        <patch offset="0x338c2">1d 2f 10 ea</patch>
+        <patch offset="0x33ca4">b6 f4</patch>
+        <patch offset="0x33cb8">1c 75</patch>
+        <patch offset="0x33cc2">af d6</patch>
+        <patch offset="0x33cdc">d8 73</patch>
+        <patch offset="0x33ce6">3f e9</patch>
+        <patch offset="0x33cf0">ef a9</patch>
+        <patch offset="0x33cfc">d6 4a</patch>
+        <patch offset="0x33d0a">39 3f</patch>
+        <patch offset="0x33d1a">76 72</patch>
+        <patch offset="0x33d20">21 bb</patch>
+        <patch offset="0x33d2a">ba 14</patch>
+        <patch offset="0xc9322">33 e6</patch>
+        <patch offset="0xc95ac">44 e8</patch>
+        <patch offset="0xc9626">52 fe</patch>
+    </rom>
+    <rom index="2">
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 03 00 04 00 01 01 00
+03 00 01 00 01 00 00 00 06 94 08 20 41 56 50 4D
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 03 00 04 00 01 01 00
+03 00 01 00 01 00 00 00 06 94 08 20 41 56 50 4D
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+</rom>
+    <nvram index="2" size="128"/>
+    <rom index="1">
+        <part>00</part>
+    </rom>
+    <buttons names="Light Punch,Middle Punch,Heavy Punch,Light Kick,Middle Kick,Heavy Kick,Start,Coin,Core credits" default="A,B,X,Y,L,R,Start,Select,-" count="6"/>
+</misterromdescription>
