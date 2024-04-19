@@ -8,7 +8,7 @@ update_distribution() {
     local REGISTRY="$(pwd)/${2}"
 
 
-    local REPOSITORY_URL="${REPOSITORY_URL:-'https://github.com/atrac17/Arcade_Offset'}"
+    local REPOSITORY_URL="${REPOSITORY_URL:-'https://github.com/Toryalai1/Arcade_Offset'}"
 
     echo "download_repository"
     rm -rf "${TMP_FOLDER}" || true
