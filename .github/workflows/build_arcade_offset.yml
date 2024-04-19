@@ -17,10 +17,10 @@ jobs:
       run: ./.github/gather_files.sh 'delme' 'registry.txt'
       env:
         DB_ID: arcade_offset_folder
-        DB_URL: https://raw.githubusercontent.com/atrac17/Arcade_Offset/db/arcadeoffsetdb.json.zip
-        REPOSITORY_URL: https://github.com/atrac17/Arcade_Offset
-        BASE_FILES_URL: https://raw.githubusercontent.com/atrac17/Arcade_Offset/%s/
-        LATEST_ZIP_URL: https://github.com/atrac17/Arcade_Offset/archive/refs/heads/db.zip
+        DB_URL: https://raw.githubusercontent.com/Toryalai1/Arcade_Offset/db/arcadeoffsetdb.json.zip
+        REPOSITORY_URL: https://github.com/Toryalai1/Arcade_Offset
+        BASE_FILES_URL: https://raw.githubusercontent.com/Toryalai1/Arcade_Offset/%s/
+        LATEST_ZIP_URL: https://github.com/Toryalai1/Arcade_Offset/archive/refs/heads/db.zip
 
     - name: Calculate Database
       run: |
@@ -38,6 +38,6 @@ jobs:
         FOLDER: delme
         REGISTRY: registry.txt
         BRANCH: db
-        DB_URL: https://raw.githubusercontent.com/atrac17/Arcade_Offset/db/arcadeoffsetdb.json.zip
-        BASE_FILES_URL: https://raw.githubusercontent.com/atrac17/Arcade_Offset/%s/
-        LATEST_ZIP_URL: https://github.com/atrac17/Arcade_Offset/archive/refs/heads/db.zip
+        DB_URL: https://raw.githubusercontent.com/Toryalai1/Arcade_Offset/db/arcadeoffsetdb.json.zip
+        BASE_FILES_URL: https://raw.githubusercontent.com/Toryalai1/Arcade_Offset/%s/
+        LATEST_ZIP_URL: https://github.com/Toryalai1/Arcade_Offset/archive/refs/heads/db.zip
