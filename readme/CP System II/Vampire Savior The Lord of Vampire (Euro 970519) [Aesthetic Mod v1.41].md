@@ -1,12 +1,21 @@
-Vampire Savior The Lord of Vampire Euro 970519 Aesthetic Mod v1.3 by VMP_KyleW:
+Vampire Savior The Lord of Vampire Euro 970519 Aesthetic Mod v1.41 by VMP_KyleW:
 
         [Details]
-
+Intro
 I'm an enthused VSAV player who is often finding new ways to be engaged in the game & it's competitive community. You can reach me on twitter - @VMP_KyleW 
 
-Version: (1.2) Issued for public use, functional on every known device.
+Version: (1.41) Issued for public use, functional only for MisTer.
 
 Update
+September 10th, 2024, v1.41
+Fix for MiSTer after encryption range updates in the CPS2 core.
+
+February 5th, 2022, v1.4
+Bulleta's secret into occurs when she has a win streak, Luna (Concrete Cave Cat) looks during EX attacks, Abaraya's Lady's rage now occurs at a 50% chance when the conditions are met - was previously 1/32. Moebius used Palmod to add Jedah's Japanese blood colors + Forever Torment's blood color into the color banks.
+
+January 3rd, 2021, V1.3
+Lei-Lei's ultra rare (MK) win-pose with a delayed Lin-Lin animation now has a condition that relies on the facing direction of Lei-Lei. Left-facing is in sync and right-facing is delayed.  
+
 December 26th, 2020, V1.2
 Fetus of God's stage/camera extents are now equal to every other stage in the game. Fetus of God has been added as a playable stage within the player-1 vs player-2 stage select chance tables. Now all stages have a 12/16 chance of being selected while stages associated to the selected characters have an additional 4/16 chance. Every stage, including Iron Horse Iron Terror & Fetus of God, is now available in every match while also having character's home stages maintain a higher probablility. Jedah's home stage is weighted towards Fetus of God.
 
@@ -23,20 +32,15 @@ This (.zip) file contains every file needed to play an encrypted EU rom set. How
 vsav(.key) is the standard encryption key, used to play encrypted roms.
 vm3e(.03d) & vm3(.10b) are the only files that I directly modified. This is where conditions for secrets were changed. There was not enough room to add new conditions during the character select input assessment functions, so I had to jump to the free space at the very end of the OpCode and provide the entire function (including my modifications for specific inputs) there. This is why the second (.10b) file is needed.
 
-Thank You to the many people who inspired, consulted & tested along the way: Jais, 9T9/Keough, Alphakami/Tad, Felineki, NBee, Moebius, Viper Snake, Rotanibor, @SF2Platinum, JedPossum, ChooseGoose, Typhas, Ken, Ego, Zero-One
+Thank You to the many people who inspired, consulted & tested along the way: Jais, 9TNine, Alphakami/Tad, Felineki, N-Bee, Moebius, ViperSnake, Rotanibor, @SF2Platinum, JedPossum, ChooseGoose, Typhas, Ken, Ego, Zero-One, VickiViper
 
 You may want to change this (.ZIP) file name to VSAV(.ZIP)
-
-        [Function]
 
 Aesthetic Modification Details are provided below:
 _________________________________________________
 
 Alternate Title Screen (0x10D2, OpCode)
-
-This romset defaults to Coine Mode as Free Play, but users may choose to change the Coin Mode, within Service menu 7-1, to another value. If that is done, add a coin without pressing Player-1 or Player-2 START and the alternate
-title screen will be displayed. Be mindful that an emulator will generate a separate file for managing these temporary menus settings, designed to be writted to the EPROM. If you want to remove the temporary file and go back to
-the romset defaults, delete (VSAV.NV) within your emulator directory.
+This romset defaults to Coine Mode as Free Play, but users may choose to change the Coin Mode, within Service menu 7-1, to another value. If that is done, add a coin without pressing Player-1 or Player-2 START and the alternate title screen will be displayed. Be mindful that an emulator will generate a separate file for managing these temporary menus settings, designed to be writted to the EPROM. If you want to remove the temporary file and go back to the romset defaults, delete (VSAV.NV) within your emulator directory.
 
 Service Menu Settings
 I altered three default Euro settings in the Service Menu to align with our tournament standards
@@ -88,6 +92,7 @@ SHU Sasquatch - Super Shuttle showing Hosokawa Sasquatch (0x21974, ASCII)
 AMF Aulbath - AmFantastica showing Bow Aulbath (0x21984, ASCII)
 
 Intro Animations
+Bulleta - Have a win-streak greater than 0 to access vs Gallon & Dark Gallon only intro animation (0x2F6B8, Opcode)
 Morrigan - Have a win-streak greater than 0 to access the CPU only intro animation. (0x391F0, OpCode)
 Zabel - Hold the LP button before the characters appear to access the vs Lei-Lei only intro animation. (0x38116, OpCode)
 Zabel - Hold the LK button before the characters appear to access the vs Bulleta only intro animation. (La Manta will not appear for this animation) (0x3810E, OpCode)
@@ -115,7 +120,11 @@ Morrigan's rare win-poses were added to her chance-table when there is no button
 Anakaris's Enhanced win-poses, are now also unlocked by obtaining a Cheap Finish. The previous condition of a Dark Force Deathblow did not work as designed. (0x3E4CC, OpCode)
 Felicia's Perfect-Win fist pump now has a (25%) probability of occuring when there is no button overide. All button overrrides still work normally. Every other win-pose now has a 12.5% chance of occuring. (0x40B94, OpCode)
 Lei-Lei's alternate audio is now accessible by obtaining an EX-Finish then selecting the LK or MP win-pose. (0x4ACF4, OpCode)
-Lei-Lei's Delayed Audio - I was unable to determin the location in the OpCode for MK win-pose 1/256 chance of getting a delayed animation. (0x????, OpCode)
+Lei-Lei's Delayed Lin-Lin - This win-pose is now enabled when Lei-Lei's MK-Win-pose is facing to the right. (0x62EBA, OpCode)
 Lilith's story-mode win-pose, value 0x0E, is added to her chance-table when there is no button override. (0x4D45A, OpCode)
+
+Stage Animations
+Concrete Cave - Luna the cat now looks at the players during EX attacks (0x7E0E0, OpCode)
+Abaraya - Lady enters a rage state at a 50% probability once all otehr conditions are met. This was previously a 1/32 chance. Players must both be low health and use an EX attack. (0x7F106, Opcode Table)
 
             Vampire Savior The Lord of Vampire (Aesthetic Mod v1.3) by VMP_KyleW (https://twitter.com/VMP_KyleW)
