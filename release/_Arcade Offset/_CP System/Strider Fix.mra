@@ -1,0 +1,579 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2024. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription>
+    <about author="jotego" webpage="https://patreon.com/jotego" source="https://github.com/jotego" twitter="@topapate"/>
+    <name>Strider (Patched)</name>
+    <setname>strider_fix</setname>
+    <rbf>jtcps1</rbf>
+    <mameversion>0251</mameversion>
+    <year>1989</year>
+    <manufacturer>Capcom</manufacturer>
+    <players>2</players>
+    <joystick>8</joystick>
+    <rotation>horizontal</rotation>
+    <region>World</region>
+    <mraauthor>jotego</mraauthor>
+    <rom index="0" zip="strider.zip" md5="None" asm_md5="0de57eaedbb520fcb4c938b667808061">
+        <part>
+            00 04 40 04 40 05 FF FF
+            FF FF FF FF FF FF FF FF
+            FF 00 FF FF FF FF 26 28
+            2A 2C 2E 00 00 30 02 04
+            08 30 22 40 88 73 FF 00
+            FF FF FF FF FF FF FF FF
+            FF FF FF FF FF FF FF FF
+            FF FF FF FF FF FF FF FF
+        </part>
+        <!-- maincpu - starts at 0x0 - length 0x100000 (20 bits) -->
+        <interleave output="16">
+            <part name="35.11h" crc="5463aaa3" map="01"/>
+            <part name="30.11f" crc="da997474" map="10"/>
+        </interleave>
+        <interleave output="16">
+            <part name="36.12h" crc="21aa2863" map="01"/>
+            <part name="31.12f" crc="d20786db" map="10"/>
+        </interleave>
+        <part name="st-14.8h" crc="9b3cfc08"/>
+        <!-- audiocpu - starts at 0x100000 - length 0x10000 (16 bits) -->
+        <part name="09.12b" crc="2ed403bc"/>
+        <!-- oki - starts at 0x110000 - length 0x40000 (18 bits) -->
+        <part name="18.11c" crc="4386bc80"/>
+        <part name="19.12c" crc="444536d7"/>
+        <!-- gfx - starts at 0x150000 - length 0x400000 (22 bits) -->
+        <interleave output="64">
+            <part name="st-2.8a" crc="4eee9aea" map="00000021"/>
+            <part name="st-11.10a" crc="2d7f21e4" map="00002100"/>
+            <part name="st-5.4a" crc="7705aa46" map="00210000"/>
+            <part name="st-9.6a" crc="5b18b722" map="21000000"/>
+        </interleave>
+        <interleave output="64">
+            <part name="st-1.7a" crc="005f000b" map="00000021"/>
+            <part name="st-10.9a" crc="b9441519" map="00002100"/>
+            <part name="st-4.3a" crc="b7d04e8b" map="00210000"/>
+            <part name="st-8.5a" crc="6b4713b4" map="21000000"/>
+        </interleave>
+        <!-- Total 0x550000 bytes - 5440 kBytes -->
+		<patch offset="0x2696">ae 49</patch>
+		<patch offset="0xc382">38 4a</patch>
+		<patch offset="0x100082">d5</patch>
+		<patch offset="0x100085">87</patch>
+		<patch offset="0x100088">fc</patch>
+		<patch offset="0x100093">ed 00</patch>
+		<patch offset="0x100096">e5</patch>
+		<patch offset="0x100099">22</patch>
+		<patch offset="0x1000ac">88</patch>
+		<patch offset="0x1000b4">52 0e 32 06 f0 cd cd 00 cd d5 00 cd fe 00 cd ed 00 c3 09 00 3e 78 32 02 f0 16 00 3e 0f</patch>
+		<patch offset="0x1000d2">07 01 06 08 c5 3e 08 90 cd a1</patch>
+		<patch offset="0x1000dd">c1 10 f6 c9 f5 c6 60 06 04 c5 16 7f cd 07 01 16 ff c6 80 cd 07 01 d6 80 c6 08 c1 10 ec f1 f6 78 57 3e 08 cd 07 01 7a e6 07 57 3e 08 cd 07 01 c9 16 00 3e 14 cd 07 01 c9 3e 10 16 c8 cd</patch>
+		<patch offset="0x10011b">01</patch>
+		<patch offset="0x10011d">11 16 00 cd 07 01 16 0f cb e2 3e 14 cd 07 01 c9 3e 12 16 f2 cd 07 01 16 0f cb ea 3e 14 cd 07 01 c9 01 03 00 10 fe 0d 20 fb c9 01</patch>
+		<patch offset="0x100149">f0 f5 0a cb 7f 20 fb f1 0d 02 0c f5 7a 02 f1 c9 06 08 29 30</patch>
+		<patch offset="0x10015e">19 10 fa c9 3a 00 d0 47 3a 08 f0 b8 c8 32 00 d0 47 e6 f0 fe f0 ca dd 02 78 cb 7f c2 c2 03 21 50 0e 11 53 0e 47 3e 00 32 04</patch>
+		<patch offset="0x100188">cd 5c 01 21 00 80 11 04 80 47 3e 01 32 04 f0 cd 5c 01 18 e0 78 46 04 b8 38 02 90 c9 c1 eb ef 1a cb 7f c2 23 02 47 e6 0f 4f 3a 11 d0 e6 0f b9 28 48 38 2d 3a 12 d0 e6 0f b9 28 01 d0 78 32 12 d0 d5 21 00 d3 11 01 d3 01 7f 01 36 00 ed b0 d1 dd 21 00 d3 3e ff 32 1a d0 cd ea</patch>
+		<patch offset="0x1001e3">af 32 1a d0 c9 3a 11 d0 32 12 d0 2a 15 d0 22 17 d0 d9 21 00 d1 11 00 d3 01 80 01 ed b0 d9 78 32 11 d0 af 32 04</patch>
+		<patch offset="0x100209">32 03 d0 32 05 d0 3a 51 0e ed 44 32 10 d0 d5 21 00 d1 11 01</patch>
+		<patch offset="0x10021e">01 7f 01 36 00 ed b0 d1 dd 21 00 d1 06 08 c5 13 1a dd 77 01 13 1a dd 77 00</patch>
+		<patch offset="0x100238">b6 01 c4 06 02 01 30 00 dd 09 c1 10 e7 c9 3a 1a d0 b7 c0 d5 3e 08 90 fe 07 cc 19 02 cd a1 00 d1 c9 08 16 00 3e 0f cd 07 01 08 c9 08 3a 01 80 ed 44 32 20 d0 08 47 cb 77 20 42 e6 0f 4f 3a 21 d0 e6 0f b9 28 01 d0 d9 28 08 3a 21 d0 cb 6f c4 c3 02 16 00 3e 0f cd 07 01 16 00 3e 3f cd 07 01 3e 07 cd a1</patch>
+		<patch offset="0x10029c">21</patch>
+		<patch offset="0x10029e">d5 11 01 d5 01 1f 00 36 00 ed b0 d9 78 32 21 d0 dd 21 00 d5 18 39 e6 0f 4f 3a 23 d0 e6 0f b9 28 01 d0 d9 28 08 3a 23 d0 cb 6f c4 ce 02 16 00 3e 3e cd 07 01 3e 06 cd a1</patch>
+		<patch offset="0x1002d7">21 40 d5 11 41 d5 01 1f 00 36 00 ed b0 d9 78 32 23 d0</patch>
+		<patch offset="0x1002ea">21 40 d5 13 dd 72 00 dd 73 01 dd 72 18 dd 73 19 dd 36 08 80 dd 36 0b 80 c9</patch>
+		<patch offset="0x100304">22</patch>
+		<patch offset="0x100307">00</patch>
+		<patch offset="0x10030a">20</patch>
+		<patch offset="0x10030c">18 09 32 24 d0 21 40 d5 11 60 d5 01 20 00 ed b0 c9 78 e6 0f f7 01 03 04 03 07 03 40 03 52 03 55 03 76 03 90 03 93 03 99 03 9f 03 b1</patch>
+		<patch offset="0x100339">c1 03 c1 03 c1 03 c1 03 cd 52 03 cd 40 03 dd 21 00 d1 06</patch>
+		<patch offset="0x10034d">c5 dd 7e</patch>
+		<patch offset="0x100351">dd b6 01 28 06 3e 08 90 cd a1 00 01 30 00 dd 09 c1 10 e9 3e ff 32 1b d0 2a 17 d0 22 15 d0 3a 12 d0 32 11 d0 21 00 d3 11 00 d1 01 80</patch>
+		<patch offset="0x10037e">ed b0 af 32 12 d0 21 00 d3 11 01 d3 01 7f 01 36 00 ed b0 c9 cd 76 03 16 00 3e 0f cd 07 01 3e 07 cd a1 00 af 32 21 d0 32 22 d0 21 00 d5 11 01 d5 01 3f 00 36 00 ed b0 c9 3e 06 cd a1 00 af 32 23 d0 32 24 d0 21 40 d5 11 41 d5 01 3f 00 36 00 ed b0 c9 cd 99 03 3e 08 32 02 f0 c9 3e 10 32 02 f0 c9 06 ff 3a 05 d0 cb 07 28 02 30 09 3e 7f 32 10 d0 18 02 06 01 af 32 04 d0 3a 0a f0 32 03</patch>
+		<patch offset="0x1003fd">78 32 05 d0 c9 e6 7f c8 08 3a 32 0e 3c 47 08 b8 38 03 90 18 fa 57 cb fa 21 33 0e e7 5f e6 f0 0f</patch>
+		<patch offset="0x10041e">02 f0 ed 53 01 d0 c9 ed 5b 01 d0 7a b7 c8 7a 32 02 f0 7b 32 02 f0 11 00 00 ed 53 01 d0 c9 3e 00 32 04 f0 3a 03 d0 b7 28 32 21 04 d0 34 be 20 2b 36</patch>
+		<patch offset="0x100450">3a 05 d0 47 3a 10 d0 80 fa 2f 04 cb 78 28 0b 08</patch>
+		<patch offset="0x100461">51 0e ed 44 47 08 b8 38 05 32 10 d0 18 0a af 32 03 d0 32 04 d0 32 05 d0 3a 1b d0 b7 28 39 af 32 1b d0 dd 21 00 d1 06 08 c5 3e 08 90 32 13 d0 dd 7e 00 dd b6 01 28 18 dd 66 21 dd 6e 22 cd 3e 0a dd cb 08 ce dd cb 08 56 cc ae 05 dd cb 08 8e 01 30 00 dd 09 c1 10 d1 21 14 d0 34 dd 21 00 d1 cd 92 04 3a 11 d0 cb 77 c8 3e ff 32 1a d0 dd 21 00 d3 06 08 3e 08 90 32 13 d0 c5 dd 7e 00 dd b6 01 c4 b1 04 01 30 00 dd 09 c1 10 e8 af 32 1a d0 c9 dd 66 21 dd 6e 22 e5 fd e1 dd 7e 13 b7 28 30 dd 66 11 dd 6e 12 06 00 4f cb 7f 28 01 05 09 dd 74 11 dd 75 12 eb 3a 1a d0 b7 20 14 21 26 0b 7a e7 57 3a 13 d0 c6 28 cd 07 01 c6</patch>
+		<patch offset="0x10052c">53 cd 07 01 dd 7e 09 b7 28 0a 3a 14 d0 e6 01 28 03 cd 00 05</patch>
+		<patch offset="0x100542">02</patch>
+		<patch offset="0x100545">03 7c b5 28 4d 2b 7c b5 28 48 dd 74 02 dd 75 03 dd 66 05 dd 6e 06 7c b5 c8 2b dd 74 05 dd 75 06 7c b5 20 0f 3a 1a d0 b7 c0 3a 13 d0 57 3e 08 cd 07 01 c9 3a 1a d0 b7 c0 3a 03 d0 b7 c8 3a 04 d0 b7 c0 cd 10 06 3a 13 d0 fd b6 07 57 3e 08 cd 07 01 c9 dd 7e 09 b7 28 03 dd 35 09 dd 7e 0a b7 28 08 3d dd 77 0a b7 cc 29 05 cd 16 0b e6 f0 fe 20 da 37 09 fe 40 da 18 09 c5 cd 91 08 c1 78 e6 1f 20 05 dd cb 08 d6 c9 dd cb 08 96</patch>
+		<patch offset="0x1005d1">86 10 fd 86 00 fa a1 05 fe 61 38</patch>
+		<patch offset="0x1005dd">d6 0c 18 f8 c6 0c fa a1 05 cd f6 05 3a 1a d0 b7 c0 cd 10 06 21 26 0b dd 7e 11 e7 57 3a 13 d0 c6 28 cd 07 01 dd 56 12 c6 08 cd 07 01 dd 7e 0a b7 28 09 dd cb 08 4e c8 dd cb 08 8e 3a 13 d0 fd b6 07 57 3e 08 cd 07 01 fd cb 01 4e c8 16 02 3e 01 cd 07 01 16 00 cd 07 01 c9 47 dd 7e 0a b7 28 0b dd cb 08 4e 20 05 dd 7e 13 b7 c0 dd 70 11 dd 36 12 00 c9 21 26 0b dd 7e 11 e7 0f e6 3f 32 19 d0 fd 4e 09 fd 7e 0a cd 9b 06 fd 46 08 0e 00 57 1e 07 cd 6a 06 fd 4e 0c fd 7e 0d cd 9b 06 fd 46 0b 0e</patch>
+		<patch offset="0x10067f">57 1e</patch>
+		<patch offset="0x100682">cd 6a 06 fd 4e</patch>
+		<patch offset="0x100688">fd 7e 10 cd 9b 06 fd 46 0e 0e 10 57 1e 04 cd 6a 06 fd 4e 12 fd 7e 13 cd 9b 06 fd 46 11 0e 18 57 18 0b dd 7e 23 e6 07 bb 30 03 7a 18 13 3a 10 d0 82 38 14 fa 8f 06 57 dd 7e 24 82 38 0a fa 8f 06 80 57 38 03 f2 91 06 16 7f 3a 13 d0 c6 60 81 cd 07 01 c9 47 e6 0f 67 78 0f 0f 0f 0f e6 07 6f e5 cd dc 06 e1 84 67 e5 cb 25 65 dd 7e 18 cb 7f 20 07 2f 08 3e 0f 94 67 08 07 cd 85 07 e1 0f 0f 0f 0f e6 0f dd cb 18 7e 28 02 ed 44 c6 10 84 38 01 f0 3e 7f c9 3a 19 d0 cb 79 28 02 c6 40 21 05 07 e7 f5 61 cd 85 07 47 f1 61 07 07 07 07 cd 85 07 0f 0f 0f 0f e6 0f 80 0f 0f 0f e6 1f c9 00 00 00 00 00 00 00 05 0a 0f 14 19 1e 22 27 2c 31 36 3b 40 45 4a 4f 54 59 5e 62 67 6c 71 76 7b 80 85 8a 8f 94 99 9e a2 a7 ac b1 b6 bb c0 c5 ca cf d4 d9 de e2 e7 ec f1 f6 fb fe ff ff ff ff ff ff ff ff ff ff ff ff ff fe fd fc fa f8 f6 f3 f0 ec e8 e4 df da d4 cf c8 c2 bb b3 ab a3 9b 92 89 7f 75 6c 63 5b 53 4b 43</patch>
+		<patch offset="0x1007ae">36 2f 2a 24 1f 1a 16 12 0e 0b 08 06 04 02 01 01 01 01 00</patch>
+		<patch offset="0x1007c2">00 00 00 e6 f0 6f 7c e6 0f b5 21 91 07 e7 c9</patch>
+		<patch offset="0x1007d2">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</patch>
+		<patch offset="0x1007e2">01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f</patch>
+		<patch offset="0x1007f2">02 04 06 08 0a 0c 0e 10 12 14 16 18 1a 1c 1e</patch>
+		<patch offset="0x100802">03 06 09 0c 0f 12 15 18 1b 1e 21 24 27 2a 2d</patch>
+		<patch offset="0x100812">04 08 0c 10 14 18 1c 20 24 28 2c 30 34 38 3c</patch>
+		<patch offset="0x100822">05 0a 0f 14 19 1e 23 28 2d 32 37 3c 41 46 4b</patch>
+		<patch offset="0x100832">06 0c 12 18 1e 24 2a 30 36 3c 42 48 4e 54 5a</patch>
+		<patch offset="0x100842">07 0e 15 1c 23 2a 31 38 3f 46 4d 54 5b 62 69 00 08 10 18 20 28 30 38 40 48 50 58 60 68 70 78 00 09 12 1b 24 2d 36 3f 48 51 5a 63 6c 75 7e 87 00 0a 14 1e 28 32 3c 46 50 5a 64 6e 78 82 8c 96 00 0b 16 21 2c 37 42 4d 58 63 6e 79 84 8f 9a a5 00 0c 18 24 30 3c 48 54 60 6c 78 84 90 9c a8 b4 00 0d 1a 27 34 41 4e 5b 68 75 82 8f 9c a9 b6 c3</patch>
+		<patch offset="0x1008b2">0e 1c 2a 38 46 54 62 70 7e 8c 9a a8 b6 c4 d2 00 0f 1e 2d 3c 4b 5a 69 78 87 96 a5 b4 c3 d2 e1 50 3a 1a d0 b7 20 05 2a 15 d0 18 03 2a 17 d0 5d 6c 26 00</patch>
+		<patch offset="0x1008e5">07 07 07 e6 07 d6 02 28 09 47 cb 23 cb 15 cb 14 10 f8 01 00 00 dd cb 08 46 28 0c dd cb</patch>
+		<patch offset="0x100903">86 44 4d cb 38 cb 19 cb 1b dd 7e 04</patch>
+		<patch offset="0x100910">ed 4a dd 74 02 dd 75 03 dd 77 04 dd 7e 0a b7 20 05 7a e6 1f 20 09 dd 36 05 00 dd 36 06 00 c9 eb 21 00 00 dd 7e 07 06 08 cb 3a cb 1b 07 30 01 19 10 f6 7a b3 28 06 06 01 3e ff 18 ec 7c b5 20 01 23 dd 74 05 dd 75 06 c9 cd 1e 09 c3 6e</patch>
+		<patch offset="0x10095e">fe 20 28 02 18 0c 78 e6 0f 3c dd 77 0a dd cb 08 ce c9 78 e6 0f dd 77 09 c9 cd 3d 09 c3 6e 05 78 f7 5f 09 7e 09 85 09 92 09 aa 09 c2 09 f7 09 fc 09 03 0a 0a 0a 11 0a 15 0a 1c 0a af</patch>
+		<patch offset="0x10099b">b8 0a bc</patch>
+		<patch offset="0x10099f">cd 16 0b 3e 80 80 67 2e 00 cb 3c cb 3c cb 3c cb 1d 3a 1a d0 b7 20 04 22 15 d0 c9 22 17 d0 c9 cd 16 0b dd 77 07 c9 dd 7e 0d fe 01 20 5a dd 36 0d 00 18 46 cd 16 0b b7 28 40 dd 7e 0d b7 20 05 dd 70 0d 18 35 dd 35 0d 28 3e 18 2e cd 16 0b b7 28 28</patch>
+		<patch offset="0x1009f1">7e 0e b7 20 05 dd 70 0e 18 1d dd 35 0e 28 26 18 16 cd 16 0b b7 28 10 dd 7e 0f b7 20 05 dd 70 0f 18 05 dd 35 0f 28 0e cd 16 0b 5f cd 16 0b dd 77 00 dd 73 01 c9 dd 66 00 dd 6e</patch>
+		<patch offset="0x100a2c">11 02 00 19</patch>
+		<patch offset="0x100a31">74 00 dd 75 01 c9 dd cb 08 c6 c9 cd 16 0b dd 77 10 c9</patch>
+		<patch offset="0x100a44">16 0b dd 77 13 c9 cd 16 0b dd 77 18 c9 cd 16 0b c9</patch>
+		<patch offset="0x100a56">16 0b cd 16 0b c9 cd 16 0b dd 77 20 67 2e 00 16 00 1e 28 cd 19 01 11 b3 0e 19 dd 74 21 dd 75 22 e5 fd e1 3a 1a d0 b7 c0 23 cb 7e 20 06 11 03 00 19 18 26 7e 07 07 07 e6 03 57 3e 1b cd 07 01 23 56 7a 3e 18 cd 07 01 23 7e f6 80 57</patch>
+		<patch offset="0x100aa3">19 cd 07 01 23 56 7a 3e 19 cd 07 01 23 7e f6 c0 dd 77 23 57 3a 13 d0 c6 20 cd 07 01 23 56 3a 13 d0 c6 38 cd 07 01</patch>
+		<patch offset="0x100aca">0e 00 09 3a 13 d0 c6 40 5f 06 14 c5 7b 56 cd 07 01 c6 08 5f e6 f0 fe 60 cc aa 0a 23 c1 10 ec c9 7b c6 20 5f c9 cd 16 0b ed 44 dd 77 24 c9 cd 16 0b c9 e1 e1 c1 3a 1a d0 b7 20 3c dd 21 00 d1 06 08 c5 3e 08 90 57 dd 7e 00 dd b6 01 28 05 3e 08 cd 07 01 01 30 00 dd 09 c1 10 e6 3e ff 32 1b d0 2a 17 d0 22 15 d0 3a 12 d0 32 11 d0 21 00 d3 11 00 d1 01 80 01 ed b0 af 32 12 d0 32 1a d0 21 00 d3 11 01 d3 01 7f 01 36 00 ed b0 c9 dd 66 00 dd 6e 01 7e 47 23 dd 74 00 dd 75 01 c9 0e 00 01 02 04 05 06 08 09 0a 0c 0d 0e 10 11 12 14 15 16 18 19 1a 1c 1d 1e 20 21 22 24 25 26 28 29 2a 2c 2d 2e 30 31 32 34 35 36 38 39 3a 3c 3d 3e 40 41 42 44 45 46 48 49 4a 4c 4d 4e 50 51 52 54 55 56 58 59 5a 5c 5d 5e 60 61 62 64 65 66 68 69 6a 6c 6d 6e 70 71 72 74 75 76 78 79 7a 7c 7d 7e 3e 01 32 04 f0 3e 07 32 25 d0 dd 21 00 d5 dd 7e 00 dd b6 01 c4 ae 0b 3e 06 32 25 d0 dd 21 40 d5 dd 7e 00 dd b6 01 c8</patch>
+		<patch offset="0x100bef">66 02 dd 6e 03 7c b5 28 76 2b dd 74 02 dd 75 03 dd 66 04</patch>
+		<patch offset="0x100c03">6e 05 7c b5 28 14 2b dd 74 04 dd 75 05 7c b5 20 09 3a 25 d0 57 3e 08 cd 07 01 3a 25 d0 fe 06 28 1a dd 7e 12 b7 28 14 dd 86 11 dd 77 11 0f 0f 0f e6 1f dd b6 10 57 3e 0f cd 07 01 dd 7e 15 b7 c8 06</patch>
+		<patch offset="0x100c45">cb 7f 28 01 05 4f</patch>
+		<patch offset="0x100c4c">66 13 dd 6e 14 09 dd 74 13 dd 75 14 7c 5d 21 26 0b e7 57 3a 25 d0 c6 28 cd 07 01 53 c6 08 cd 07 01 c9 dd 66 09 dd 6e 0a e5 fd e1 cd 22 0e f7 43 0c 45 0c 53 0c 61 0c 18 79 dd 66 00 dd 6e 01 dd 74 18 dd 75 19 18 6b dd 66 18 dd 6e 19 dd 74 00 dd 75 01 18 5d 3a 25 d0 fe 06 28 2b 3a 22 d0 32 21 d0 21 20 d5 11 00 d5 01 20 00 ed b0 af 32 22 d0 21 20 d5 11 21 d5 01 1f 00 36 00 ed b0 dd 36 08 80 dd 36 0b 80 c9 3a 24 d0 32 23 d0 21 60 d5 11 40 d5 01 20 00 ed b0 af 32 24 d0 21 60 d5 11 61 d5</patch>
+		<patch offset="0x100cef">1f 00 36 00 ed b0 dd 36 08 80 dd 36 0b 80 c9 cd 22 0e dd 77 02 cd 22 0e dd 77 03 cd 22 0e dd 56 02 dd 5e 03 21 00 00 06 08 cb 3a cb 1b 07 30 01 19 10 f6 7a b3 28 06</patch>
+		<patch offset="0x100d27">01 3e ff 18 ec 7c b5 20 01 23 dd 74 04 dd 75 05 cd 22 0e dd be</patch>
+		<patch offset="0x100d3d">c4 02 0d 18 57 dd 77 08 dd 36 0b 80 67 2e 00 16 00 1e 1a cd 19 01 3a 02 80 5f 3a 03 80 57 19 dd 74 09 dd 75 0a e5 fd e1 23 7e f6 c0 57 3a 25 d0 c6 20 cd 07 01 23 3a 25 d0 c6 40 5f 06 14 c5 7b 56 cd 07 01 c6 08 5f e6 f0 fe 60 cc 50 0d 23 c1 10 ec c9 7b c6 20 5f 01 04 00 09 c9 cd 22 0e dd be 0b c4 64 0d 18 55 dd 77 0b fd 46 06 0e 00 1e 07 cd 8c 0d fd 46 08 0e 10 1e 04 cd 8c 0d fd 46 07 0e 08 1e 05 cd 8c 0d fd 46 09 0e 18 18 0b fd 7e 01 e6 07 bb 30 03 50 18 18 3a 20 d0 80 38 10 fa ad 0d 57 dd 7e 0b 82 38 06 fa ad 0d 57 18 02 16 7f 3a 25 d0 c6 60 81 cd 07 01 c9 3a 25 d0 fe 06 20 11 dd 66 00 dd 6e 01 23 23 23 dd 74 00 dd 75 01 18 21 cd 22 0e dd 77 10 cd 22 0e dd 77 12 cd 22 0e 07 07 07 e6 f8 dd 77 11 78 dd b6 10 57 3e 0f cd 07 01 cd 22 0e dd 77 15 cd 22 0e dd 77 13 21 26 0b e7 57 3a 25 d0 c6 28 cd 07 01 16 00 dd 72 14 c6 08 cd 07 01 3a 25 d0 fd b6 00 57 3e 08 cd 07 01 c9 dd 66 00 dd 6e 01 7e 47 23 dd 74 00 dd 75 01 c9 1c 10 10 10 10 10 10 10 10 10 10 10 10 10 20 10 10 10 20 10 10 10 10 10 10 21 10 10 10 10 2f f8 01 b3 22 bf 26 e3 28 5d 2b 5f 2c 79 2e 53 30 af 31 3f 35 bb 39 10 3b c5 3b 85 3f 3c 44 a1 46 88 45 35 47 b2 48 b8 49 a5 4a 25 4c f9 4c 23 4e ec 4e ab 4f 56 53 d2 54 1a 56 d1 57 df 59 b3 22 e0 5c 08 5e b3 22 be 5e b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 b3 22 00 c2 cd 7f 00 3c 30 78 17 02 50 15 03 50 00 00 73 00 00 73 31 73 33 71 1f 1f 0e 0e 9f 88 9f 9f 00</patch>
+		<patch offset="0x100f15">00 00 02 12 07 06 f4 c2 cd 7f</patch>
+		<patch offset="0x100f20">3c 30 78 16 00 30 1b 00 30 00 00 73 00 00 73 31 70 72 30 1f 1f 0d 0d 9f 9f 9f 9f</patch>
+		<patch offset="0x100f3d">00</patch>
+		<patch offset="0x100f3f">02 02 06 06 00 c2 cd 7f 00 3c 30 78 1b 00 30 11 00 30 02 00 73 00 00 73 32 71 74 32 1f 1f 0c 0c 8f 9f</patch>
+		<patch offset="0x100f62">80</patch>
+		<patch offset="0x100f65">00</patch>
+		<patch offset="0x100f67">01 01 06 05 f4 c2 cb 5a 00 39 40 78 14 03 20 22 03 20 20 03 70 00 03 70 03 04 04 02 14 14 14 14 91 85 83 9f 40 01 01 00 f9 33 38 07 00 c2 cd 64</patch>
+		<patch offset="0x100f98">2c 30 78 1b 05</patch>
+		<patch offset="0x100f9e">1b 05 00 00 00 77 00 00 77 74 34 72 32 1f 1f 0f 0f 80 80 88 88 00</patch>
+		<patch offset="0x100fb5">02 02 03 03 56 56 00</patch>
+		<patch offset="0x100fbd">00 00</patch>
+		<patch offset="0x100fc0">32</patch>
+		<patch offset="0x100fc2">78 0d 0f 60 0c 0f 60 11 0f 70 00 00 70 35 71</patch>
+		<patch offset="0x100fd2">01 9f 9f 9f 9f 85 89 86 89 04 06 05 03 25 26 25 15 f4 80 00</patch>
+		<patch offset="0x100fe8">28</patch>
+		<patch offset="0x100fea">78 0e 05 30 0e 05 70 1b 04 50 00 00 70 06</patch>
+		<patch offset="0x100ff9">05 01 df 9f df 9f 8f 9f 8d 9f 07 05 06 02 23 03 23 06 f4 c0 cc</patch>
+		<patch offset="0x101010">3b 30 78 20 00 70 11 00 70 14 00 70 00 00 70 0f</patch>
+		<patch offset="0x101021">14</patch>
+		<patch offset="0x101023">1f 1f 1f 1f 8e 85 8c 9f 00</patch>
+		<patch offset="0x10102d">03 05 fa 37 fa 08 f4 c0 c5 7f</patch>
+		<patch offset="0x101038">3b 30 78 1b 0f 70 1b 00 70 1b 00 70 00 00 70 72 30 31 70 5f 1f 5f 1f 8e 85 8d 88 00 03 00 0a fa 37 fa 18 0c e2 dc 64</patch>
+		<patch offset="0x101060">07 60 78 00 00 77 00</patch>
+		<patch offset="0x101068">77 00 00 77 00 00 76 01 01 01 01 1f 5f df 5f 8c 8c 8c 8c 00</patch>
+		<patch offset="0x10107d">00 00 f6 f6 f6 f6 00 c2 ce 7f</patch>
+		<patch offset="0x101088">3c 30 78 1b 00 70 1b 00 70 00 00 74 00 00 74 38 78 31 71 5f 5f 5f 5f 8e 8e 8d 8d 00</patch>
+		<patch offset="0x1010a5">00 00 f5 f5 f6 f6 00 c2 c8 7f</patch>
+		<patch offset="0x1010b0">3c 30 78 1b 00 70 1b 00 70 00 00 70 00 00 70 33 73 31 71 5f 5f 5f 5f 8e 8e 8a 8a 00</patch>
+		<patch offset="0x1010cd">00 00 f5 f5 f6 f6 e8 e2 ff 7f</patch>
+		<patch offset="0x1010d8">3a 70 78 1b 00 40 16 00 50 1b 00 40 00 00 70 0a 04 07</patch>
+		<patch offset="0x1010eb">df 1f 1f 1f 9f 9f 9f 9f 00 ca 40 cd 03 03 03 07 ed c2 cd 7f</patch>
+		<patch offset="0x101100">05 30 78 1b</patch>
+		<patch offset="0x101105">50 1b</patch>
+		<patch offset="0x101108">70 00 00 70 00 00 70 76 36 33 72 1f 0f 0f 1f 8b 8e 8b 8e</patch>
+		<patch offset="0x10111d">00 40 56 06 06 f6</patch>
+		<patch offset="0x101124">c2 64 7f</patch>
+		<patch offset="0x101128">04 30 78 11</patch>
+		<patch offset="0x10112d">00 11</patch>
+		<patch offset="0x101130">00 00 00 76 00 00 70 7a 3e 72 32 12 12 12 12 8a 8a 8a 8a 40 00 00 00 f5 f5 f5 f5 00 c2 ca 7f 00 3c 30 78 11 0f 00 1b 0f 00 00 00 71 00 00 71 7b 3b 32 72 1f 1f 1f 1f 8a 8a 8a 8a</patch>
+		<patch offset="0x10116d">00</patch>
+		<patch offset="0x10116f">f5 f5 f5 f5</patch>
+		<patch offset="0x101174">c2 0a 7f</patch>
+		<patch offset="0x101178">00 03 78 1b 00 70 20 00 70 00 00 70 00 00 70 00 02 03</patch>
+		<patch offset="0x10118b">d9 1f df 1f 92 94 91 8f 4a 0a 80 0d f3 f3 f6 f8 00 80 00</patch>
+		<patch offset="0x1011a0">38</patch>
+		<patch offset="0x1011a2">78 00 00 00 00 00 00 00 00 00 00 00 70 0f 0f 0f 0f 1f 1f 1f 0e 80 80 80 8a c0 40 80 d9 03 03 03 1a 0c c0 c3 0c 04 3c 12 78 19 00 70 1b 00 70 0c 81 70 00 82 70 35 33 21 31 59 59 59 59 97 94 8e 8e 0a 0b 0b 0c e8 e8 f8 f8 00</patch>
+		<patch offset="0x1011ed">00 00</patch>
+		<patch offset="0x1011f0">37</patch>
+		<patch offset="0x1011f2">78 0d 03 72 00 00 72 00 00 72 00 00 72 03 01 01 01 1f 1f 1f 1f 90 8e 8e 8e</patch>
+		<patch offset="0x10120d">00</patch>
+		<patch offset="0x10120f">f7 f7 f7 f7 00</patch>
+		<patch offset="0x101218">3c</patch>
+		<patch offset="0x10121a">78 20 00 50 1b 00 50 00 00 72 00 00 72 03 04 01 01 1f 1f 1f 1f 8a 8a 8c 8c 80 80 00 00 f3 f3 f6 f6</patch>
+		<patch offset="0x10123c">c2 c8 50 03 3a 21 78 09 05 30 11 00 30 1b 00 70 00 82 73 01 01 01 02 8d 07 07 52 89 80 80 83 01 02 02 00 52 02 02 28 00 c2 d2 7f</patch>
+		<patch offset="0x101268">3b 20 78 15 00 50 11 00 60 11 00 60 00 00 70 72 31 31 71 12 12 14 14 8e 8e 80 82 00</patch>
+		<patch offset="0x101285">00 01 1a 5a 0a 3a 00</patch>
+		<patch offset="0x10128d">00</patch>
+		<patch offset="0x101290">2c</patch>
+		<patch offset="0x101292">78 16 00 00 1b 00 00 00 00 70 00 00 70 78 34 72 32 1f 1f 1f 10 80 80 92 91</patch>
+		<patch offset="0x1012ad">0d 0a 00 00 c7 c7 f6 e2 ff 7f</patch>
+		<patch offset="0x1012b8">3f 70 78 1b 00 70 00 00 70 1b 00 70 00 00 70 02 01 0c 01 07 09 0a 08 80 80 80 80 85 49 08 0a 0a 0a 0a 0a 00 c2 cd 64</patch>
+		<patch offset="0x1012e0">00 40 78 1b 00 10 1b 0a 30 00 00 20 00 00 70 07 06 02 02 17 17 17 17 9f 9f 9f 9f 4d 0d 0e 0e 06 06 07 07 f4 c2 c8 64</patch>
+		<patch offset="0x101308">3c 30 78 13 00 70 0f 00 70 00 00 73 00 00 73 31 70 72 30 52 52 53 53 88 88 80 80 04 04 00</patch>
+		<patch offset="0x101327">14 12 07 06 3c</patch>
+		<patch offset="0x101330">34</patch>
+		<patch offset="0x101332">78 0e 00 00 0f 00 00 00 00 72 00 00 72 06 04 0f 0e 1f 1f 1f 1f 80 80 8b 8b c0 80 43 43 00</patch>
+		<patch offset="0x101351">f5 f4</patch>
+		<patch offset="0x101354">c2 cb 28</patch>
+		<patch offset="0x101358">3c 30 78 11 03 00 11 00 00 01 00 74 00 00 76 32 71 74 32 9f 9f 19 19 8f 80 80 80 00</patch>
+		<patch offset="0x101375">00 00 12 02 08 07</patch>
+		<patch offset="0x10137d">00</patch>
+		<patch offset="0x101380">37</patch>
+		<patch offset="0x101382">78 00 80 40 00</patch>
+		<patch offset="0x101388">77 00 00 77 00 00 7a 72 34 31 70 1f 1f 1f 1f 80 80 80 80 00</patch>
+		<patch offset="0x10139d">00 00 06 06 05 05 18 c2 00</patch>
+		<patch offset="0x1013a8">3c</patch>
+		<patch offset="0x1013aa">78 16 00 00 1b</patch>
+		<patch offset="0x1013b0">00 00 00 79 00 00 77 32 72 71 33 1f 1f 0b 0a 80 80 8a 8a</patch>
+		<patch offset="0x1013c5">00 03 04 03 05 66</patch>
+		<patch offset="0x1013cc">e2 c8 7f</patch>
+		<patch offset="0x1013d0">07 40 78 00 00 7a 00 00 7a 00 00 7a 00 00 7a 74 34 31 71 1f 1f 1f 1f 8a 8a 8a 8a</patch>
+		<patch offset="0x1013ed">00</patch>
+		<patch offset="0x1013ef">65 65 65 65 64 e2 c8 7f 00 07 70 78 00 00 73 00 00 73 00 00 73 00 00 73 01 01 01</patch>
+		<patch offset="0x10140b">1f 1f 1f 1f 8a 8a 8a 8a</patch>
+		<patch offset="0x101415">00</patch>
+		<patch offset="0x101417">f6 f6 f6 f6 f4 e2 b4 7f</patch>
+		<patch offset="0x101420">07 70 78 00 00 70</patch>
+		<patch offset="0x101428">70 00 00 70 00 00 70 01 01 01</patch>
+		<patch offset="0x101433">1f 1f 1f 1f 8a 8a 8a 8a</patch>
+		<patch offset="0x10143d">00</patch>
+		<patch offset="0x10143f">f6 f6 f6 f6 00 00 00 00 00 06</patch>
+		<patch offset="0x10144a">78 1b 00 00 00 85 71 09 00 71 00 00 71 7d 34 32 74 1f 1f 1f 1f 8d 8a 8a 8a 00 00 00</patch>
+		<patch offset="0x101467">f5 f5 f5 f5 00</patch>
+		<patch offset="0x10146d">00 00</patch>
+		<patch offset="0x101470">2c</patch>
+		<patch offset="0x101472">78 1b 05 00 1b 05 00 00 85 70 00 85 70 74 34 72 32 1f 1f 10 10 80 80 88 88 00 00 00 00 00 00 56 56 1e</patch>
+		<patch offset="0x101495">00 00</patch>
+		<patch offset="0x101498">38 00 78 25 00 70 20 00 70 1b 00 70 00 00 70 01</patch>
+		<patch offset="0x1014ab">1f 1f 1f 1f 94 94 94 94 80 40 00</patch>
+		<patch offset="0x1014b7">f3 f3 f3 fa</patch>
+		<patch offset="0x1014bc">c2 cb 00 00 3a</patch>
+		<patch offset="0x1014c2">78 07 0a 58 0c 0a 70 0c 0a 50 00 00 75 33 71 73 31 1f 5f 1f 18 94 9f 9e 9f 02 02 02</patch>
+		<patch offset="0x1014df">03 03 03 08 f4 c2 c5 32 03 2a</patch>
+		<patch offset="0x1014ea">78 1b</patch>
+		<patch offset="0x1014ed">70 1a 00 70 2a 00 70 00 00 73 01 01 01 01 0e 0c 0e 0f 87 80 87 82 00</patch>
+		<patch offset="0x101505">01 00 05 05 05 08 f4 c2 cb 46 0a 06 41 78 1b 00 00 1b 00 70 09 00 70 09 00 70 11 52 12 52 14 0a 0a 0b 80 80 80 80 00 00 00 00 03 07 06 07 18 c2 cd 1d 64 3e</patch>
+		<patch offset="0x10153a">78 0f 0a 70 00 8f 72 16 8f 72 00 8f 72 36 33 71 71 1f 9f 9f 9f 91 85 85 85 80 80 00 00 ff f3 f3 f3 f4</patch>
+		<patch offset="0x10155d">00</patch>
+		<patch offset="0x101560">04</patch>
+		<patch offset="0x101562">78 1b 00</patch>
+		<patch offset="0x101566">1b 00 70 00 00 70 00 00 70 00 01 01 01 df 1f 1f 1f 99 8a 8e 8c 54 80 c0 00 53 53 f5 f5 00 c2 cd 7f 00 3c 30 78 14 00 70 0f 00 00 00 00 70 00 00 70 31 70 72 30 9f 9f 9f 9f 9f 9f 9f 9f</patch>
+		<patch offset="0x1015a5">00</patch>
+		<patch offset="0x1015a7">05 05 08 f8</patch>
+		<patch offset="0x1015ac">c2 c8 50 04 3a 22 78 15 84 00 1b 04 00 20 04 00 00 82 70 04 04 04 02 8d 15 55 52 86 8e 88 83 02</patch>
+		<patch offset="0x1015cd">00 00 14 24 14 28</patch>
+		<patch offset="0x1015d4">c2 cd 7f 00 3c 30 78 13 00 30 0f 00 30 00 00 73 00 00 73 31 70 72 30 1f 1f 14 14 9f 9f 9f 9f</patch>
+		<patch offset="0x1015f5">00</patch>
+		<patch offset="0x1015f7">02 02 06 06 00 c2 cb 6d</patch>
+		<patch offset="0x101600">3c 21 78 14 01 00 12 00 70 00 83 75 00 83 75 32 72 71 31 15 1f 17 17 80 80 80 80</patch>
+		<patch offset="0x10161d">00</patch>
+		<patch offset="0x10161f">03 03 0a 0a f4 c2 c8 00</patch>
+		<patch offset="0x101628">3a</patch>
+		<patch offset="0x10162a">78 06 0f 30 0c 0f 70 05 0f 00 00 00 77 33 72 76 31 1f 1f 1f 19 8f 9f 9f 9f 05 05 05</patch>
+		<patch offset="0x101647">13 03 03 08 f4 c2 cb 64 00 3d 30 78 16 03 70 00 83 7a 00 83 70 00 83 70 32 74 74 74 8f 0d 0d 0d 80 88 85 85 00 01 01 01 02 2f 26 24 0c 00 00</patch>
+		<patch offset="0x101678">3b</patch>
+		<patch offset="0x10167a">78 0f 00 00 17 84 70 17 05 70 00 8c 70 03 01 56 54 5f 5f df 9f 80 80 80 86</patch>
+		<patch offset="0x101696">04 0f 00 00 f7 00 82 00 00 00 3f</patch>
+		<patch offset="0x1016a2">78 00 00 38 00 00 70 07 00 78 00 00 70 74 32 30 71 12 12 12 12 80 80</patch>
+		<patch offset="0x1016ba">80</patch>
+		<patch offset="0x1016bd">00</patch>
+		<patch offset="0x1016bf">07 07 07 06 00 00 00 00 00 33</patch>
+		<patch offset="0x1016ca">78 0e 0f 70 17 0f 70 12 0f 70 00 00 70 35 71 03 01 9f 9f 9f 9f 85 89 86 89 04 06 05 03 25 26 25 15</patch>
+		<patch offset="0x1016ec">c0 c8 46 05 1f 21 78 07 01 65 00 01 60 00 00 65 00 00 70 66 73 31 22 1c 1f 98 1f 92 8f 8f 8f 00</patch>
+		<patch offset="0x10170d">00 00 f6 06 06 06</patch>
+		<patch offset="0x101715">00</patch>
+		<patch offset="0x101718">00</patch>
+		<patch offset="0x10171a">78 1b 0a 70 1b 02 70 1b 05 70 00 00 70 34 73 76 31 14 14 14 14 80 80 80 80 00</patch>
+		<patch offset="0x101735">00 00 03 03 03 07 f4 80 00 00</patch>
+		<patch offset="0x101740">28</patch>
+		<patch offset="0x101742">78 0f 05</patch>
+		<patch offset="0x101746">0f 05 70 1b 04 50 00 00 70 06</patch>
+		<patch offset="0x101751">05 01 df 9f df 9f 8f 9f 8d 9f 07</patch>
+		<patch offset="0x10175d">06 02 23 03 23 06 79</patch>
+		<patch offset="0x101765">00</patch>
+		<patch offset="0x101768">1b</patch>
+		<patch offset="0x10176a">78 22 00 70 00 00 70 00 00 70 00 00 70 06 03 05</patch>
+		<patch offset="0x10177b">1f 1f 1f 1f 80 94 87 92</patch>
+		<patch offset="0x101784">00 c8 c0 ff ff 87 fa 0c c2 c8 64</patch>
+		<patch offset="0x101790">1f 40 78 1b 0f 00 00 00 78 00 00 78 00 00 70 37 74 71 34 1f 1a 14 17 8a 8a 8a 8a 00 00 00 00 f5 f5 f5 f5 f4 c0 c5 7f 00 3a 30 78 12 0f 70 12 00 70 1b 00 70 00 00 70 72 30 31 70 5f 1f 5f 1f 8e 85 8d 88 00 03 00 0a fa 37 fa 18 dc c2 be 00 05 3d 03 78 25 00 70 00 00 70 00 00 70 00 00 70 77 32 70 32 1f 1f 1f 1f 80 8a 8b 8a 00 00 00 00 00 f4 f5 f4 ed c2 dd</patch>
+		<patch offset="0x101807">06 00</patch>
+		<patch offset="0x10180a">78 00 00 70 00 00 00 00 00 76 00 00 76 30 71 31 71 1f 1f 1f 1f 8f 9f 8f 83 00</patch>
+		<patch offset="0x101825">00 00 0a 0a 1a 4b f4 c2 cb 56 0a 3d 41 78 16 03 30 00 83 70 00 83 74 00 83 70 32 74 74 74 8f 0d 0d 10 80 88 85 85</patch>
+		<patch offset="0x10184c">01 01 01 02 27 26 23</patch>
+		<patch offset="0x101854">c2 cb 28</patch>
+		<patch offset="0x101858">3c 30 78 12 03 70 12</patch>
+		<patch offset="0x101860">70 01</patch>
+		<patch offset="0x101863">74</patch>
+		<patch offset="0x101866">76 32 71 74 32 9f 9f 19 19 8f 80 80 80</patch>
+		<patch offset="0x101877">12 02 08 07 f4 c2 c6 28 03 3d 11 78 15 80 40</patch>
+		<patch offset="0x101887">04 70</patch>
+		<patch offset="0x10188a">04 70</patch>
+		<patch offset="0x10188d">82 70 01 01 02 01 8d 14 58 55 87 8e 88 83</patch>
+		<patch offset="0x10189f">14 18 18 1a</patch>
+		<patch offset="0x1018a4">e2 be 7f</patch>
+		<patch offset="0x1018a8">04 70 78</patch>
+		<patch offset="0x1018b3">70</patch>
+		<patch offset="0x1018b6">70 01 04 01 01 1f 1f 1f 1f 8c 8c 8c 8d</patch>
+		<patch offset="0x1018c7">f6 f6 f6 f6</patch>
+		<patch offset="0x101928">00</patch>
+		<patch offset="0x10192d">0d</patch>
+		<patch offset="0x1019ab">0d</patch>
+		<patch offset="0x101a82">00</patch>
+		<patch offset="0x101a8b">00</patch>
+		<patch offset="0x101b05">0b</patch>
+		<patch offset="0x101b0e">0b</patch>
+		<patch offset="0x101d0f">00</patch>
+		<patch offset="0x101d8a">00</patch>
+		<patch offset="0x101d92">0b</patch>
+		<patch offset="0x101e0d">0b</patch>
+		<patch offset="0x101ed9">00</patch>
+		<patch offset="0x101f5c">0b</patch>
+		<patch offset="0x101fdd">00</patch>
+		<patch offset="0x101fe6">00</patch>
+		<patch offset="0x102030">00</patch>
+		<patch offset="0x10205b">00</patch>
+		<patch offset="0x102060">0b</patch>
+		<patch offset="0x102069">0b</patch>
+		<patch offset="0x1020b3">0d</patch>
+		<patch offset="0x1020de">0b</patch>
+		<patch offset="0x102159">00</patch>
+		<patch offset="0x1021dc">0b</patch>
+		<patch offset="0x102270">00 00 00 00 00 00 00 00 00 00 00 00 00</patch>
+		<patch offset="0x102282">00 00 00 00 00 00 00 00</patch>
+		<patch offset="0x10228b">00 00 00</patch>
+		<patch offset="0x10228f">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 08 c4 22 7d 23 32 24 c1 24 e8 25 4f 26 00 00 00 00 00 ec 0a c0 09 f0 01 c8 0d 00 07 24 0c 00 e0 06 c0 6d 60 68 60 21 e7 87 66 68 6a 60 6c 60 33 ad af b1 72 60 6d 72 21 f4 d4</patch>
+		<patch offset="0x10232e">60 71 60 21 f0 90 6f 71 72 60 74 60 33 b6 b7 b9 7b 60 76 7b 22 bd dd fd</patch>
+		<patch offset="0x102347">e0 0c 16 a0 71 71 71 71 b1 8f 8c a0 74 74 74 74 b4 93 8f 21 ed ed 02 36 23 a0 6f 6f 6f 6f af 8d 8a ab 8a 86 88 8a 8b 8d 21 ef ef 03 01 0a 23 93 71 6d 74 60 b3 71 6d 94 73 6f 98 76 72 79 60 b8 76 72 76 78 79 7b 9d 7b 78 99 78 74 76 78 76 74 91 79 7b 9d 7b 78 99 78 74 76 78 76 74 91</patch>
+		<patch offset="0x1023a6">30 71 73 94 73 6f 91 71 73 94 76 74 73 74 73 6f 21 f1 f1 05 00 ce 22 0a c0 09 f0 01 c8 07 24 0d 00 0c 01 e0 06 c0 71 60 6d 60 ef 80 6a 6c 6d 60 6f 60 33 b1 b2 b4 79 60 72 79 21 f8 d8 79 60 74 60 f3 80 72 74 76 60 78 60 33 b9 bb bd 9e 7d 7b 22 fa da ba e0 e0 0c 16 6a 6a 6a 6a 6a 6a 6a 6a 6a 60 ac 88 6d 6d 6d 6d 6d 6d 6d 6d 6d 60 af 8a 21 e6 e6 02 fb 23 68 68 68 68 68 68 68 68 68 60 aa 86 07 18 8f 8b 8d 8f 8f 92 94 96 21 f7 f7 07 24 03 01 be 23 8d 6a 67</patch>
+		<patch offset="0x10243f">60 6f 60 8d 6a 67 91 6f 6a 8f 6d 6a 72 60 b4 6f 6c 6d 6f 71 72 94 92 91</patch>
+		<patch offset="0x102458">8d 8c 8d 80 94 92 91 80 8d 8c 8d 96 98 96 94 93 b1 8f 96 21 f5 f5 05 00 87 23 0a c0 09 f0 01 c8 0d 00 07</patch>
+		<patch offset="0x10247c">0c 0e aa a0 c0 e0 07 18 0c 0b e0 a0 80 8a 80 8a 80 8a 03 02 46 24 07 0c 0c 0e ea ea ca ca 06 ca a0 07 18 0c 06 80 6a 6a 8a 80 a0</patch>
+		<patch offset="0x1024a8">6a</patch>
+		<patch offset="0x1024aa">03 05 61 24 07 24 0c 15 80 66 66 8b 33 66 6b 66 8f 33</patch>
+		<patch offset="0x1024bd">6f 6a 92 33 71 72 71 97 92 06 db 0c 03 0d f4 60 80 78 79 80 78 79 80 78 79 78 76 78 79 80 7b 7d 60 7b 07 30 0d 00 73 74 76 74 73 71 73 71</patch>
+		<patch offset="0x1024ec">21 ed ed e0 e0 e0 e0 e0 07 00 0c 0e a0 c5 c5 c5 a5 05 00 3a 24 0a c0 09 f0 01 c8</patch>
+		<patch offset="0x102508">00 07 00 0c 0e aa a0 c0 e0 07 18 0c 16 6a 6a 6a 6a 6a 6a 6a 6a 6a 60 aa 6a 60 6a 60 6a 60 07 0c 0c 0b 6a 60 8a 6a 60 8a 6a 60 8a 07 18 0c 16 6a 6a 6a 6a 6a 6a 6a 6a 6a 60 ac 68 60 6a 60 65 60 07 0c 0c 0b 6a 60 8a 6a</patch>
+		<patch offset="0x102551">8a 6a 60 8a 07 18 0c 16 6a 6a 6a 6a 6a 6a 6a 6a 6a 60 ad 6a 60 6b 60 66 60 6b 60 6d 60 6f 60 72 60 77 60 7b 60 21 fd fd e0 e0 e0 e0 c0 07 24 0c 0f 0d f4 46 23 52 72 92 b2 0d f8 46 23 52 72 92 b2 0d fc 46 23 52 72 92 b2 0d 00 46 23 52 72 92 b2 c0 e0 0c 15 80 6b 6b 92 33 6b 72 6b 97 33 72 77 72 9b 33 77 7b 77 9e 33 7d 7e 7d 06 db 07 30 0c 03 80 6c 6d 80 6c 6d 80 6c 6d 6c</patch>
+		<patch offset="0x1025ce">6c 6d 80 6f 71 60 6f 71 76 78 79 78 76 74 76 74 73 21 f1 f1 e0 07 24 0c 00 06 c0 80 6d 74 79 7b 79 78 76 78 76 74 72 74 72 6f 68 6d 71 74 79 7b 79 78 76 78 76 74 72 74 72 6f 68 6d 74 78 07 30 71 73 71 6f 6d 6f 6d 6c 6d 6f 6d 6c 6a 6c 6a 67 07 00 0c 0e e5 e5 05 00 c9 24 0a c0 09 f0 01 c8 0d 00 07 0c 0c 0e</patch>
+		<patch offset="0x102635">06 c0 07 00 0c 19 6a 60 80 6a 60 6a 60 6a 60 6a 60 6a 60 6a 60 03 0a fb 25 8a 6a 6a 8a 8a 8a 8a 6a 6a 8a 03 0b 0e 26 07 24 0c 07 8a a0 8a 8a a0 8a 8a a0 8a 80 8a 80 88 80 88 8a 80 80 88 8d 80 80 88 8a 80 80 88 8d 80 80 8c 8d 80 80 8a 80 8c 07 0c 0c 0e e5 e5 05</patch>
+		<patch offset="0x10268d">f0 25</patch>
+		<patch offset="0x102695">07 18 0d 00</patch>
+		<patch offset="0x10269a">06 4a 40 4a 40 4a 40 4a 40 4a 40 4a 40 4a 40 4a 40 6a 60 6a 60 6a 60 6a 60 03 07 5b 26 aa 03 0f 77 26 36 80 96 96 96 96 96 c0 03 0b 7c 26 33 80 96 96 a0 33 80 96 96 a0 33 80 96 96 a0 76 60 76 76 74 60 74 74 99 94 96 80 92 94 99 80 99 94 96 80 92 94 99 98 9d 98 99 80 b6 b8 0c 01 21 fd fd 05 00 59 26 0f 08 d0 26 1f 27 5d 27 96 27 42 28 b2 28 00 00 00 00 00 ec 0a c0 09 f0 01 c8 0d 00 07 30 0c 1a a3 a4 eb a3 a4 ab 8d 8f b1 8f 8b ed a0 8d 8f b1 8f 8b b2 91 8d b4 92 8f 21 f1 f1 0c 16 a3 a4 eb a3 a4 ab 8d 8f b1 8f 8b ed a0 8d 8f b1 8f 8b b2 91 8d b4 92 8f 21 f1 f1 23 f6 f6 f6 f6 05 00 da 26 0a c0 09 d0 01 c8 07 24 0d 00 0c 0b a3 03 17 2b 27 aa 03 07 30 27 0c 16 a0 a3 a8 b0 b7 b6 b4 b2 b4 96 97 b4 92 8f f1 a0 91 94 b9 b4 bb b6 bd b7 22 f6 d6 b6 b4 23 f3 f3 f3 f3 05 00 29 27 0a c0 09 d0 01 c8 0d 00 07 18 0c 0c 80 33 6a 6b 6d af 03 0f 69 27 07 00 0c 0e a0 a3 a3 a3 a3 06 c0 03 02 77 27 a0 aa aa aa aa 06 c0 a0 c3 c3 c3 c3 c3 c3 c3 a3 05 00 65 27 0a c0 09 f0 01 c8 0d 00 07 18 0c 05 6a 60 68 60 6a 60 6b 60 6a 60 68 60 6a 60 6b 60 02 c9 27 6a</patch>
+		<patch offset="0x1027f7">68 60 6a 60 6b 60 6d 60 6f 60 6d 60 6b 60 03 02 a2 27 6a 60 68 60 6a 60 6b 60 6d 60 6b 60 6d 60 6f 60 71 60 6f 60 71 60 72 60 03 03 d9 27 0c 16 6a 60 68 60 6a 60 6b 60 6a 60 68 60 6a 60 6b 60 02 0e 28 6a 60 68 60 6a 60 6b 60 6d 60 6f 60 6d 60 6b 60 03 02 e7 27 6a 60 68 60 6a 60 6b 60 6d 60 6b 60 6d 60 6f 60 71 60 6f 60 71 60 72 60 03 03 1e 28 73 60 71 60 73 60 75 60 76 60 75 60 73 60 71 60 03 03 2a 28 05 00 9e 27 0a c0 09 d0 01 c8 0d 00 07 24 0c 01 21 e3 e3 21 e3 e3 21 e3 e3 21 ea ea 0c 07 09 d0 80 83 09 b0 80 83 09 d0 a3 a0 83 80 83 80 c0 80 83 09 b0 80 83 09 d0 83 a0 09 b0 83 09 d0 83 83 83 80 c0 80 83 80 83 a0 80 83 80 83 83 80 83 83 80 83 8a</patch>
+		<patch offset="0x1028d2">8a 80 c0 8a 8a 8a 80 c0 83 80 83</patch>
+		<patch offset="0x1028de">c0 83 80 83 80 c0 83 80 83 80 c0 83 83 83 80 c0 05 00 4a 28 0a c0 09 d0 01 c8 07 18 0d 00 0c 01 21 e3 e3 21 e3 e3 21 e3 e3 21 ea ea 0c 06 a3 03 17 cc 28 aa aa aa aa aa aa aa aa a3 03 0f d9 28 05 00 bc 28 0f 08 f4 28 49 29 a6 29 20 2a 77 2a f0 2a 00 00 00 00 00 d4 0a c0 09 f0 01 c8 0d 00 07 18 0c 01 21 e5 e5 e0 e0 07 24 0c 1c 6c 60 73 60 c0 6c 60 73 60 80 33 73 73 73 06 93 73 73 60 73 60 80 73 60 06 94 74 22 f4 d4 b4 a1 a6 aa ad d2 d0 71 60 78 60 80 71 60 78 60 80 71 60 78 60 80 71 60 78 60 80 c0 05 00 09 29 0a c0 09 f0 01 c8 0d 00</patch>
+		<patch offset="0x102992">24 0c 1d 21 e5 e5 e0 e0 0c 1c 68</patch>
+		<patch offset="0x10299e">6f</patch>
+		<patch offset="0x1029a0">c0 68 60 6f 60 80 33 6f 6f 6f 06 8f 6f 6f</patch>
+		<patch offset="0x1029af">6f 60 80 6f 60 06 b1 6f 6c 06 ad 6c 68 06 aa 68 65 06 a6 65 61 07 18 aa ad b2 b6 f9 07 24 6c 60 76 60 80 6c 60 76 60 80 6c 60 76 60 80 6c 60 76 60 80 c0 05 00 5a 29 0a c0 09 f0 01 c8 0d f8 07 30 0c 00 06 60 a0 60 76 74 73 71 73 71 6f 6d 6f 6d 6c 6a 6c 6a 68 67 68 67 65 64 65 64 61 07 24 6c 73 51 e0 e0 07 18 0d 00 0c 1c 71 60 78 60 c0</patch>
+		<patch offset="0x102a20">60 78 60 80 33 78 78 78 06 98 78 78 60 78 60 80 78 60 06 b9 78 74 06 b6 74 71 06 b2 71 6d 06 af 6d 6a a6 aa ad b2 f6 76 60 7d 60 80 76 60 7d 60 80 76 60 7d 60 80 76 60 7d 60 80 c0 05 00 d4 29 0a c0 09 f0 01 c8 0d f8 07 30 0c 00 60 74 76 74 73 71 73 71 6f 6d 6f 6d 6c 6a 6c 6a 68 07 24 73 74 73 71 70 71 70 6d 6c 6d 6c 6a 68 6a 68 0d 00 0c 07 06 a5 85 03 03 52 2a 06 a5 85 03 0b 59 2a 80 71 71 6c 6c 65 60 71 71 6c 6c 65 60 6c 6c a5 80 85 c0 05</patch>
+		<patch offset="0x102ab5">59 2a 0a c0 09 f0 01 c8 0d 00 07 30 0c 00 a0 60 76 74 73 71 73 71 6f 6d 6f 6d 6c 6a 6c 6a 68 67 68 67 65 64 65 64 61 07 24 6c 73 71 6f 0c 06 65 60 03 0f a4 2a 0c 06 65 60 03 1f ac 2a</patch>
+		<patch offset="0x102af3">60 65 65 65 60 65 60 65 65 65 60 03 01 b2 2a 65 60 65 65 65 60 65 60 0c 0b 06 a5 06 a5 a5 80 06 a5 0d f4 33 65 65 65 0d f8 33 65 65 65 0d fc 33 65 65 65 0d</patch>
+		<patch offset="0x102b28">33 65 65 65 05 00 aa 2a 0a c0 09 f0 01 c8 0d 00</patch>
+		<patch offset="0x102b39">30 0c 00 74 76 74 73 71 73 71 6f 6d 6f 6d 6c 6a 6c 6a 68 07 24 73 74 73 71 70 71 70 6d 6c 6d 6c 6a 68 6a 68 67 07 18 0c 05 71 6f 6d 6c 6a 68 67 65 03 03 22 2b 71 6f 6d 6c 6a 68 67 65 03 0b 2e 2b 71 6f 6d</patch>
+		<patch offset="0x102b7e">80</patch>
+		<patch offset="0x102b80">6f 6d 6c 80 71 6f 6d 6c 71</patch>
+		<patch offset="0x102b8a">71</patch>
+		<patch offset="0x102b8c">6d 6f 6d 6c 6a 6c 6a 68 67 68 67 63 05 00 2e 2b 0f 08 6e 2b b4 2b d6 2b f8 2b 1c 2c 40 2c 00 00 00 00 00 d0 0a c0 09 d0 01 c8 0d 00 07 18 0c 07 a0 36 6c 60 6c 60 6c 60 c0 a0 3b 6c</patch>
+		<patch offset="0x102bc9">6c 60 6c</patch>
+		<patch offset="0x102bcd">6c</patch>
+		<patch offset="0x102bcf">6c</patch>
+		<patch offset="0x102bd1">6c</patch>
+		<patch offset="0x102bd3">a0 a0 3b 6c 60 6c 60 6c 60 6c 60 6c 60 6c 60 36 6c 60 6c 60</patch>
+		<patch offset="0x102be9">36 ac a0 ac a0 ac a0 05 00 7a 2b 0a c0 09 f0 01 c8 0d 00 07 18 0c 05 6c 60 71 60 73 60 78 70 76 60 71</patch>
+		<patch offset="0x102c0c">73 60 6f 60 71 60 05 00 be 2b 0a c0 09 f0 01 c8 0d 00 07 0c 0c 05 6c 60 71 60 73 60 78 70 76 60 71 60 73 60 6f 60 71 60 05 00 e0 2b 0a c0 09 f0 01 c8 0d f8 07 18 06 80 0c 05 6c</patch>
+		<patch offset="0x102c48">71 60 73 60 78 70 76</patch>
+		<patch offset="0x102c52">73</patch>
+		<patch offset="0x102c58">05 00 04 2c 0a c0 09 f0 01 c8 0d f8 07 0c 06 80 0c 05 6c</patch>
+		<patch offset="0x102c6c">71 60 73 60</patch>
+		<patch offset="0x102c71">70 76 60 71 60 73</patch>
+		<patch offset="0x102c78">6f</patch>
+		<patch offset="0x102c7a">71 60 05 00 28 2c 0a c0 09 f0 01 c8 0d 00 07 18 0c 06 32 6c 60 03 2f 4c 2c 32 6d 60 03 2f 53 2c 05 00 4a 2c 0f 08 70 2c c4 2c 11 2d 6c 2d d9 2d 29 2e 00 00 00 00 00 dc 0a c0 09 f0 01 c8 0d 00 07 30 0c 15 e0 c0 0c 15 80 6a</patch>
+		<patch offset="0x102cc5">80 6d 60 80 6f 60 91 6f 60 68 60 8a 74 60 71 60 6d 60 6f 60 71 60 06 af 80 78 60 80 78 60 80 78 60 80 33 56 58 21 59 79 76</patch>
+		<patch offset="0x102cef">80 78 60 80 78</patch>
+		<patch offset="0x102cf5">80 78 60 9b 79 60 76 60 21 f8 98 05 00</patch>
+		<patch offset="0x102d03">2c 0a c0 09 d0 01 c8 0d 00 07 24 0c 15 e0 c0 0c 15 80 71 60 80 74 60 80 78 60 99 78 60 6f 60 91 7d 60 79 60 76 60 76 60 79 60 06 b8 80 74 60 80 74 60</patch>
+		<patch offset="0x102d36">74 60 80 92 72 60 80 74 60</patch>
+		<patch offset="0x102d40">74 60 80 74 60 96 76 60 71 60 21 f1 91 05 00 d2 2c 0a c0 09 d0 01 c8 0d 00 07 24 0c 15 e0 c0 0c 15 80 6f 60 80 71 60 80 72 60 94 74 60 6c 60 8f 79 60 76 60 74 60 74 60 76 60 06 b4 80 6f</patch>
+		<patch offset="0x102d7f">80 6f 60 80 6f</patch>
+		<patch offset="0x102d85">80 8d 6d 60</patch>
+		<patch offset="0x102d8a">6f 60</patch>
+		<patch offset="0x102d8d">6f 60</patch>
+		<patch offset="0x102d90">6f 60 91 71 60 6d 60 0c 07 6c 6c 8c 6a 6a 6c 6c 8c 6a</patch>
+		<patch offset="0x102da3">6c 6c 8c 6a 71 05 00 1f 2d 0a c0 09 f0 01 c8 0d 00 07 18 0c 0b 80 aa 80 aa 80 aa 80 aa 0c 0b 80 6a 6a 8a 88 8a 80 80 8a 88 8a a0 80 6a 6a 88 8a 80 8a 80 85 80 85 80 85 07 00 0d f4 0c 20 61 60 0d 00 0c 20 61 60 80 07 18 0c 0b 80 85 80 85 80 85 07 00 0d f0 0c 20 61 60 0d f8 0c 20 61 60 0d 00 0c 20 61 60</patch>
+		<patch offset="0x102e09">18</patch>
+		<patch offset="0x102e0b">0b 80 85 83</patch>
+		<patch offset="0x102e10">85 83 80 85 88 05 00 80 2d 0a c0 09 f0 01 c8 0d 00 07 18 0c 06 6a 6a 96 74 68 03 03 e5 2d 0c 06 6a 6a 96 74 68 03 05 f0 2d 71 71 9d 7d 71 71 71 9d 91 6f 60 7b 60 80 71 71 9d 7d 71 71 71 9d 91 72 60 7e 60 72 60 71 71 9d 7b 6f 71 71 9d 7b 6f 71 71 9d 7b 78 05 00 ee 2d 0a c0 09 d0 01 c8 0d 00 07 24 0c 07 65 65 85 63 63 03 03 35 2e 07 24 0c 07 65 65 85 63 63 03 05 42 2e 07 30 0c 04 83 80 85 80 88 80 8c 6a 60 66 60 83 80 85 80 88 80 8c 6a 60 6f 60 94 73 60 6f 60 93 71 60 6d 60 91 6f 60 6c 60 05 00 3e 2e 0f 08 8a 2e db 2e 32 2f 7b 2f df 2f 06 30 00 00 00 00 00 d4 0a c0 09 f0 01 ff 0d 00 07 24 0c 16 79 23 77 97 b7 d7 72 23 74 94 b4 d4 79 23 b7 d7 77 7b 7e fd 03 01 98 2e 76 23 74 94 b4 d4 6f 23 71 91 b1 d1 76 23 b4 d4 74 78 7b 06 d9 78 79 78 74 06 d6 74 76 74 71 21 f2 f2 23 ea ea ea ea 05 00 96 2e 0a c0 09 f0 01 ff 0d 00 07 24 0c 16 74 23 72 92 b2 d2 6b 23 6d 8d ad cd 74 23 b2 d2 72 97 f9 74 23 72 92 b2 d2 6b 23 6d 8d ad cd 74 23 b2 d2 72 97 fa 72 23 71 91 b1 d1 6c 23 6d 8d ad cd 72 23 b1 d1 71 74 78 d2 d1 cf cd 21 eb eb 0c 1a 23 ea ea ea ea 05 00 e5 2e 0a c0 09</patch>
+		<patch offset="0x102f76">01 ff 0d 00 07 24 0c 1a 79 23 77 97</patch>
+		<patch offset="0x102f83">d7 72 23 74 94 b4 d4 79 23 b7 d7 77 7b 7e fd 03 01 3e 2f 76 23 74 94 b4 d4 6f 23 71 91 b1 d1 76 23 b4 d4 74 78 7b 07 30 d6 d4 d2 d1 21 ef ef 23 f1 f1 f1 f1 05 00 3a 2f 0a c0 09 f0 01 c8 0d 00 07 18 0c 0a 3b 80 6d 60 6d 60 6d 60 6d 60 6d 60 c0 03 06 87 2f 3b 80 6a 60 6a 60 6a 60 6a 60 6a 60 c0 03 05 98 2f 0c 1e 07 30 0d e4 27 b7 0d e8 b7 0d ec b7 0d f0 b7 0d f4 b7 0d f8 b7 0d fc b7 0d 00 b7 07 18 0c 0a 3b 80 6a 60 6a 60 6a 60 6a 60 6a 60 c0 03 03 ca 2f 05 00 85 2f 0a c0 09</patch>
+		<patch offset="0x103023">01 c8 0d 00 07 18 0c 06 cd 03 0d eb 2f ca 03 07 f0 2f d6 d4 d2 d1 cf cf cf cf ca 03 07 fd 2f 05 00 e9 2f 0a c0 09 f0 01 c8 0d 00 07 0c 0c 0e 61 22 61 81 a1 c1 03 06 12 30 07 00 6a 22 6a 8a aa ca 03 03 1e 30 07 0c 6a 22 6a 8a aa c8 66 22 66 86 a6 c5 63 22 63 83 a3 c3 63 22 63 83 a3 c3 07 00 6a 22 6a 8a aa ca 03 03 44 30 05 00 0e 30 0f 08 64 30 9a 30 cc 30 fe 30 39 31 73 31 00 00 00 00 00 f0 0a c0 09 f0 01 c8 0d 00 07 23 0c 0e b4 b2 ad 94 94 b2 ad b4 b2 ad 94 94 b2 ad 94 92 b9 b7 bc bb 99 80 d2 99 99 d2 99 80 b2 07 2f b7 b6 b5 b4 b3 05 00 6e 30 0a c0 09 f0 01 c8 0d 00 07 23 0c 0e af ad a6 8f 8f ad a6 af ad a6 8f 8f ad a6 8f 8d b2 b4 b5 b7 8e 80 ce 8e 8e ce 8e 80 ae be bd bc bb ba 05 00 a4 30 0a c0 09 f0 01 c8 0d 00 07 23 0c 0e ab a9 a2 8b 8b a9 a2 ab a9 a2 8b 8b a9 a2 8b 89 ad af b0 b2 89 80 c9 89 89 c9 89 80 a9 b8 b7 b6 b5 b4 05 00 d6 30 0a c0 09 f0 01 c8 0d 00 07 17 0c 06 6d 22 6d 8d cd 80 8d c0 6d 22 6d 8d cd 80 8d c0 6d 06 8d af b0 b2 b4 8b 80 d0 8b 8b d0 8b 80 b0 68 06 88 69 06 89 6a 06 8a ab ac 05 00 08 31 0a c0 09 f0 01 c8 0d 00 07 23 0c 0e 06 80</patch>
+		<patch offset="0x103188">23</patch>
+		<patch offset="0x10318a">0e b4 b2 ad 94 94 b2 ad b4 b2 ad 94 94 b2 ad 94 92 b9 b7 bc bb 99 80 d2 99 99 d2 99 80 b2 07 2f b7 b6 b5 b4 b3 05 00 47 31 0a c0 09 f0 01 c8 0d 00 07 0b 0c 0e 06 cd 80 8d c0 06 cd 80 8d c0 ad af b0 b2 b4 8b 80 90 07 23 64 6b b4 07 0b 8b 8b 90 07 2f 64 6b b4 07 0b 8b 80 b0 a8 a9 aa ab ac 05 00 7d 31 0f 08 c0 31 94 32 71 33 18 34 59 34 e0 34 00 00 00 00 00 d0 0a c0 09 f0 01 c8 0d 00 07 24 0c 03 80 72 60 74 60 7e 60 e0 80 72 60 74 60 7e 60 e0 80 72 60 74 60 7e 60 71 60 72 60 74 60 7e 60 71 60 72 60 74 60 7e 60 0d e8 0c 04 36 7a 7b 7a 7b 7a 7b</patch>
+		<patch offset="0x103241">02 f9</patch>
+		<patch offset="0x103244">0d ec 33 7a 7b 7a 0d f0 33 7b 7a 7b 0d f4 33 7a 7b 7a 0d f8 33 7b 7a 7b 0d fc 33 7a 7b 7a 0d 00 33 7b 7a 7b ba e0 a0 07 30 0c 15 aa 8a 8a 8a 8a 8a 88 92 91 06 8d 4f 51 21 ef cf aa 33 8a 8a 8a 8a 8a 8a 88 92 91 06 8d 4f 51 21 ef cf b2 92 92 92 91 b2 92 92 92 91 b2 92 92 36 92 91 94 92 91 8d cf b6 96 96 96 94 b6 96 96 96 94 b6 96 96 36 96 94 9b 99 98 94 06 b6 56 58 59 5b 06 c0 74 03 0b 82 32 b4 a0 6d 03 13 89 32 ad a0 05 00 82 32 0a c0 09 f0 01 c8 0d 00 07 24 0c 03 80 6f 60 72 60 7b 60 e0 80 6f 60 72 60 7b 60 e0 80 6f 60 72 60 7b 60 79 60 6f 60 72 60 7b 60 79 60 6f 60 72 60 7b 60 0d e8 0c 04 36 78 79 78 79 78 79 03 02 cb 32 0d ec 33 78 79 78 0d f0 33 79 78 79 0d f4 33 78 79 78 0d f8 33 79 78 79 0d fc 33 78 79 78</patch>
+		<patch offset="0x103336">33 79 78 79 b8 e0 a0 0c 15 ad 8d 8d 8d 8d 8d 8c 96 94 06 91 52 54 22 d6 96 76 58 59 06 d8 ad 33 8d 8d 8d 8d 8d 8d 8c 96 94 06 91 52 54 22 d6 96 76 58 59 06 d8 a0 36 99 99 99 99 98 9b 03 02 2b 33 33 99 98 94 d6 a0 36 9e 9e 9e 9e 9d 9e a0 36 9e 9e 9e 9e 9d 9e 07 30 a0 39 92 92 92 92 91 98 96 94 91 06 b2 52 54 56 58 80 72 03 15 60 33 92 6c 03 0d 66 33 ac a0 05 00 5f 33 0a c0 09 f0</patch>
+		<patch offset="0x1033b6">c8 0d 00 07 0c 0c 0e</patch>
+		<patch offset="0x1033be">c8</patch>
+		<patch offset="0x1033c0">c0 07 00 c0 88 80 88 80 88 80 88 80 88 80 c0 e0 c0 07 24 0c 16 a0 66 68 72 71 6d 6f 77 22 76 d6 b6 0c 0a 6a 60 68 60 63 60 66 60 61 60 63 60 66 6a 68 60 63 60 66 60 61 60 63 60 66 60 03 03 a3 33 6a 60 68 60 80 72 76 74 60 6f 60 72 60 6d 60 03 03 c5 33 0c 25 80 33 79 78 74 06 96 7e bd 03 01 d6 33 80 33 79 78 76 06 96 7e 9d 92 94 9e 9d 92 74 7e 7d 72 e0 e0 e0 01 ff 0c 1a 06 b1 06 b2 06 bb 06 b9 06 b8 06 b9 06 b6 06 b8 06 b4 06 b6 06 b2 06 b4 05 00 f8 33 0a c0 09 f0 01 c8 0d 00 07 00 0c 0e 06 c8 06 c0 d4 0c 09 b4 b4 b4 b4 b4 c0 e0 e0 a0 0c 0b b4 b4 b4 b4 b4 b4 94 03 2f 3c 34 94 74 74 94 94 94 74 74 03 07 41 34 94 74</patch>
+		<patch offset="0x103490">94 94 74 74 94 05 00 4d 34 0a c0 09 f0 01 c8 0d f8 07 24 0c 03 06 60 80 6f 60 72 60 7b</patch>
+		<patch offset="0x1034ae">80 40 06 c0 0d 00 07 18 0c 06 80 97 80 94 0c 09</patch>
+		<patch offset="0x1034bf">88 80 88</patch>
+		<patch offset="0x1034c6">88 0c 06 97 80 94 80</patch>
+		<patch offset="0x1034cf">97 94 80 94</patch>
+		<patch offset="0x1034d4">80 97</patch>
+		<patch offset="0x1034d7">80 97 94 97 94 80 97 94 80 b4 b4 b4 b4 b4 b4 80 94 80 6f 6f 8f 92 03 07 a6 34 74 60 6f 6f 6f 60 72 60 74 60 72 60 03 03 b1 34 74 60 6f 6f 6f 60 72 60 74 60 72 72 03 03 c1 34 80 74 74 74 60 6f 60 6f 60 72 60 05 00 d1 34 0a c0 09 f0 01 c8 0d f8 07 24 0c 03 06 60 80 72 60 74 60 7e 60 80 40 06 c0 0d 00 07 18 0c 07 80 97 80 94 0c 09 80 88 80 88 80 88 80 88 88 0c 07 97 80 94 80 97 80 97 94 80 94 97 80 97 94 80 97 94 97 94 80 97 94 80 0c 0e 07 0c a8 03 1d 2b 35 88 a8 a8 88 03 07 30 35 80 a8 05 00 38 35 0f 08 50 35 21 36 ea 36 ba 37 91 38 2f 39 00 00 00 00 00 dc 0a c0 09 f0 01 ff 0d 00 07 30 0c 16 d1 21 d3 b3 91 93 36 94 96 94 93 91 8f 33 91 98 96 22 bd dd fd 0c 02 c9 21 ca aa 89 8a 36 8c 8e 8c 8a 89 87 22 a8 88 68 73 21 d1 f1 cf 21 d1 b1 8f 91 33 92 94 92 d1 8f 91 33 92 94 92 71 72 33 74 76 78 21 f9 f9 0c 15 06 c0 6a 60 69</patch>
+		<patch offset="0x1035ec">c0 80 68 67 66 60 23 8d cd ad 6d 6f 71 6d a9 c0 6d 60 6c 60 c0 80 6b 6a 69 60 23 90 d0 b0 70 72 74 70 60 4c 4e 70 60 6f 60 80 6e 6d 8c 60 4f 51 73 60 72 60 80 71 70 8f 80 76 60 b4 78 60 76 60 03 01 e4 35 27 b7 0d fc b7 0d f8 b7 0d f4 b7 0d f0 b7 0d ec b7 0d e8 b7 0d e4 b7 0d e8 26 b8 0d ec b8 0d f0 b8 0d f4 b8 0d f8 b8 0d fc b8 0d 00 d8 05 00 73 35 0a c0 09 f0 01 ff 0d f8 07 30 0c 16 06 60 d1 21 d3 b3 91 93 36 94 96 94 93 91 8f 33 91 98 96 22 dd fd 9d 5d</patch>
+		<patch offset="0x103686">00 07 30 0c 00 c5 c4 c3 c2 06 c1 68 6a 6c 68 33 47 48 21 47 67 65 63 22 85 65 33 45 47 48 ca cf cd cb ca a8 86 88 33 8a 8b 8a 68 6a 33 6b 6d 6f 21 f1 f1 0c 16 c3 e5 a3 c5 83 85 33 86 88 86 85 63 61 c6 e8 a6 c8 86 88 33 89 8b 89 88 66 64 07 00 0c 20 85 07 24 0c 16 95 b7 95 97 07 00 0c 20 85 07 24 0c 16 98 ba 98 9a b0 b2 b0 b2 90 b2 94 0c 0e 33 ba be ba 0d fc 33 be ba be 0d f8 33 ba be ba 0d f4 33 be ba be 0d f0 33 b8 bc b8 0d ec 33 bc b8 bc 0d e8 33 b8 bc b8 0d e4 33 bc b8 bc 05 00 45 36 0a c0 09 f0 01 c8 0d 00 07 24 0c 0e 79 7b 79 78 76 78 76 74 73 74 73 71 6f 71 6f 6d 07 18 78 79 78 76 74 76 74 73 71 73 71 6f 6d 6f 6d 6c 4a 4c 4d 4f 51 53 54 56 07 24 6c 71 78 71 0d fc 6c 71 78 71 0d f8 6c 71 78 71 0d f4 6c 71 78 71 0d f0 6c 71 78 71 0d ec 6c 71 78 71 0d e8 6c 71 78 71 e0 e0 e0 e0 e0 e0 e0 e0 e0 0d 00 07 30 0c 1c 65 60 03 17 59 37 68 60 03 17 5f 37 6b 60 6b 60 6b 60 6b 60 6b 60 6b 60 6e 60 6e 60 6e 60 6e 60 6e 60 6e 60 80 70 60 b0 72 60 72 60 03 01 7d 37 27 b0 0d fc b0 0d f8 b0 0d f4 b0 0d f0 b0 0d ec b0 0d e8 b0 0d e4 b0 0d e8 26 b1 0d ec b1 0d f0 b1 0d f4 b1 0d f8 b1 0d fc b1 0d 00 d1 05 00 4a 37 0a c0 09 f0 01 ff 0d 00 07 30 0c 16 c8 06 ca 88 8a 36 8c 8d 8c 8a 88 87 33 8a 91 8d 22 b5 d5 f5 07 3c 0d e4 27 b1 0d e8 b1 0d ec b1 0d f0 b1 0d f4 b1 0d f8 b1 0d fc b1 0d 00 b1 0d e4 27 b4 0d e8 b4 0d ec b4 0d f0 b4 0d f4 b4 0d f8 b4 0d fc b4 0d 00 b4 0c 0e a0 b2 b4 ad ab a6 a8 a1 07 30 ab 0c 02 8a 8b</patch>
+		<patch offset="0x103861">8f 8d 6a 6d 33 6f 71 72 21 f4 f4 07 24</patch>
+		<patch offset="0x10386f">1c 61 60 03 17 30 38 64 60 03 17 36 38 67 60 67 60 67 60 67 60 67 60 67 60 6a 60 6a 60 6a 60 6a 60 6a 60 6a 60 80 6b 60 ab 6d 60 6d 60 03 01 54 38 27 a8 0d fc a8 0d f8 a8 0d f4 a8 0d f0 a8 0d ec a8 0d e8 a8 0d e4 a8 0d e8 26 a9 0d ec a9 0d f0 a9 0d f4 a9 0d f8 a9 0d fc a9 0d 00 c9 05 00 da 37 0a c0 09 f0 01 c8 0d 00 07 24 0c 1a cd cf cd b1 af 33 8d 96 9d 22 b8 d8 f8 07 18 0c 06 a0 b1 b1 0c 11 06 80 7d 9d 80 0c 06 b1 b1 a0 07 00 0c 20 b6 07 18 0c 06 aa aa c0 aa aa c0 ab ab 0c 11 06 80 7d 9d 80 0c 06 ab ab a0 77 60 76 60 74 60 76 60 74 60 72 60 71 60 6d 60 07 24 63 80 63 03 13 ec 38 66 80 66 03 0b f3 38 69 80 69 60 80 69 60</patch>
+		<patch offset="0x103942">69 60 6c 80 6c 60</patch>
+		<patch offset="0x103949">6c</patch>
+		<patch offset="0x10394b">78 6c 60</patch>
+		<patch offset="0x10394f">80</patch>
+		<patch offset="0x103952">80</patch>
+		<patch offset="0x103954">6d 80 67 63 80 61 67 80 6f 6d 80 73 65 80 71 03 07 20 39 c5 c5 c5 c5 05 00 aa 38 0a c0 09 f0 01 c8 0d 00 07 24 0c 07 ad cd ad ad cd ab aa d1 d1 0d f8 d1 0d f4 b1 b1 b1 b1 a0 b1 b1 b1 a0 b6 b6 b6 a0 b6 b6 b6 a0 b7 b7 b7 a0 b7 b7 b7 a0 77 60 76 60 74 60 76 60 74 60 72 60 71 60 6d 60 6f 60 03 27 72 39 72 60 03 17 78 39 75 60 75 60 a0 80 75 60 78 60 78 60 a0 80 78 60 07 24 6f 6f 6d 6d 73 73 6f 6f 6d 6d 67 67 63 63 61 61 67 67 6f 6f 6d 6d 73 73 85 a5 a5 a5 a5 a5 a5 a5 21 85 a5 c5 c5 c5 a5 05 00 4a 39 08 cc 39 fc</patch>
+		<patch offset="0x103a00">2c 3a 43 3a a0 3a d1 3a 00 00 00 00 00 c8 0a c0 09 f0 01 c8 0d 00 07 24 0c 16 27 e1 e1 e1 e1 e1 e1 e1 e1 0c 00 23 e1 e1 e1 e1 21 e2 e2 e9 e6 23 e8 e8 e8 e8 e0 e0 e0 e0 05 00 d8 39 0a c0 09 f0 01 c8 0d 00 07 24 0c 00 e0 e0 21 e3 e3 21 e4 e4 21 e6 e6 0c 00 21 e8 e8 e4 eb 21 e9 e9 f2 ef 23 f1 f1 f1 f1 e0 e0 e0 e0 05 00 06 3a 0a c0 09 f0 01 c8 0d 00 07 24</patch>
+		<patch offset="0x103a77">06 61 23 61 81 a1 c1 e1 05 00 36 3a 0a c0 09 f0 01 c8 0d 00 07 24 0c 0f 06 c0 06 80 61 06 8d 0d f8 61 06 cd 0d 00 36 8b 8d 8b 8a 8b 8a c8</patch>
+		<patch offset="0x103aa6">03 02 4f 3a 06 c0 06 80 62 06 8e 0d f8 62 06 ce 0d 00 36 8d 8e 8d 8b 8d 8b c9</patch>
+		<patch offset="0x103ac1">06 c0 06 80 61 06 8d 0d f8 61 06 cd 0d 00 36 8b 8d 8b 8a 8b 8a c8 e0 03 01 81 3a 05</patch>
+		<patch offset="0x103ade">4d 3a</patch>
+		<patch offset="0x103ae9">48</patch>
+		<patch offset="0x103aeb">18 e0 0c 18 22 e8 e8 e8 e0 e0 e0 e0 e0 e0 0c 18 22 e8 e8 e8 e0 e0 e0 0c 18 22 e8 e8 e8 e0 e0 e0 e0 e0 05 00 aa 3a 0a c0 09 f0 01 c8 0d 00 07 3c 0c 18 22 e6 e6 e6 e0 0c 18 22 e6 e6 e6 e0 0c 18 21 e6 e6 0c 18 21 e6 e6 0c 18 21 e6 e6 0c 18 21 e6 e6 0c 18 22 e6 e6 e6 e0 0c 18 22 e6 e6 e6 e0 05 00 db 3a 0f 08 21 3b 49 3b 7a 3b 8e 3b a2 3b b3 3b 00 00 00 00 00 d8 0a c0 09 f0 01 c8 0d 00 07 24 0c 23 5b 5e 24 7d 9d bd dd fd 5b 5e 7d 33 7b 7d 7b 96 94 33 6f 71 6f 8a 88 83 e5 0f 0a c0 09 f0 01 c8 0d</patch>
+		<patch offset="0x103b91">0c 22 07 30 36 76 74 76 25 71 71 71 b1 d1 f1 07 24 0d f4 0c 23 06 60 5b 5e 7d 33 7b 7d 7b 96 94 33 6f 71 6f 8a 88 43 e5 0f 0a c0 09 f0 01 c8 0d 00 07 18 0c 18 06 c0 23 b6 f6 f6 f6 0f 0a c0 09 f0 01 c8 0d 00 07 24 0c 18 e0 a0 22 b4 d4 f4 e0 0f 0a c0 09 f0 01 c8 0d 00 07 18 0c 16 e0 e0 e0 e0 0f 0a c0 09 f0 01 c8 0d 00 07 18 0c 06 e0 e0 e0 e0 0f 0f 08 d6 3b 4f 3c d0 3c 38 3d a9 3d 7d 3e 00</patch>
+		<patch offset="0x103c14">00 00 00 f0 0a c0 09 f0 01 c8 0d 00 07 24 0c 10 51 22 4c 6c 8c a0 c0</patch>
+		<patch offset="0x103c30">a0 51 22 4c 6c 8c a0 51 22 4c 6c 8c 51 22 4c 6c 8c 51 22 4c</patch>
+		<patch offset="0x103c45">8c 51 22 4c 6c</patch>
+		<patch offset="0x103c4b">8c 91 60 6c 71 60 6c 60</patch>
+		<patch offset="0x103c54">71 60 71 6c 60 03 0f 0b 3c 06</patch>
+		<patch offset="0x103c5f">06 8c 8c 80 6c 71 60 71</patch>
+		<patch offset="0x103c68">60 03 03 1d 3c 80</patch>
+		<patch offset="0x103c6f">71 80 6c 71 80 6c 71 60 71 6c 60 36 8c 91 91 8c 91 91 39 8c 91</patch>
+		<patch offset="0x103c85">71 6c 6c 6c 71 71 05 00 0b 3c 0a c0 09 f0 01 c8 0d 00 07 18 0c 13 51 22 4c 6c 8c a0 c0 51 22 4c 6c 8c a0 51 22 4c 6c 8c a0 51 22 4c 6c 8c 51 22 4c 6c 8c 51 22 4c 6c 8c 51 22 4c 6c 8c 8c 91 6c 71 60 6c 60 6c 71 60 71 8c 6c 03 0f 82 3c ac a0 e0 6c</patch>
+		<patch offset="0x103cd8">8c a0 0d f0 80 ac 0d f4 21 8c 0d f8 33 8c 8c 8c 0d fc 6c 6c 0d 00 33 6c 6c 6c 6c 06 8c 06</patch>
+		<patch offset="0x103cf7">06 8c 06 8c 8c 06 8c 06 8c 8c 80 8c 80 91 36 8c 91 91 91 91 8c 05 00 82 3c 0a c0 09 f0 01 c8 0d 00 07 18 e0 e0 e0 07 18 0c 24 e0 e0 b6 d0 60 06 94 af c0 60</patch>
+		<patch offset="0x103d2c">91 ad c0 60 06 8f aa c0 60 06 8d 80 6a 6d 80 6a 6d 80 6a 6d 80 6a 6d aa 06 c0 e0 e0 e0 e0 e0 e0 e0 e0 07 24 0c 12 6f 71 33 76 74 6f 06 d1 06 c0 6f 71 33 76 74 6f 33 71 74 23 71 81 b1 d1 06 c0 33 71 6f 71 21 8a ea e0 05 00 dd 3c 0a c0 09 f0 01 c8 0d 00 07 24 e0 e0 e0 07 18 0d 00 0c 13 e0 e0 b6 d0 60 06 94 af c0 60 06 91 ad c0 60 06 8f aa c0 60 06 8d 80 6a 6d 80 6a 6d 80 6a 6d 80 6a 6d aa 06 c0 e0 e0 e0 e0 e0 e0 e0 e0 07 24 0d f4 0c 12 06 60 6f 71 33 76 74 6f 06 d1 06 c0 6f 71 33 76 74 6f 33 71 74 23 71 81 b1 d1 06 c0 33 71 6f 71 21 8a ea 06 c0</patch>
+		<patch offset="0x103de4">40 05 00 45 3d 0a c0 09</patch>
+		<patch offset="0x103ded">01 c8 0d 00 07 24 0c 12 a0 9d 9d 33 9d 9d 9d 7d 7d 33 7d 7d 7d 7d 06 9d 06 c0 0d f4 c0 45 45 45 45 0d f8 45 45 45 45</patch>
+		<patch offset="0x103e15">fc 45 45 45 45 0d 00 45 45 45 45 07 24 0c 12 a5 06 c0 e0 e0 e0 e0 e0 e0 0d f0 65 65 65 65 0d f4 65 65 65 65 0d f8 65 65 65 65 0d fc 33 65 65 65 0d 00 33 65 65 65 65 80 65 80 65 60 80 65 60 80 65 60 e0 80 85 06 c0 06 c0 85 80 e0 60 65 80 60 65 80 60 65 80 65 80 65</patch>
+		<patch offset="0x103e6e">0d f0 65 65 65 65 0d f4 65 65 65 65 0d f8 65 65 65 65 0d fc 33 65 65 65 0d 00 33 65 65 65 a5 06 c0 e0 0c 11 0d f0 74 60 80 0d f4 74 60 80 0d f8 74 60 74 60 0d fc 74 74 74 74 74 74 80 06 c0 07 18 0c 14 aa a0 aa a0 aa aa aa aa 05 00 e0 3d 0a c0 09 f0 01 c8 0d 00 07 18 0c 12 e0 e0 c0 0d f4 45 45 45 45 0d f8 45 45 45 45 0d fc 45 45 45 45 0d 00 45 45 45 45 0c 14 07 0c e0 e0 6a 60 71 60 06 c0 e0 71 60 6a 60 06 c0 e0 6a 60 71 60 a0 71 60 6a 60 a0 6a 60 71 60 80 71 60 6a 60 80 6a 60 71 60 07 18 0c 12 65 80 65 80 65 60 80 65 60 80 65 60 e0 80 85 06 c0 e0 e0 e0 e0 0d f0 65 65 65 65 0d f4 65 65 65 65 0d f8 65 65 65 65 0d fc 33 65 65 65 0d 00 33 65 65 65 a5 c0 07 24 0d e8 5d 5d 5d 5d 0d ec 5d 5d 5d 5d 0d</patch>
+		<patch offset="0x103f59">5d 5d 5d 5d 0d f4 5d 5d 5d 5d 0d f8 5d 5d 5d 5d 0d fc 5d 5d 5d 5d 0d 00 7d 06 9d a0 07 18 33 85 85 85 65 65 65 65 36 65 65 65 65 65 65 45 45 45 45 45 45 45 45 65 06 85 06 c0 0c 00 a5 a0 a5 a0 07 24 0c 12 0d ec 33 9d 9d 9d 0d f0 7d 7d 7d 7d 0d f4 36 7d 7d 7d 0d f8 7d 7d 7d 0d fc 5d 5d 5d 5d 0d 00 5d 5d 5d 5d 05 00 a4 3e 0f 08</patch>
+		<patch offset="0x103fc7">3f 2e 40 cf 40 b0 41 95 42 99 43 00 00</patch>
+		<patch offset="0x103fd5">00 00 c8 0a c0 09 f0 01 ff 0d 00 0c 03 07 30 e0 06 c0 0c 03 91 33 6f 71 6f 23 ea ea ea ca a0 8d 33 6c 6d 6c 23 e8 e8 e8 c8 a0 91 33 6f 71 6f 23 ea</patch>
+		<patch offset="0x104008">ca a0 8d 33 6c 6d 6c 23 ea ea ea 06 ca 0c 15 91 8f aa 06 c0 e0 e0 06 c0 8d 8c a8 06 c0 e0 e0 06 c0 91 8f aa 06 c0 e0 e0 06 c0 8d 8c ca f6 36 95 96 95 91 93 95 33 93 8e 91 22 b0 d0 f0 ca f6 36 95 96 95 91 93 95 33 93 8e 91 22 b8 d8 f8 0c 00 c8 f4 36 93 94 93 91 8c 8f 06 b1 8c ea d6 22 f8 f8 f8 05 00 a4 3f 0a c0 09 f0 01 ff 0d 00 0c 03 07 30 0d f4 06 60 e0 06 c0 0c 03 91 33 6f 71 6f 23 ea ea ea ca a0 8d 33 6c 6d 6c 23 e8 e8 e8 c8 a0 91 33 6f 71 6f 23 ea ea ea ca a0 8d 33 6c 6d 6c 25 ea ea ea 8a ca 4a 0d 00 07 24 0c 15 96 91 ad 06 c0 e0 e0 06 c0 92 8d ac 06 c0 e0 e0 06 c0 96 91 ad 06 c0 e0 e0 06 c0 92 8d 07 30 c2 ee 36 91 93 91 89 8c 91 33 8e 87 8a 22 ac cc ec c2 ee 36 91 93 91 89 8c 91 33 8e 87 8a 22 b1 d1 f1 c5 f1 36 8f 91 8f 8c 87 8a 06 a8 85 c2 c1 ad af 22 f1 f1 f1 05 00 38 40 0a c0 09 d0 01 c8 0d 00 07 24 0c 0b aa aa 8a 8d 8a 8a aa aa 8a 8d 8a 8a a6 a6 86 8a 86 86 03 03 e7 40 aa aa 8a 8d 8a 8a 03 03 f1 40 04 01 e7 40 0c 1a 96 80 96 80 96 98 96 99 03 03 01 41 99 80 99 80 99 9b 99 9d 03 03 0d 41 96 80 96 80 96 98 96 99 03 03 19 41 0c 04</patch>
+		<patch offset="0x104168">a7 6c 70 06 ae 71 75 06 b3 78 7c 21 ba 33 9a 93 8e 02 4f 41 33 93 96 9a d8 33 93 98 93 b0 33 93 90 93 cc 03 01 27 41 21 ba 7a 75 7a 75 ae 33 95 8e 95 a9 33 8e 89 8e c2 a5 33 8d 88 8d 06 d4 33 8d 94 8d a7 33 8f 8a 8f a8 33 91 8c 91 ae 33 96 91 96 ad 33 96 91 96 bd 33 96 9d 96 07 30 0c 0e 94 33 73 74 73 8f 33</patch>
+		<patch offset="0x1041d0">6f 71 8a 33 6c 6a 6c 06 c5 0d f8 94 33 73 74 73 8f 33 71 6f 71 8a 33 6c 6a 6c 06 c5 05 00 d5 40 0a c0 09 d0 01 c8 0d 00 0d 00 07 24 0c 08 8a c0 8a 80 8a 8a c0 8a 80 8a 86 c0 86 80 86 80 86 a0 86 a0 86 03 01 c8 41 8a c0 8a 80 8a 80 8a a0 8a a0 8a 03 01 d7 41 04 01 c8 41 07 18 0c 0b 86 80 86 86 03 07 ee 41</patch>
+		<patch offset="0x104237">80 8a 8a 03 07 f6 41 86 80 86 86 03 07 fe 41 0d f4 0c 04 06 60 06 a7 6c 70 06 ae 71 75 06 b3 78 7c 21 ba 33 9a 93 8e 02 34 42 33 93 96 9a d8 33 93 98 93 b0 33 93 90 93 cc 03 01 0c 42 21 ba 7a 75 7a 75 ae 33 95 8e 95 a9 33 8e 89 8e c2 a5 33 8d 88 8d 06 d4 33 8d 94 8d a7 33 8f 8a 8f a8 33</patch>
+		<patch offset="0x104298">8c 91 ae 33 96 91 96 ad 33 96 91 96 bd 80 40 07 30 0c 0e 0d fc 06 c0 94 33 73 74 73 8f 33 71 6f 71 8a 33 6c 6a 6c 06 c5 0d f4 94 33 73 74 73 8f 33 71 6f 71 8a 33 6c 6a 6c 05 00 b8 41 0a c0 09 d0 01 c8 0d 00 07 24 0c 11 61 06 80 c0 80 61 60 03 09 a1 42 0c 04 22 ad cd 8d 6f 74 22 b1 d1 71 6d 6f 6a 21 ed ed 22 b1 d1 91 76 79 07 30 22 ac cc 6c</patch>
+		<patch offset="0x10430b">74 6a 21 f1 f1 07 24 0c 1a 91 80 91 80 91 94 91 96 03 03 d4 42 94 80 94 80 94 98 94 99 03 03 e0 42 91 80 91 80 91 94 91 96 03 03 ec 42 07 18 0c 0b 3c 6e</patch>
+		<patch offset="0x10433f">71</patch>
+		<patch offset="0x104341">73</patch>
+		<patch offset="0x104345">6c</patch>
+		<patch offset="0x104347">6e 60 3c 6a 60 6c 60 67 60 6a 60 6c 60 67 60 03 05 fc 42 3c 75 60 78 60 7a 60 73 60 75 60 71 60 3c 71 60 73 60 6e 60 71 60 73 60 6e 60 03 01 1a 43 3c 71 60 74 60 76 60 6f 60 71 60 68 60 a0 3c 71 60 74 60 76 60 6f 60 71 60 68 60 a0 3c 71 60 74 60 76 60 6f 60 71 60 6a 60 3c 71 60 74 60 76 60 6f 60 71 60 6c 60 a0 3c 71 60 74 60 76 60 6f 60 71 60 6a 60 a0 3c 71 60 74 60 76 60 6f 60 71 60 6a 60 ac af b1 ac a8 aa a5 a8 a3 06 c5 05 00 9d 42 0a c0 09 f0 01 c8 0d 00 07 0c 0c 0a b6 c0 91 98 b6 c0 91 94 b2 c0 8d 94 b2 c0 8d 94 b2 c0 8d 94 b2 8d 94 80 8a af b6 c0 91 98 b6 c0 91 98 b6 c0 91 98 b6 91 98 80 8f b4 03 01 ad 43 07 18 0c 06 92 80 8d 94 03 07 d9 43 96 80 91 98 03 07 e1 43 92 80 8d</patch>
+		<patch offset="0x10442d">03 07 e9 43 06 80 73 b3 03 0b f1 43 06 80 6e ae 06 80 6e ae 06 80 6e ae 06 80 6e ae 06 80 6d ad 06 80 6d ad 06 80 6d ad 06 80 6f af 06 80 71 b1 06 80 6a aa 06 80 6a aa 06 80 6a aa 06 d1 0d fc 06 d1 0d f8 06 d1 0d f4 06 d1 05 00 9f 43 0f 08 4d 44 93 44 c7 44 f7 44 27 45 57 45 00 00</patch>
+		<patch offset="0x10448c">00 00 d0 0a c0 09 f0 01 c8 0d 00 07 24 0c 13 3c 8f 8d 8f 88 8d 8a 8f 8d 8f 94 8d 8f 3c 88 8d 8a 8f 8d 8f 94 8d 8f 88 8d 8a 3c 96 94 96 8f 94 91 96 94 96 9b 94 96 3c 8f 94 91 96 94 96 9b 94 96 8f 94 91 05 00 59 44 0a c0 09 f0 01 c8 0d 00 07 24 0c 13 36 8f 8f 88 88 8d 8d 03 02 9f 44 36 8f 8f 8d 8d 94 94 36 96 96 8f 8f 94 94 03 02 b1 44 36 96 96 94 94 9b 9b 05 00 9d 44 0a c0 09 f0 01 c8 0d 00 07 24 0c 12 a3 a0 33 80 83 80 a3 a3 a0 36 80 83 80 83 80 83 aa aa aa aa aa a0 33 80 8a 8a 6a 6a 33 6a 6a 6a 05 00 d1 44 0a c0 09 d0 01 c8 0d 00 07 18 0c 14 68 60 68 60 68 60 69 60 68 60 68 60 68 60 69 60 68 60 68 60 69 60 68 60 68 60 69 60 68 60 68 60 05 00 01 45 0a c0 09 d0 01 c8 0d 00 07 18 0c 14 63 60 63 60 63 60 64 60 63 60 63 60 63 60 64 60 63 60 63 60 64 60 63 60 63 60 64 60 63 60 63 60 05 00 31 45 0a c0 09 d0 01 c8 0d 00 07</patch>
+		<patch offset="0x1045a1">0c 14 68 60 68 60 68 60 69 60 68 60 68 60 68 60 69 60 68 60 68 60 69 60 68 60 68 60 69 60 68 60 68 60 05 00 61 45 0f 08 99 45 b7 45 cd 45 08 46 44 46 84 46 00 00 00 00 00 f0 0a c0 09 d0 01 c8 0d 00 07 30 0c 16 74 73 6f 71 21 d2 92 91 cd aa b6 98 80 06 da 0f 0a c0 09 d0 01 c8</patch>
+		<patch offset="0x1045ff">07 30 0c 16 ad ce ad</patch>
+		<patch offset="0x104607">a5 b2 b1 06 d5 0f 0a c0 09 d0 01 c8 0d 00 07 24 0c 16 b4 d5 b4 d1 ad b9 98 9b 07 31 0c 0f 5a 5c 5a 5c</patch>
+		<patch offset="0x10462a">f8 5a 5c 5a 5c 0d f0 5a 5c 5a 5c 0d e8 5a 5c 5a 5c 0d e0 5a 5c 5a 5c 0d d8 5a 5c 5a 5c 0f 0a c0 09 f0 01 c8 0d 00 07 30 0c 02 b4 21 b2 72 70 69 6b ad 61 60 68 60 65 60 6c 60 6a 60 71 60 6f 60 76 60 94 80 0c 1e 0d ec 25 96 0d f0 96</patch>
+		<patch offset="0x104678">f4 96 0d f8 96 0d fc 96 0d 00 96 0f 0a c0 09 f0 01 c8 0d f8 07 30 0c 02 06 60 b4 21 b2 72 70 69 6b ad 61 60 68 60 65 60 6c 60 6a 60 71 60 6f 60 76 60 94 40</patch>
+		<patch offset="0x1046ae">0c 1e 0d ec 25 91 0d f0 91 0d f4 91 0d f8 91 0d fc 91 0d 00 91 0f 0a c0 09 f0 01 c8 0d 00 07 24 0c 1a cd 6d 60 6d 60 80 6c 60 aa a8 c6 85 80 06 ca</patch>
+		<patch offset="0x1046e0">0f 08 b2 46 cc 46 e9 46 fc 46 0f 47 23 47 00 00 00 00 00 00 0a c0 09 f0 01 ff 0d 00 07 24 07 30 0c 02 98 96 96 94 b1 ad cf d4 f1 0f 0a c0 09 f0 01 ff 0d 00 07 24 0c 02 bd bb d8</patch>
+		<patch offset="0x10471e">0e 98 96 96 94 b1 af 0c 02 ed 0f 0a c0 09 f0 01 ff 0d 00 07 24 0c 04 b9 b8 d6 d4 d8 f8 0f 0a c0 09 f0 01 ff 0d 00 07 24 0c 04 b8 b6 d2 d1 d2 f6 0f 0a c0 09 f0 01 ff 0d 00 07 18 07 24 0c 1e f6 f4 0c 01 f1 0f 0a c0 09 f0 01 ff 0d 00 07 18 0c 01 21 ea ea ea 0f 0f 08 46 47 8a 47 df 47 34 48 7a 48 9d 48 00 00 00 00 00 e8 0a c0 09 f0 01 c8 0d 00 07 0c 0c 02 80 0c 0e 81 a0 81 03 03 52 47 07 30 0c 27 21 e8 a8 21 e6 a6 21 e8 a8 21 ea aa 0c 02 a8 a6 88 21 ca 8a b2 b1 8f 21 d1 91 a3 a8 8d 21 d3 93 22 f4 f4 d4 05 00 50 47 0a c0 09 f0 01 c8 0d 00 07 18 0c 00 61 80 61 61 61 61 60 61 60 03 03 96 47 07 24 0c 27 32 40 23 75 75 f5 95 32 40 23 73 73 f3 93 32 40 23 75 75 f5 95 32 40 23 76 76 f6 96 0c 00 21 ce 8e 21 d1 91 21 d5 95 21 d8 98 a9 ae 93 21 da 9a 22 f9 f9 d9 05 00 92 47 0a c0 09 f0 01 c8 0d 00 07 18 0c 00 68 80 68 68 68 68 60 68 60 03 03 eb 47 07 24 0c 27 32 60 23 5c 7c fc 9c 32 60 23 5a 7a fa 9a 32 60 23 5c 7c fc 9c 32 60 23 5e 7e fe 9e 0c 00 21 c9 89 21 c6 86 21 ce 8e 21 cd 8d a4 a9 8e 21 d5 95 22 f4 f4 d4 05 00 e7 47 0a c0 09 f0 01 c8 0d 00 07 0c 0c</patch>
+		<patch offset="0x104880">66 80 66 66 66 66 60 66 60 03 03 40 48 07 24 0c 27 60 7b 21 fb 9b 60 79 21 f9 99 60 7b 21 fb 9b 60 7d 21 fd 9d 0c 0b 07 18 61 80 61 61 61 61 60 61 60 03 09 69 48 05 00 3c 48 0a c0 09 f0 01 c8 0d 00 07 18 0c 06 81 03 13 86 48 81 33 61 61 61 81 61 61 61 61 03 11 8b 48 05 00 84 48 0a</patch>
+		<patch offset="0x1048df">09 f0 01 c8 0d 00</patch>
+		<patch offset="0x1048e6">24 0c 06 33 61 61 61 05 00 a7 48 0f 08 c3 48 ee 48 11 49 3d 49 69 49 84 49 00 00</patch>
+		<patch offset="0x104902">00 00 f0 0a c0 09 f0 01 ff 0d 00 07 30 07 2b 01 96 0c 15 8f 6d 6a 92 71 6d 01 ff 21 cf 8f 6f 71 92 94 33 b6 b8 b9 98 76 74 06 d6 0f 0a c0 09 f0 01 ff 0d 00 07 30 07 2b 0c 15 a0 8b 6a 66 21 c8 88 68 6a 8c 8d 33 af b1 b2 b1 8f 6e 6c ce 0f 0a c0 09 f0 01 ff 0d 00 07 24</patch>
+		<patch offset="0x10495d">01 96 0c 26 c0 96 74 71 92 71 6d</patch>
+		<patch offset="0x104969">2b 01 ff 0c 00 92 71 6d 8f 6d 6a 8c 8f 94 96 98 91 06 d6 0f 0a c0 09 f0 01 ff 0d</patch>
+		<patch offset="0x104985">07 18 07 37 01 96 0c 26 c0 92 71 6d 8f 6d 6a 07 2b 01 ff 0c 00 9b 79 76 97 76 72 94 96 98 99 9b 98 06 dd 0f 0a c0 09 f0 01 ff 0d 00 07 24 07 2b 0c 01 06 cf ad 0c 01 af b1 af ad ac 06 d1 0f 0a c0 09 f0 01 ff 0d 00 07 18 07 2b 0d f8 01 96 0c 15 06 60 8f 6d 6a 92 71 6d 07 37 0c 26 96 74 71 92 51 0d 00 01 ff 07 1f 0c 1a ab aa a8 a6 a5 06 ca 0f 0f 08 c9 49 f6 49 21 4a 4c 4a 77 4a 8f 4a 00 00 00 00 00 28 0a c0 09 f0 01 ff 0d 00 07 0c 0c 0e b4 b2 ad b4 b2 b9 b8 be 06 9d 0d fc 06 9d 0d f8 06 9d 0d f4 06 9d 0d f0 06 9d 0d ec 06 9d 0f 0a c0 09 f0 01 ff 0d 00 07 18 0c 0e b0 ae a0 b0 ae b2 b4 b3 06 96 0d fc 06 96 0d f8 06 96 0d f4 06 96 0d f0</patch>
+		<patch offset="0x104a5b">96 0d ec 06 96</patch>
+		<patch offset="0x104a61">0a c0 09 f0 01 ff 0d f4 07 0c 0c 0e 06 80 b4 b2 ad b4 b2 b9 b8 be 9d 0d f0 06 9d 0d ed 06 9d 0d e8 06 9d 0d e4 06 9d 0d e0 9d 0f 0a c0 09 f0 01 ff 0d f4 07 18 0c 0e 06 80 b0 ae a0 b0 ae b2 b4 b3 96 0d f0 06 96 0d ec 06 96 0d e8 06 96 0d e4 06 96 0d e0 96 0f 0a c0 09 f0 01 ff 0d 00 07 18 0c 0e b3 b5 ba b3 b5 ae b0 ab 21 ec cc 0f 0a c0 09 f0 01 ff 0d 00 07 0c 0c 0e 06 c8 06 c8 c8 21 e1 c1 0f 0f 08 b6 4a 03 4b 34 4b 5c 4b 82 4b d3 4b 00 00 00 00 00 b8 0a c0 09 f0 01 96 0d 00 07 24 0c 24 8a 8d 8f 91 8f 8c 8a 8d 8f 91 8f 8c 36 8a 8c 8f 91 8f 8c 03 02 c4 4a 8a 8d 8f 91 8f 8c 8a 8d 8f 91 8f 8c 00 e8 36</patch>
+		<patch offset="0x104b2b">8c 8f 00 08 91 8f 8c 0c 13 a0 00 d0 39 8c 91 91 91</patch>
+		<patch offset="0x104b3d">8c 8a 8a 8c c5 0f 0a c0 09 f0 01 96 0d f4 07 24 0c 24</patch>
+		<patch offset="0x104b50">60 8a 8d 8f 91 8f 8c 8a 8d 8f 91 8f 8c 36 8a 8c 8f 91 8f 8c 03 03 11 4b</patch>
+		<patch offset="0x104b69">40 0d 00 0c 10 80 a5 a5 85 c5 0f 0a c0 09 f0 01 96 0d 00 07 30 0c 24 36 8f 8d 8a 88 8a 8d 03 0f 40 4b 07 24 0c 13 a0 39 8b 90 90 90 8b 8b 89 89 8b c4 0f 0a c0 09 f0 01 96 0d f4 07 30 06 60 0c 24 36 8f 8d 8a 88 8a 8d 03 0f 6a 4b 0d 00 07 24 0c 10 80 40 ac ac 8c cc 0f 0a c0 09 f0 01 ff 0d 00 07 24 0c 10 06 80 71 ac 06 80 6c b1 06 80 71 ac 37 a0 71 8c 60 71 8c 60 03 02 8e 4b 06 80 71 ac 06 80 6c b1 06 80 71 ac 39 71 8c 60 71 8c 60 71 8c 60 33 71 71 71 80 71 6c 80 71 6c 80 33 91 8c 8c 33 71 6c 22 71 91 b1 0f 0a c0 09 f0 01 ff 0d 00 07 24 0c 11 a0 74 60 80 a0 74</patch>
+		<patch offset="0x104c26">80 a0 74 60 80 74 60 80 74 60 80 03 02 df 4b a0 74 60 80 a0 74 60 80 a0 74 60 80 3c 74 60 80 74 60 80 74 60 80 0c 10 33 71 71 71 80 71 6c 80 71 6c 80 33 91 8c 8c 33 71 6c 22 71 91 b1 0f 0f 4f 36 4c 59 4c 7f 4c 9f 4c c4 4c de 4c 00 00 00</patch>
+		<patch offset="0x104c76">00 e8 0a c0 09 f0 01 ff 0d 00 07 18 0c 0e 39 6d 70 6e 72 70 74 72 75 74 06 99 0d f0 06 99 0d e0 06 99 0f 0a c0 09 f0 01 ff 0d 00 07 18 0c 0e 0d f8 31 60 38 6d 70 6e 72 70 74 72 75 0d 00 06 99 0d f0 06 99 0d e0 06 99 0f 0a c0 09 d0 01 ff 0d</patch>
+		<patch offset="0x104cc7">07 18 0c 0e 21 8d 36 6d 6b 6f 6d 70 6f 06 94 0d f0 06 94 0d e0 06 94 0f 0a c0 09 d0 01 ff 0d 00 07 18 0c 0e 0d f8 31 60 21 8d 35 6d 6b 6f 6d 70 0d 00 06 94 0d f0 06 94 0d e0 06 94 0f 0a c0 09 d0 01 ff 0d 00 07 18 0c 0e 94 92 90 06 8f 0d f0 06 8f 0d e0 06 8f 0f 0a c0 09 d0 01 ff 0d 00 07 18 0c 0e 8d 8b 89 06 88 0d f0 06 88 0d e0 06 88 0f 0f 08 0a 4d 30 4d 3b 4d 7f 4d bc 4d f1 4d 00 00 00 00 00 d4 0a c0 09 f0 01 ff 0d 00 07 1b 0c 16</patch>
+		<patch offset="0x104d5a">74</patch>
+		<patch offset="0x104d5c">79 60 94 33 72 74 72 21 91 91 92 8f 91 21 ad 03 04 18 4d 0f 0d f8 0c 16 06 60 03 00 18 4d 0f 0a c0 09 f0 01 ff 0d 00 07 27 0c 16 22 ed 8d 6d 60 71 60 74 60 22 e9 89 69 60</patch>
+		<patch offset="0x104d97">70</patch>
+		<patch offset="0x104d99">22 e6 86 66 60 69 60 6d 60 21 ed 8d 6d 60 07 3f 72 60 75 60 07 1b 0c 29 8d 88 81 88 8d 88 81 88 8d 6d 68 81 80 0f 0a c0 09 f0 01 ff 0d f8 07 27 0c 16 06 60 22 ed 8d 6d 60 71 60 74 60 22 e9 89 69</patch>
+		<patch offset="0x104ddd">70 60 22 e6 86 66 60 69 60</patch>
+		<patch offset="0x104de7">0d 00</patch>
+		<patch offset="0x104dea">e9 c9 0c 29 8d 88 81 88 8d 88 81 88 8d 6d 68 81 80 0f 0a c0 09 f0 01 ff 0d 00 07 33 0c 1a 21 e8 c8 21 f0 d0 21 f9 d9 07 27 0c 16 21 f2 d2 6d 60 74 60 79 60 94 33 72 74 72 21 91 71 60 72 60 6f 60 71 60 6d 60 80 0f 0a c0 09 f0 01 ff 0d 00 07 27 0c 1a 21 ed cd 21 f5 d5 21 fe de 21 ee ce 6d 60 74 60 79 60 94 33 72 74 72 21 91 71 60 72 60 6f 60 71 60 6d 60 80 0f 0f 08 34 4e 5d 4e 6e 4e 8a 4e a4 4e c7 4e 00 00 00 00 00 d8 0a c0 09 f0 01 c8 0d 00 0c 16 07 18 6a 6f 71 74 76 7b 07 24 65 68 6a 6f 71 74</patch>
+		<patch offset="0x104e91">76 60 76 60 76 60 96 80 c0 07 18 0f 0a c0 09 f0 01 c8 0d 00 07 00 e0 80 0c 20 d6 80 0f 0a c0 09 f0 01 c8 0d 00 07 18 0c 0e aa 8a 8a 33 8a 8a 8a 07 0c 56 51 6a 8a 06 c0 0f 0a c0 09 f0 01 c8 0d 00 07 24 0c 10 aa 8a 8a</patch>
+		<patch offset="0x104eda">8a 8a 8a 4a 4a 6a 8a a0 c0 0f 0a c0 09 f0 01 c8 0d 00 07 18</patch>
+		<patch offset="0x104eef">16 39 80 85 8c 8a 91 8f 98 96 9d 07 24 36 78 60 78 60 78 60 98 80 c0 0f 0a c0 09 f0 01 c8 0d 00 07 18 0c 06 36 85 8c 8f 91 96 98 07 24 33 8f 91 96 36 7d 60 7d 60 7d 60 9d 80 c0 0f 0f 08 fd 4e 29 4f 5e 4f 73 4f 86 4f 98 4f 00 00 00 00 00 d8 0a c0 09 f0 01 c8 0d 00 07 18 0c 23 5b 5e 24 7d 9d bd dd fd 5b 5e 7d 33 7b 7d 7b 96 94 33 6f 71 6f 8a 88 83 07 0c 21 ea ea 0f 0a c0 09 f0 01 c8 0d</patch>
+		<patch offset="0x104f71">0c 22 07 24 36 76 74 76 25 71 71 71 b1 d1 f1 07 18 0d f4 0c 23 06 60 5b 5e 7d 33 7b 7d 7b 96 94 33 6f 71 6f 8a 88 43 07 0c 21 ea ea 0f 0a c0 09 f0 01 c8 0d</patch>
+		<patch offset="0x104fa6">07 18 0c 18 06 c0 23 b6 f6 f6 f6 e0 0f 0a c0 09 f0 01 c8 0d</patch>
+		<patch offset="0x104fbb">07 24 0c 18 e0 22 f4 f4 f4 e0 0f 0a c0 09 f0 01 c8 0d 00 07 18 0c 06 e0 e0 e0 e0 e0 0f 0a c0 09 f0 01 c8 0d 00 07 18 0c 06 e0 e0 e0 e0 e0 0f 0f 08 bc 4f 7d 50 42 51 ef 51 99 52 0b 53 00 00 00 00 00 d4 0a c0 09 f0 01 fa 0d 00 07 2f 0c 00 a0 32 a0 22 97 f7 b7 33 97 96 95 94 33 73 72 71 70 60 76 60 a0 03 03 d5 4f e0 e0 e0 07 23 0d 00 e0 e0 a0 06 cc e0 e0 a0 33 af 0d f8 af 0d f0 af 0d e8 af 03 01 e8 4f 0d 00 07 2f 06 dd 06 db bd c0 e0 c0 07 23 c0 33 94 93 92 24 f1 f1 d1 b1 06 91 70 06 8f 7a 22 fa da 06 9a 7b 21 da 06 9a 7b 06 9a 7b 9a 94 93 99 98 92 91 97 96 90 8f 95 23 e8 e8 c8 a8 07 2f 33 94 93 92 33 71 6f 22 6d 8d ed ab 21 ed ad 33 8d 90 8e 21 ed ad ab 21 ed ad 33 8d 90 8e 07 47 22 f9 f9 f9 21 f8 d8 36 b8 0d fc b8 0d f8 b8 0d f4 b8 0d f0 b8 0d ec b8 a0 05 00 c4 4f 0a c0 09 f0 01 fa 0d 00 07 2f 0c 00 a0 32 80 22 b0 f0 b0 33 90 90 90 af 0c 16 91 94 72 60 7d 60 80 8f 91 94 72 60 7d 60 03 02 9d 50 e0 e0 e0 0c 00 0d 00 e0 c0 21 e1 c1 e0 c0 21 06 c5 33 a5 0d f8 a5 0d f0 a5 0d e8 a5 03 01 ae 50 0d 00 21 f7 d7 b6 e0 e0 07 17 c0 33 93 92 91 24 f0 f0 b0 d0 06 90 6f 06 8e 79 22 f9 d9 06 99 7a 21 d9 06 99 7a 06 99 7a 99 93 92 98 97 91 90 96 95 8f 8e 94 23 e7 e7 c7 a7 07 2f 33 8a 89 88 22 e7 e7 e7 22 e6 e6 e6 21 d4 94 33 73 74 73 d1 96 54 56 54 53 21 d4 94 33 73 74 73 d1 33 93 91 93 22 f5 d5 36 b5 0d fc b5 0d f8 b5 0d f4 b5 0d f0 b5 0d ec b5 a0 05 00 83 50 0a c0 09 f0 01 fa 0d 00 07 23 0c 00 a0 21 e7 c7 33 87 87 86 a5 0c 16 8a 8f 6c 60 77 60 80 85 8a 8f 6c 60 77 60 03 02 5f 51 e0 e0 e0 0c 00 0d 00 06 c0 22 ea ea aa 06 c0 22 eb cb 33 ab 0d f8 ab 0d f0 ab 0d e8 ab 03 01 70 51 0d 00 21 fe de bd e0 e0 0d f8 06 80 c0 33 94 93 92 24 f1 f1 d1 b1 06 91 70 06 8f 7a 22 fa da 06 9a 7b 21 da 06 9a 7b 06 9a 7b 9a 94 93 99 98 92 91 97 96 90 8f 95 24 e8 e8 c8 a8 68 0d 00 22 e9 e9 e9 22 ed ed ed 22 f9 f9 f9 22 f8 d8 36 b8 0d fc b8 0d f8 b8 0d f4 b8 0d f0 b8 0d ec b8 a0 05 00 48 51 0a c0 09 f0 01 fa 0d 00 07 23 0c 00 32 a0 22 8b eb cb 33 8b 8a 89 aa 69 60 70 60 a0 03 03 05 52 e0 e0 e0 0d 00 22 e8 e8 e8 23 e6 e6 a6 33 a6 0d f8 a6 0d f0 a6 0d e8 a6 03 01 12 52 0d 00 33 76 78 23 79 99 f9 b9 b1 e0 e0 0d f8 07 17 06 80 c0 33 93 92 91 24 f0 f0 b0 d0 06 90 6f 06 8e 79 22 f9 d9 06 99 7a 21 d9 06 99 7a 06 99 7a 99 93 92 98 97 91 90 96 95 8f 8e 94 24 e7 e7 c7 a7 67 0d 00 22 eb eb eb 22 e2 e2 e2 d1 af cd b3 d1 af cd af 22 f1 d1 36 b1 0d fc b1 0d f8 b1 0d f4 b1 0d f0 b1 0d ec b1 a0 05 00 f5 51 0a c0 09 f0 01 fa 0d 00 07 17 0c 00 32 80 22 af ef cf 33 8f 8e 8d ac 07</patch>
+		<patch offset="0x1052f2">0c 0e a1 07 17 0c 0b 8b 91 07</patch>
+		<patch offset="0x1052fd">0c 0e a0 0c 0e a1 07 17 0c 0b 8b 91 03 02 bb 52 0c 29 c0 0c 29 33 8d 8d 87 c0 33 8d 8d 87 ad 33 8d 8d 87 ad 33 8d 8d 87 ad 33 8d 8d 87 ac 8c 87 e0 03 07 ea 52 8c 87 a0 8c 87 a0 8c 87 33 8c 87 8c aa aa aa 03 1f fe 52 e0 a0 05 00 9f 52 0a c0 09 f0 01 fa 0d 00 07 17 0c 01 22 e8 c8 a8 33 88 87 86 85 0c 0b 85 ab 89 83 80 85 ab 89 83 03 02 26 53 07 0b 8c ac ac ac ac ac 8c ac ac ac ac ac ac 8c 8c 8c 8c 8c 8c 03 11 3e 53 aa aa aa 03 1f 48 53 e0 a0 05 00 11 53 0f 08 67 53 95 53 c2 53 ea 53 30 54 67 54 00 00 00 00 00 40 0a c0 09 f0 01</patch>
+		<patch offset="0x1053af">0d 00 07 23 0c 02 23 e3 e3 08 05 e3 e3 07 2f 08 00 b9 06 c0 e0 36 89 90 92 94 96 22 97 d7 f7 21 e8 e8 05 00 71 53 0a c0 09 f0 01</patch>
+		<patch offset="0x1053db">0d 00 07 23 0c 02 23 e2 e2 08 05 e2 e2 07 2f 08 00 0c 15 b9 06 c0 e0 07 23 0c 02 06 c0 21 be fe 21 e8 e8 05 00 9d 53 0a c0 09 f0 01</patch>
+		<patch offset="0x105408">0d 00 07 23 0c 02 23 e1 e1 08 05 e1 e1 08 00 0c 16 b9 06 c0 e0 0c 02 e0 fc 0c 01 21 e8 e8 05 00 ca 53 0a c0 09 f0 01</patch>
+		<patch offset="0x105430">0d 00 07 17 0c 02 23 ec ec 08 05 ec ec 08 00 0c 01 26 ed ed ad 0d fc 8d 0d f8 8d 0d f4 8d 0d f0 8d 0d ec 8d 0d e8 8d 0d e4 8d 0d e0 8d 0d 00 07 23 0c 02 06 d5 07 17 0c 01 21 e8 e8 05 00 f2 53 0a c0 09 f0 01</patch>
+		<patch offset="0x105476">0d 00 07 17 0c 02 23 eb eb 08 05 eb eb 08 00 0c 06 ad 06 c0 e0 07 2f 0c 02 0d f4 06 80 36 89 90 92 94 96 22 97 f7 b7 77 0d 00 21 e8 e8 05 00 38 54 0a c0 09 f0 0d 00 01</patch>
+		<patch offset="0x1054af">07 17 0c 02 23 ea ea 08 05 ea ea 08 00 0c 1a 21 f9 f9 07 3b 0d f8 01 96 0c 17 50 52 4f 50 4d 4f 4b 4d 03 07 89 54 54 4f 48 4f 03 07 95 54 0d fc 54 4f 48 4f 0d f8 54 4f 48 4f 0d f4 54 4f 48 4f 0d f0 54 4f 48 4f 0d ec 54 4f 48 4f 0d e8 54 4f 48 4f 0d e4 54 4f 48 4f 0d e0 54 4f 48 4f 05 00 6b 54 0f 08 e3 54 29 55 59 55 93 55 bc 55 f2 55 00 00 00 00 00 dc 0a c0 09 f0 01 fa 0d 00 07 2f 0c 00 0d f8 06 80 06 98 72 06 98 7c 33 98 98 96 03 07 f5 54 06 98 72 06 98 7c 33 98 98 96 06 98 72 06 98 7c 33 98 98 96 06 98 72 78 0d 00 dd d8 dd d8 dd d8 dd d8 05 00 ef 54 0a c0 09 f0 01 fa 0d 00 07 23 0c 1d 88 8b 89 8c 8a 8d 8b 8e 8c 8f 8d 90 8e 91 8f 92 03 03 35 55 07 2f 0c 00 d8 d5 d8 d5 d8 d5 d8 d5 05 00 31 55 0a c0 09 f0 01 fa 0d 00 07 2f 0c 1d 87 8a 88 8b 89 8c 8a 8d 8b 8e 8c 8f 8d 90 8e 91 8f 92 03 02 65 55 87 8a 88 8b 89 8c 8a 8d 8b 8e 0c 00 cf d1 cf d1 cf d1 cf d1 05 00 63 55 0a c0 09 f0 01 fa 0d 00 07 2f 0c 02 06 98 72 06 98 7c 33 98 98 96 03 09 9d 55 06 98 72 06 98 7c 23 e1 e1 e1 e1 05 00 9d 55 0a c0 09 f0 01 fa 0d 00 0c 06 07 17 06 80 0d f8 33 8a 95 07 2f 89 b3 03 0e cc 55 07 17 33 8a 95 07 2f 89 63 0d 00 07 23 0c 00 c8 ca c8 ca c8 ca c8 ca 05 00 c4 55 0a c0 09 f0 01 fa 0d 00 07 23 0c 06 07 17 33 8a 95 07 2f 89 b3 03 0f fc 55 0c 01 c1 c6 c1 c6 c1 c6 c1 c6 05 00 fc 55 0f 08 2b 56 84 56 d6 56 31 57 47 57 5d 57 00 00 00 00 00 dc 0a c0 09 f0 01 fa 0d 00 07 23 0c 00 dd bb b8 d9 b8 b4 d6 b4 b1 d2 b1 ad 23 ef ef ef ef d9 b8 b4 d6 b4 b1 d2 b1 cd af ad ab 0c 16 89 69 69 69 69 69 69 69 69 69 69 89 6f 6f 6f 6f 6f 6f 6f 6f 6f 6f af 69 69 69 69 03 03 56 56 07 17 0c 02 23 ea ea ea ea 05 00 35 56 0a c0 09 f0 01 fa 0d 00 07 23 0c 00 d6 b4 b1 d2 b1 ad ed ea 23 e8 e8 e8 e8 d2 b1 ad cf ad aa cb aa a6 a8 aa 33 ab ad af 0c 16 b1 80 77 77 77 77 77 77 77 77 77 77 77 77 77 77 77 77 77 77 7d 7d 7d 7d 7d 7d 7d 7d 03 03 ac 56 e0 e0 e0 e0 05 00 8e 56 0a c0 09 f0 01 fa 0d 00 07 17 0c 15 d6 06 d8 96 98 36 99 9b 99 98 96 94 21 b2 06 92 7e bd b1 21 af 06 8f 7b b9 ad 21 ec ac 07 23 8c 8f b4 8f 94 98 33 76 78 76 22 f4 d4 b4 0c 03 b8 33 96 98 96 06 cf b8 33 96 98 96 af b9 33 98 99 98 06 d1 af ad ab e0 03 0b 28 57 05 00 de 56 0a c0 09 f0 01 fa 0d 00 07 23 0c 1a aa aa 8a 8c 8a 8d 05 00 3b 57 0a c0 09 f0 01 fa 0d 00 07 23 0c 06 aa aa 8a 8c 8a 8d 05 00 51 57 0a c0 09 f0 01 fa 0d 00 07 17 0c 0e 8a 8a 8a 8a 8a 8a 8a 8a 8a 80 cc 88 80 8a 80 8a 80 c0 e0 8a 8a 8a 8a 8a 8a 8a 8a 8a 80 cc 88 80 8a 80 85 80 c0 e0 8a 8a 8a 8a 8a 8a 8a 8a 8a 80 cd 8a 80 8b 80 86 80 8b 80 8d 80 8f 80 92 80 97 80 9b 80 0c 0b 3c 8a 8d 8f 91 8d 8f 8a 8d 88 8a 85 88 03 07 ae 57 b6 b4 b6 b1 b4 af b1 ad af 22 aa ca ea 05 00 67 57 0f 08 e2 57 34 58 87 58 0c 59 99 59 c4 59 00 00 00 00 00 dc 0a c0 09 f0 01 fa 0d 00 07 23 0c 0a 01 aa a0 aa a0 ad a0 af b1 8f 80 88 80 aa 94 80 91 80 8d 80 8f 80 91 80 33 af 0d f8 af 0d f0 af a0 0d 00 21 ea ca 0c 00 01 fa 21 e5 c5 21 e7 c7 21 e8 c8 21 ea ca 21 ec cc 21 ef cf 22 f1 f1 f1 05 00 ec 57 0a c0 09 f0 01 fa 0d 00 07 23 0c 0a 0d f8 01 aa 06 80 a0 aa a0 ad a0 af b1 8f 80 88 80 aa 94 80 91 80 8d 80 8f 80 91 80 33 af 0d f0 af 0d e8 af a0 0d f8 22 ea aa 6a 0c 00 01 fa 0d 00 27 e5 e5 e5 e5 e5 e5 e5 c5 21 e8 c8 21 ea ca 21 f6 d6 05 00 3c 58 0a c0 09 f0 01 fa 0d 00 07 17 0c 06 36 6a 60 6a 60 6a 60 b6 94 88 03 07 91 58 07 23 0c 0e 0d f8 06 80 06 c0 b6 c0 36 94 96 94 93 94 93 f1 06 c0 b6 c0 36 94 96 94 93 94 93 22 b1 d1 71 0d 00 06 c0 b4 c0 36 93 94 93 91 93 91 06 cf 33 8f 91 8f 21 ee ce 07 17 0c 06 0d e4 33 71 71 71 91 0d e8 33 71 71 71 91 0d ec 33 71 71 71 91 0d f0 33 71 71 71 91 0d f8 33 71 71 71 91 0d 00 33 71 71 71 91 05 00 91 58 0a c0 09 f0 01 fa 0d 00 07 23 0c 16 76 23 74 94 f4 b4 6f 23 71 91 f1 b1 76 23 74 94 f4 94 78 7b 21 fa da 0c 0e 06 c0 b6 c0 36 94 96 94 93 94 93 f1 06 c0 b6 c0 36 94 96 94 93 94 93 f1 06 c0 b8 c0 36 96 98 96 94 96 94 06 d3 33 93 94 93 21 f1 d1 0c 06 0d e4 36 71 71 71 71 71 71 0d e8 36 71 71 71 71 71 71 0d ec 36 71 71 71 71 71 71 0d f0 36 71 71 71 71 71 71 0d f8 36 71 71 71 71 71 71 0d 00 36 71 71 71 71 71 71 05 00 16 59 0a c0 09 f0 01 c8 0d 00 07 23 0c 0b 3c 8a 88 8a 83 88 85 8a 88 8a 8f 88 8a 3c 83 88 85 8a 88 8a 8f 88 8a 83 88 85 05 00 a3 59 0f 0a c0 09 f0 01 fa 0d 00 07 17 0c 07 36 6a 60 6a 60 6a 60 b6 94 88 05 00 ce 59 0f 08 f0 59 8a 5a 10 5b bd 5b 53 5c 97 5c 00 00 00 00 00 e8 0a c0 09 f0 01 eb 0d 00 07 17 0c 1d cf ae b7 06 d6 ad ac d4 92 91 8f 8e 8f 91 92 94 96 98 d9 d8 99 9b 9d 9b 99 9b 99 98 d6 d5 96 98 99 96 bb b9 98 99 9b 98 bd bb 99 9b 9d 99 be bd bb b9 b8 b6 95 91 93 95 b6 ad ac b6 ac b5 f6 00 d4 07 23 cf ae b7 06 d6 ad ac d4 92 91 8f 8e 8f 91 92 94 96 98 d9 d8 99 9b 9d 9b 99 9b 99 98 d6 d5 96 98 99 96 bb b9 98 99 9b 98 bd bb 99 9b 9d 99 be bd bb b9 b8 b6 95 91 93 95 b6 ad ac b6 ac b5 25 f6 f6 f6 f6 f6 f6 05 00 3d 5a 0a c0 09 f0 01 eb 0d 00 07 0b 0c 1d cf d1 d2 d3 b4 b2 b1 b6 b2 b1 af b1 d6 b5 be 06 dd b4 b3 db 99 98 b6 b4 92 91 92 8f 21 d4 94 92 94 91 21 d6 96 94 96 92 b8 b6 b5 b3 b1 af 8d 8c 8d 8a b2 af b1 a5 ea cf d1 d2 d3 b4 b2 b1 b6 b2 b1 af b1 d6 b5 be 06 dd b4 b3 db 99 98 b6 b4 92 91 92 8f 21 d4 94 92 94 91 21 d6 96 94 96 92 b8 b6 b5 b3 b1 af 8d 8c 8d 8a b2 af b1 a5 ca cc cd ce ef f1 21 ea ea 05 00 cd 5a 0a c0 09 f0 01 eb 0d 00 07 17 0c 1d 0d f4 06 80 cf ae b7 06 d6 ad ac d4 92 91 8f 8e 8f 91 92 94 96 98 d9 d8 99 9b 9d 9b 99 9b 99 98 d6 d5 96 98 99 96 bb b9 98 99 9b 98 bd bb 99 9b 9d 99 be bd bb b9 b8 b6 95 91 93 95 b6 ad ac b6 ac b5 22 b6 d6 76 0d 00 07 23 86 88 8a 86 88 8a 8b 88 8a 8b 8d 8a 8f 8a 8b 8a 8f 8d 8f 8c 8d 8c 8d 8e af ae af af a0 ad ac af 8d 8c 8d 8c 8a 8c 06 ca cc 8d 8f 91 8d d2 8f 91 92 8f d4 91 92 94 91 d6 b6 b6 b1 b1 b1 b1 b1 b1 ac b2 aa af cd cf b1 a8 aa ab 21 ea aa ad ac af 21 ee ee 05 00 62 5b 0a c0 09 f0 01 eb 0d 00 07 0b 0c 1d 0d f4 06 80 cf d1 d2 d3 b4 b2 b1 b6 b2 b1 af b1 d6 b5 be 06 dd b4 b3 db 99 98 b6 b4 92 91 92 8f 21 d4 94 92 94 91 21 d6 96 94 96 92 b8 b6 b5 b3 b1 af 8d 8c 8d 8a b2 af b1 a5 22 aa ca 6a 0d 00 07 23 83 85 86 83 85 86 88 85 86 88 8a 86 87 8a 88 87 88 8a 8c 88 a8 aa aa aa aa a9 a0 aa a5 a9 06 ca a5 a3 a7 c5 c5 ca c8 cc ca cd b2 b1 af ad ac ac aa aa aa ac a5 ac ca a9 b2 d1 e8 a7 af ad a5 a3 a9 21 ea ea 05 00 07 5c 0a c0 09 f0 01 96 0d 00 07 0b 0c 0e e0 03 0d 5f 5c e0 03 0c 64 5c 0c 0e 32 80 22 aa aa ca e0 0c 0e 32 80 0c 0e 22 aa aa ca e0 0c 0e 32 80 21 aa aa 32 80 21 aa aa 32 80 21 aa aa 32 80 21 aa aa 05 00 64 5c 0a c0 09 f0 01 96 0d 00 07 0b 0c 0e e0 03 0d a3 5c e0 03 0c a8 5c 0d f8 06 80 0c 0e 32 80 22 aa aa ca e0 0c 0e 32 80 0c 0e 22 aa aa ca e0 0c 0e 32 80 21 aa aa 32 80 21 aa aa 32 80 21 aa aa 32 80 21 aa 6a 05 00 a8 5c 0f 08 f1 5c 28 5d 5a 5d 8c 5d b5 5d de 5d 00 00 00 00 00 f0 0a c0 09 f0 01 e6 0d 00 07 24 0c 12 ad a0 ad a0 33 cd cd cd ad ad 33 ad ad ad 8d 8d 33 8d 8d 8d 6d 6d 6d 6d 33 6d 6d 6d 4d 4d 33 4d 4d 4d 00 00 ad ad ad ad 0f 0a c0 09 f0 01 e6 0d 00 07 24 0c 12 ad a0 ad a0 33 cd cd cd ad ad 33 ad ad ad 8d 8d 33 8d 8d 8d 6d 6d 6d 6d 36 6d 6d 6d 6d 6d 6d 00 00 ad ad ad ad 0f 0a c0 09 f0 01 e6 0d 00 07 24 0c 12 ad a0 ad a0 33 cd cd cd ad ad 33 ad ad ad 8d 8d 33 8d 8d 8d 6d 6d 6d 6d 36 6d 6d 6d 6d 6d 6d 00 00 ad ad ad ad 0f 0a c0 09 f0 01 e6 0d 00 07 0c 0c 0e ad a0 ad a0 33 cd cd cd ad ad 33 ad ad ad 8d 8d 8d 8d 8d 8d 33 8d 8d 8d ad ad ad ad 0f 0a c0 09 f0 01 e6 0d 00 07 18 0c 13 ad a0 ad a0 33 cd cd cd ad ad 33 ad ad ad 8d 8d 8d 8d 8d 8d 33 8d 8d 8d ad ad ad ad 0f 0a c0 09 f0 01 e6 0d 00 07 18 0c 10 ad a0 ad a0 33 cd cd cd ad ad 33 ad ad ad 8d 8d 8d 8d 8d 8d 33 8d 8d 8d ad ad ad ad 0f 0f 08 19 5e 30 5e 42 5e 55 5e 7e 5e aa 5e 00 00 00 00 00 00 0a c0 09 f0 01 e6 0d 00 07 21 0c 1e 06 d1 ad cf cd d6 d4 f6 0f 0a c0 09 f0 01 e6 0d 00 07 21 0c 1e f6 f4 f2 fb fd 0f 0a c0 09 f0 01 e6 0d 00 07 21 0c 1e f1 ef ed d6 d4 f6 0f 0a c0 09 f0 01 e6 0d f8 07 2d 0c 02 a0 80 21 96 d6 a0 80 21 94 f4 a0 80 21 92 f2 36 80 8f 91 92 94 96 97 99 9b 21 9d fd 0f 0a c0 09 f0 01 e6 0d f8 07 2d 0c 02 80 8d 07 d4 80 8c 06 d5 80 8a 06 d1 07 39 6b 72 77 79 07 2d 33 8f 91 92 94 96 97 99 bb 06 da 0f 0a c0 09 f0 01 e6 0d f8 07 21 0c 02 f6 f5 f3 cb c5 ea 0f 0f 08 cf 5e 29 5f 7f 5f ce 5f 38 60 00 00 00 00 00 00 00 f0 0a c0 09 f0 01 e6 0d 00 07 30 0c 16 b1 06 b1 8f b1 06 b1 8d af 06 af 8d 06 8f 74 af b1 b2 b4 b6 21 db 9b 99 78 79 22 94 b4 f4 b1 06 b1 8f b1 06 b1 8d af 06 af 8d 06 8f 74 cf b0 06 b0 8f 70 72 94 b2 06 90 6f 21 cd ed 21 d7 f7 21 d4 f4 06 d9 db be 7d 7b 21 b9 f9 0f 0a c0 09 f0 01 e6 0d 00 07 30 0c 16 ad 06 ad 8b ad 06 ad 8d ab 06 ab 8a 06 8b 6f ab ab ad b1 b2 b9 b8 b6 74 72 22 91 b1 f1 ad 06 ad 8b ad 06 ad 8d ab 06 ab 8a 06 8b 6f cb ad 06 ad 8d 6d 6f 90 af ac 21 c8 e8 21 d2 f2 21 d1 f1 06 d0 d2 b7 79 74 22 91 b1 f1 0f 0a c0 09 f0 01 e6 0d 00 07 30 0c 16 a8 06 a8 88 a8 06 a8 88 a8 06 a8 88 a8 a8 a8 aa ad ad 06 d2 71 6f 22 8d ad ed a8 06 a8 88 a8 06 a8 88 a8 06 a8 88 a8 c8 aa 06 aa 8a a8 a8 a6 21 c5 e5 21 cd ed 21 cd ed 06 cd cf b2 71 6f 22 8d ad ed 0f 0a c0 09 f0 01 e6 0d 00 07 30 0c 04 21 c8 e8 e0 e0 e0 e0 c0 e5 a8 ad 21 cc 8c 33 6a 6c 6a 06 c8 ca ad 21 d4 94 72 74 72 21 d1 f1 21 af ef b2 21 b1 f1 ad 90 33 6f 70 6f 8d 33 6b 6d 6b a9 92 33 70 72 70 8f 33 6d 6f 6d ab 94 33 72 74 72 91 33 6f 71 6f 8d 33 6b 6d 6b 94 33 72 74 72 91 33 6f 71 6f 07 24 8d 33 6b 6d 6b 0f 0a c0 09 f0 01 e6 0d 00 07 24 0c 1a ad ad 88 8f ad ad 81 85 a8 a8 83 8a a8 a8 a1 a6 a5 a3 a8 a8 a8 ad ad 88 8f ad ad 88 8f ad ad 88 8f ad ad 81 85 a8 a8 83 8a a8 a8 88 83 a6 a6 a6 a8 a0 a8 ad ad 88 8f ad ad 88 8f ad ad 88 8f ad ad 88 8f ad ad 88 8f ad ad 8d 8b a9 a9 84 89 ab ab 86 8b ad ad 88 8f ad ad 88 8f 0f 0a c0 09 f0 01 c8 0d 00 07 24 0c 1a 0f 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</patch>
+		<patch offset="0x160a40">ff ff</patch>
+		<patch offset="0x189ac4">ff ff ff ff</patch>
+		<patch offset="0x18db40">ff ff ff ff</patch>
+		<patch offset="0x18db48">ff ff ff ff</patch>
+		<patch offset="0x18db50">ff ff ff ff</patch>
+		<patch offset="0x18db58">ff ff ff ff</patch>
+		<patch offset="0x1f1b38">ff ff ff ff</patch>
+		<patch offset="0x1f6238">ff ff ff ff</patch>
+		<patch offset="0x20785c">ff ff ff ff</patch>
+		<patch offset="0x207861">ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff</patch>
+		<patch offset="0x2078a6">ff ff ff ff ff ff</patch>
+		<patch offset="0x2078b0">ff ff ff ff</patch>
+		<patch offset="0x2078b8">ff ff ff ff</patch>
+		<patch offset="0x2078cc">ff ff ff ff</patch>
+		<patch offset="0x2078d4">ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff</patch>
+		<patch offset="0x20791e">ff ff ff ff ff ff</patch>
+		<patch offset="0x207928">ff ff ff ff</patch>
+		<patch offset="0x207930">ff ff ff ff</patch>
+		<patch offset="0x207940">ff ff</patch>
+		<patch offset="0x207943">ff</patch>
+		<patch offset="0x207946">ff ff ff</patch>
+		<patch offset="0x20794a">ff ff ff</patch>
+		<patch offset="0x20794e">ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff</patch>
+		<patch offset="0x2079b6">ff ff ff ff</patch>
+		<patch offset="0x2079bb">ff</patch>
+		<patch offset="0x2da06d">ff ff</patch>
+		<patch offset="0x2da075">ff ff</patch>
+		<patch offset="0x2da07d">ff ff</patch>
+		<patch offset="0x2da085">ff ff</patch>
+		<patch offset="0x2da08d">ff ff</patch>
+		<patch offset="0x2da095">ff ff</patch>
+		<patch offset="0x2da09d">ff ff</patch>
+		<patch offset="0x2da0a5">ff ff</patch>
+		<patch offset="0x2da0ad">ff ff</patch>
+
+    </rom>
+    <rom index="1">
+        <part>00</part>
+    </rom>
+    <switches page_id="1" page_name="Switches" base="8" default="ff,fd,ff">
+        <!-- DSWA -->
+        <dip name="Cabinet" bits="6,7" ids="Cocktail,-,Upright 2 Players,Upright 1 Player"/>
+        <!-- DSWB -->
+        <dip name="Difficulty" bits="8,10" ids="8,7,6,5,1,2,3,4"/>
+        <dip name="Bonus" bits="12,13" ids="30K &amp; 60K only,20K &amp; 60K only,30 50 then every 70,20 40 then every 60"/>
+        <dip name="Life Loss" bits="14,15" ids="-1,-,Default,-3"/>
+        <!-- DSWC -->
+        <dip name="Lives" bits="16,17" ids="2,5,4,3"/>
+        <dip name="Freeze" bits="18" ids="On,Off"/>
+        <dip name="Free Play" bits="19" ids="On,Off"/>
+        <dip name="Flip Screen" bits="20" ids="On,Off"/>
+        <dip name="Demo Sounds" bits="21" ids="Off,On"/>
+        <dip name="Allow Continue" bits="22" ids="No,Yes"/>
+        <dip name="Game Mode" bits="23" ids="Test,Game"/>
+        <!-- IN0 -->
+        <dip name="Service Mode" bits="30" ids="On,Off"/>
+        <dip name="PCB type" ids="88617A,89626A" bits="24"/>
+    </switches>
+    <buttons names="Attack,Jump,-,-,-,-,Start,Coin,Core credits" default="A,B,Start,Select,-" count="2"/>
+</misterromdescription>
