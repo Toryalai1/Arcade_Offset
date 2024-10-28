@@ -1,0 +1,1 @@
+This is a small hack to have player 1 instantly collect all discomen scoring items as soon as they spawn, so that they don’t clutter the screen and cause discordant piano noises should the player choose not to engage with the scoring system

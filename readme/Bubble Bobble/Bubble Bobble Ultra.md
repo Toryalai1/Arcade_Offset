@@ -1,0 +1,1 @@
+Bubble Bobble Ultra is a hack of Bubble Bobble on the arcade. With new 100 levels, some completely renovated, and some looking like its super counterparts. Palettes have been changed in levels as well.
