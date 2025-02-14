@@ -53,7 +53,7 @@ def create_db(options):
     with open(options['registry'], 'r') as f:
         all_files = [tuple(map(str.strip, line.split(':'))) for line in f.readlines()]
 
-    folders = {"_Arcade/_Arcade Offset": {}}
+    folders = {"_Arcade": {}, "_Arcade/_Arcade Offset": {}}
 
     db = {
         "db_id": options['db_id'],
