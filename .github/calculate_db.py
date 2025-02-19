@@ -90,15 +90,13 @@ def create_db(options):
 
     #folders.pop(folder, None)
 
-    RED='\033[0;31m'
     PRP='\033[0;35m'
     NC='\033[0m'
 
     db["folders"] = folders
     db["files_count"] = len(db["files"])
     db["folders_count"] = len(db["folders"])
-    db['header'] = [f'''{NC} 
-{PRP}             __    _                      _          ___   __  __          _
+    db['header'] = [f'''{PRP}             __    _                      _          ___   __  __          _
 {PRP}            / /   / \   _ __ ___ __ _  __| | ___    / _ \ / _|/ _|___  ___| |_
 {PRP}           / /   / _ \ |  __/ __/ _  |/ _  |/ _ \  | | | | |_| |_/ __|/ _ \ __|
 {PRP}        _ / /   / ___ \| | | (_| (_| | (_| |  __/  | |_| |  _|  _\__ \  __/ |_
