@@ -97,18 +97,14 @@ def create_db(options):
     db["folders"] = folders
     db["files_count"] = len(db["files"])
     db["folders_count"] = len(db["folders"])
-    db['header'] = [f'''
-{NC} 
+    db['header'] = [f'''{NC} 
 {PRP}             __    _                      _          ___   __  __          _
 {PRP}            / /   / \   _ __ ___ __ _  __| | ___    / _ \ / _|/ _|___  ___| |_
 {PRP}           / /   / _ \ |  __/ __/ _  |/ _  |/ _ \  | | | | |_| |_/ __|/ _ \ __|
 {PRP}        _ / /   / ___ \| | | (_| (_| | (_| |  __/  | |_| |  _|  _\__ \  __/ |_
 {PRP}       (_)_/___/_/   \_\_|  \___\__,_|\__,_|\___|   \___/|_| |_| |___/\___|\__|
 {PRP}          |_____|
-{NC}
-
-
-''']
+{NC}''']
 
     if options['linux_github_repository'] != '':
         db["linux"] = create_linux_description(options['linux_github_repository'])
