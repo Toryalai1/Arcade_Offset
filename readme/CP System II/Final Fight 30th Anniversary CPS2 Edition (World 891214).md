@@ -1,0 +1,19 @@
+- **Q-Sound enhancements**, Q-Sound Stereo Separation for sound effects/music
+- **Unique palettes** for each player
+- **Increased sprite count**, eliminating all flicker
+- **Increased CPU speed**, vastly reducing any slowdown
+- **Software DIP and settings screens**
+- **EEPROM backup** of settings/hi-scores
+- **Numerous enhancements/new settings** for replayability and customer retention!
+- **Multiple "sound fonts"**, original samples/captured FM synth
+- **Randomized enemy/boss palettes**, both skin tone and clothing colors are randomized for unlimited variability, or use the original palettes for a classic experience
+- **Randomized enemy/boss names**, or original naming
+- **Additional enemies/items in three-player mode**
+- **Disable/Enable friendly fire**, one of the most requested features of *Final Fight* fans
+- **Disable/Enable "click in" damage**, the damage dealt to all enemies when using an extra life
+- **Configurable extra health for enemies in three-player mode**: 1.25x, 1.5x, normal
+- **Configure whether infinites are possible**
+- **Increased enemy difficulty**: further knock-back wall placement, off-screen invincibility
+- **Fixed the Invincible Rolento/Hollywood bug** (original issue in the world version, solved 31 years after release)
+- **Redesigned large graphics** (e.g., "PRESS START," "CONTINUE," "INSERT COIN") to better fit the 3-player layout
+- **Updated attract mode demo sequences**: now includes demos with all three players, re-recorded to reflect this!
