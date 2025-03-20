@@ -1,0 +1,132 @@
+<!--
+		Radiant Silvergun EXTRA v1.0.0
+		
+		Planned and developed by Alex "trap15" Marshall in 2018 and 2023-2024.
+		
+		email: <trap15@raidenii.net> | web: <http://daifukkat.su/> | twitter: @trap0xf
+		
+		Official website: <http://daifukkat.su/hacks/rsg_ex/>
+		
+		Source code: <http://bitbucket.org/trap15/rsg_ex/>
+		
+		# About
+		
+		This patch back-ports scoring modes and game systems from other versions of the
+		game into the Saturn and ST-V versions of the game. Namely, this
+		adds "Ikaruga Mode" from the Xbox 360 version, as well as the 2-button
+		"overseas" mode exclusive to the ST-V version. In addition to these ported
+		modes, there's a new Special scoring mode which combines the original scoring
+		system and the Ikaruga scoring systems in a different manner.
+		
+		## ST-V version
+		
+		The ST-V version already has the overseas mode, so this patch only adds the
+		two new scoring modes. However, this patch allows picking the overseas mode
+		per-game, rather than based on the BIOS region. This also removes the less good
+		overseas changes, such as the removal of named boss intros.
+		
+		Hold A when starting the game to use overseas mode. To choose the scoring mode,
+		when starting the game, either hold Left/B to use Ikaruga mode,
+		or Right/C to use Special mode.
+-->
+
+<misterromdescription>
+	<rbf>ST-V</rbf>
+	<setname>rsgunex</setname>
+	<buttons names="Button 1,Button 2,Button 3,Button 4,-,-,Start,Coin,Service,Test" default="A,B,X,Y,Start,Select,R,L" />
+
+
+
+	<rom index="0">
+		<part>41</part>
+	</rom>
+	<rom index="1" md5="" zip="rsgun.zip" address="0x32000000">
+		<part repeat="0x80">00</part>
+	</rom>
+	<rom index="2" md5="" zip="stvbios.zip" address="0x30000000">
+		<interleave output="64">
+			<part crc="d1be2adf" name="epr-17952a.ic8" map="21436587" />
+		</interleave>
+	</rom>
+	<rom index="3" md5="" zip="rsgun.zip" address="0x34000000">
+		<part repeat="0x200000">00</part>
+		<interleave output="64">
+			<part crc="cbe5a449" name="mpr20958.7" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="a953330b" name="mpr20959.2" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="b5ab9053" name="mpr20960.3" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="0e06295c" name="mpr20961.4" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="f1e6c7fc" name="mpr20962.5" map="12345678" />
+		</interleave>
+
+		<patch offset="0x00200030">32 30 30 36 32 34 32 30</patch>
+		<patch offset="0x00200068">45 58</patch>
+		<patch offset="0x00200078">45 58</patch>
+		<patch offset="0x00200088">45 58</patch>
+		<patch offset="0x002855e0">80</patch>
+		<patch offset="0x003019e0">00 09 44 2b d4 01</patch>
+		<patch offset="0x003019ec">70 3c 06 07</patch>
+		<patch offset="0x00301a10">00 09 44 2b d4 01</patch>
+		<patch offset="0x00301a1c">71 78 06 07</patch>
+		<patch offset="0x00303200">d4 01</patch>
+		<patch offset="0x00303208">27 00 06 07 00 09 44 2b</patch>
+		<patch offset="0x00303308">00 09 44 2b d4 01</patch>
+		<patch offset="0x00303314">70 04 06 07</patch>
+		<patch offset="0x00306858">00 09</patch>
+		<patch offset="0x00306866">61 03</patch>
+		<patch offset="0x00306a6a">00 09</patch>
+		<patch offset="0x00306a76">61 03</patch>
+		<patch offset="0x003199f4">00 09</patch>
+
+		<patch offset="0x00332700">
+          		33 3c 63 93 61 52 27 30 21 18 61 10 d1 0e 33 1c
+          		e2 00 41 2b d1 0d 8b 02 22 1e 92 18 61 31 73 12
+          		64 23 42 01 42 29 02 1a 41 15 31 28 32 4c 32 2c
+          		00 09 44 2b d4 06 89 02 23 21 73 04 23 21 e2 00
+          		70 00 06 07 00 09 af f7 32 1c 06 04 32 12 06 04
+          	</patch>
+		<patch offset="0x00332756">aa ab</patch>
+
+		<patch offset="0x00337000">
+          		60 00 d0 0a 00 00 00 00 65 83 01 27 89 07 88 01
+          		d1 08 04 1a 4d 0b dd 08 32 03 e0 09 00 09 41 2b
+          		42 10 e2 09 e0 32 8f 01 00 09 af f3 30 0c 8f fd
+          		4f 3c 06 06 70 00 06 07 2f 16 2f 06 33 14 06 04
+          		2f 56 2f 46 2f 36 2f 26 2f 96 2f 86 2f 76 2f 66
+          		d1 1f d0 1e 2f b6 2f a6 60 08 20 1b 61 11 60 01
+          		e1 04 e1 00 8d 01 c8 40 c8 01 e1 08 89 00 c8 80
+          		89 00 c8 02 e1 04 89 00 71 0c 89 00 c8 04 e1 08
+          		d9 16 da 15 0b 1e d0 15 e6 00 04 8c 60 b3 e8 00
+          		e0 0a 78 01 65 93 4a 0b d0 11 79 02 8f f6 38 07
+          		e6 0b 40 0b d5 11 d4 0f 68 f6 69 f6 6a f6 6b f6
+          		64 f6 65 f6 66 f6 67 f6 60 f6 61 f6 62 f6 63 f6
+          		92 15 01 1d d1 0a 30 0c 00 09 40 2b d0 09 22 19
+          		ee 18 06 02 ee 10 06 02 10 e4 06 06 70 f8 06 07
+          		07 c4 06 06 71 58 06 07 ee 14 06 02 e0 82 25 e7
+          		00 01 08 00 19 ec 06 04 71 1c 06 07 71 10 06 07
+          		71 34 06 07 71 28 06 07 71 4c 06 07 71 40 06 07
+          		20 20 20 20 20 20 20 20 41 52 49 4b 20 00 20 20
+          		20 00 20 20 41 20 55 47 4c 20 49 41 45 43 53 50
+          		44 49 52 41 20 00 20 20 41 00 55 53 54 2d 41 4e
+          		41 2d 55 47 41 52 49 4b 45 43 53 50 41 00 55 53
+          		41 00 55 53 4c 2d 49 41 ff 00 f1 ff 10 0f 11 11
+		</patch>
+		<patch offset="0x00337178">60 01 d1 12 d0 12 64 03</patch> 
+
+		<patch offset="0x00337180">  
+			91 27 20 1b d2 12 61 11 e3 00 8d 01 c8 40 60 08
+			e3 02 89 00 c8 80 e3 01 c8 01 91 1d 89 00 c8 04
+			89 00 c8 02 e3 01 89 00 21 30 d1 08 22 12 e3 02
+			60 43 62 12 71 74 61 93 d2 05 21 22 22 3b 63 03
+			ee 10 06 02 00 09 42 2b 02 48 06 00 ee 18 06 02
+			1a 1e 06 04 70 00 06 07
+		</patch>
+	</rom>
+</misterromdescription>
