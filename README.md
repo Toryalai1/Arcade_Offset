@@ -1,15 +1,15 @@
 ## Repository Information
 
-- Patched MRA files for encrypted and decrypted titles on [**jotego's**](https://github.com/jotego/) verilog implementation of Capcom Play System hardware. 
+- This repo contains patched MRA files for encrypted and decrypted titles.
 
 
 ## What Are These For?
 
-- These patches utilize encrypted roms from [**mame 0.229 or higher**](https://www.mamedev.org). The patched MRA files do not require additional roms in `games/mame` or  `games/hbmame` and patch the rom on the fly.
+- These patches utilize encrypted roms. The patched MRA files do not require additional roms in `games/mame` or  `games/hbmame` and patch the rom on the fly.
 
 - Patches include unlocked characters, modes, enchancements, trainers, or other features available in encrypted and decrypted roms. These features may have been previously available by inputting codes or not present prior to the patched data.
 
-- Readme files for each MRA available cite the author. If none is notated, then the patch has sourced from me or hbmame.
+- Readme files for each MRA available cite the author.
 
 ## How Do I Get Them?
 
@@ -17,9 +17,9 @@
 
 ## Patched MRA Format
 
-This is the provided layout used for jtcps2. Patches are applied to the loaded rom from `rom index="0"`.  For roms that use soft dips and store settings in the eeprom (nvram file). Hex is taken from soft dip settings and applied to `rom index="02"`. 
+Patches are applied to the loaded rom from `rom index="0"`.  For roms that use soft dips and store settings in the eeprom (nvram file). Hex is taken from soft dip settings and applied to `rom index="02"`. 
 
-Usage of  rom index's vary from core and are dependent on the author.  These are generated from a tool chain utilized in jtframe, they do not mirror the example shown on [**MiSTer-devel/Main_MiSTer #MRA Format**](https://github.com/MiSTer-devel/Main_MiSTer/wiki/Arcade-Roms-and-MRA-files#mra-format).
+Usage of  rom index's vary from core and are dependent on the author.  
 
 <details>
         <summary><b>Patched MRA Template</b></summary>
