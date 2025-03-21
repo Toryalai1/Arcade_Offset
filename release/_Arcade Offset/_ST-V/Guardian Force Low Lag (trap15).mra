@@ -1,0 +1,74 @@
+<!--
+  Guardian force De-Lag patch.
+
+  Adaptation of Alex "trap15" Marshall's lag reduction patch rom.
+
+  email: trap15@raidenii.net | web: http://daifukkat.su/ | twitter: @trap0xf
+
+  Official website: http://daifukkat.su/hacks/grdforcel
+-->
+<misterromdescription>
+	<rbf>ST-V</rbf>
+	<setname>grdforcel</setname>
+	<buttons names="Button 1,Button 2,Button 3,Button 4,-,-,Start,Coin,Service,Test" default="A,B,X,Y,Start,Select,R,L" />
+	<rom index="1" md5="" zip="grdforce.zip" address="0x32000000">
+		<part repeat="0x80">00</part>
+	</rom>
+	<rom index="2" md5="" zip="stvbios.zip" address="0x30000000">
+		<interleave output="64">
+			<part crc="d1be2adf" name="epr-17952a.ic8" map="21436587" />
+		</interleave>
+	</rom>
+	<rom index="3" md5="" zip="grdforce.zip" address="0x34000000">
+		<part repeat="0x200000">00</part>
+		<interleave output="64">
+			<part crc="283e7587" name="mpr20844.7" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="facd4dd8" name="mpr20839.2" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="fe0158e6" name="mpr20840.3" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="d87ac873" name="mpr20841.4" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="baebc506" name="mpr20842.5" map="12345678" />
+		</interleave>
+		<interleave output="64">
+			<part crc="263e49cc" name="mpr20843.6" map="12345678" />
+		</interleave>
+
+    <!-- patches aren't optmized to smallest possible replacements.. -->
+    <patch offset="0x00200030">30 38 30 34 31 37 32 30 20 20 2d 41 52 54 43 41</patch>
+    <patch offset="0x00200060">41 4e 44 49 41 52 47 55 20 4c 43 45 4f 52 20 46
+                               41 4e 44 49 41 52 47 55 20 4c 43 45 4f 52 20 46
+                               41 4e 44 49 41 52 47 55 20 4c 43 45 4f 52 20 46
+    </patch>
+
+    <patch offset="0x00201020">fc 00 06 0f 15 c0 06 01 25 40 e4 00 a0 02 d5 09</patch>
+
+    <patch offset="0x00201530">00 09 41 2b d1 01 60 53 00 00 01 00 15 00 06 01</patch>
+
+    <patch offset="0x00202500">d0 0e 54 f1 2f 02 65 f2 31 00 d1 0d 00 09 40 0b
+                               20 08 e0 00 c7 0c 8d 01 89 03 24 48 64 06 89 06
+                               00 09 af f9 24 51 65 06 6d f6 4f 26 7f 08 60 f2
+                               00 00 00 00 6e f6 00 0b 00 00 00 00 00 00 00 00
+                               5f 10 22 40 04 10 06 01 8f 06 ff ff 39 18 06 04
+                               89 06 ff ff 17 ba 06 04 d0 01 ff ff 17 92 06 04
+                               40 2b ff ff 17 94 06 04 00 09 ff ff 17 96 06 04
+                               06 01 ff ff 17 98 06 04 16 00 ff ff 17 9a 06 04
+    </patch>
+
+    <patch offset="0x002025c0">66 06 64 06 65 06 c7 05 24 02 46 10 60 56 61 06
+                               00 09 41 2b 74 04 8f fb 40 00 06 01 50 00 22 20
+                               00 28 06 01 af f0 00 03 00 00 00 00 00 00 00 00
+    </patch>
+
+    <patch offset="0x00202600">d0 06 00 09 40 0b c6 05 40 0b d0 05 00 09 40 0b
+                               00 09 40 0b d0 05 00 09 00 09 c4 13 41 2b d1 04
+                               0d 68 06 04 37 d0 06 04 17 9e 06 04 1a 48 06 04
+    </patch>
+	</rom>
+</misterromdescription>
