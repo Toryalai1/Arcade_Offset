@@ -1,3 +1,5 @@
+![Image](https://github.com/user-attachments/assets/063b519b-ed28-4ebc-a348-5251869236ce)
+
 ## Repository Information
 
 - This repo contains patched MRA files for encrypted and decrypted titles.
