@@ -129,4 +129,5 @@
 			1a 1e 06 04 70 00 06 07
 		</patch>
 	</rom>
+  <nvram index="4" size="65664" />
 </misterromdescription>
