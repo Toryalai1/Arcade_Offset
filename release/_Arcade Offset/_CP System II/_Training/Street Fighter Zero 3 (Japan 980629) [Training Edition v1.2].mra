@@ -1,0 +1,117 @@
+<!--          FPGA compatible core for Capcom arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2021. Please support the author
+              Patreon: https://patreon.com/topapate
+              Paypal:  https://paypal.me/topapate
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with legally
+              obtained ROM dumps or with compatible homebrew software.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription>
+    <about author="jotego" webpage="https://patreon.com/topapate" source="https://github.com/jotego" twitter="@topapate"/>
+    <name>Street Fighter Zero 3 (Japan 980629) [Training Edition v1.2]</name>
+    <setname>sfa3_2</setname>
+    <rbf>jtcps2</rbf>
+    <mameversion>0229</mameversion>
+    <year>1998</year>
+    <manufacturer>Capcom</manufacturer>
+    <players>2</players>
+    <joystick>8-way</joystick>
+    <rotation>horizontal</rotation>
+    <region>Japan</region>
+    <platform>CPS-2</platform>
+    <category>Fighting</category>
+    <catver>Fighter / Versus</catver>
+    <mraauthor>jotego,atrac17</mraauthor>
+    <rom index="0" zip="sfa3_2.zip|sfa3.zip|qsound.zip" type="merged" md5="None" address="0x30000000">
+        <part>
+        00 10 00 11 00 31 00 b1 
+        ff ff ff ff ff ff ff ff 
+        32 ff 00 02 04 06 26 28 
+        2a 2c 2e 00 00 30 02 04 
+        08 30 ff ff ff ff ff ff 
+        fc ff ff ff
+        </part>
+        <!-- key - starts at 0x0 -->
+        <part name="sfz3j.key" crc="d30cca8d"/>
+        <!-- maincpu - starts at 0x14 -->
+        <part name="sz3j.03" crc="f7cb4b13"/>
+        <part name="sz3j.04" crc="0846c29d"/>
+        <part name="sz3.05" crc="9b21518a"/>
+        <part name="sz3.06" crc="e7a6c3a7"/>
+        <part name="sz3.07" crc="ec4c0cfd"/>
+        <part name="sz3.08" crc="5c7e7240"/>
+        <part name="sz3.09" crc="c5589553"/>
+        <part name="sz3.10" crc="a9717252"/>
+        <!-- audiocpu - starts at 0x400014 -->
+        <part name="sz3.01" crc="de810084"/>
+        <part name="sz3.02" crc="72445dc4"/>
+        <!-- qsound - starts at 0x440014 -->
+        <interleave output="16">
+            <part name="sz3.11m" crc="1c89eed1" map="12"/>
+        </interleave>
+        <interleave output="16">
+            <part name="sz3.12m" crc="f392b13a" map="12"/>
+        </interleave>
+        <!-- gfx - starts at 0xC40014 -->
+        <interleave output="64">
+            <part name="sz3.13m" crc="0f7a60d9" map="00000021"/>
+            <part name="sz3.15m" crc="8e933741" map="00002100"/>
+            <part name="sz3.17m" crc="d6e98147" map="00210000"/>
+            <part name="sz3.19m" crc="f31a728a" map="21000000"/>
+        </interleave>
+        <interleave output="64">
+            <part name="sz3.14m" crc="5ff98297" map="00000021"/>
+            <part name="sz3.16m" crc="52b5bdee" map="00002100"/>
+            <part name="sz3.18m" crc="40631ed5" map="00210000"/>
+            <part name="sz3.20m" crc="763409b4" map="21000000"/>
+        </interleave>
+        <!-- QSound firmware - starts at 0x2C40014 -->
+        <part name="dl-1425.bin" crc="d6cf5ef5" length="0x2000"/>
+        <!-- Total 0x2C42014 bytes - 45320 kBytes -->
+        <patch offset="0x0001AD">62 EF BD 0F 05 4D 2B 47 66 7F</patch>
+		<patch offset="0x001530">37 36 28 AC 71 1D 12 3A</patch>
+		<patch offset="0x008CA8">69 83 B7 FB B8 8E 70 5B</patch>
+        <patch offset="0x01cc4c">d0 00 d0 00 d0 00 d0 00 d0 00 d0 00</patch>
+		<patch offset="0x01CD4F">7F 01 54 72 54 69 61 69 6E 67 6E 45 20 69 64 69 74 6E 6F 76 20 2E 31 7F 32 5C 0F 48 01 63 61 65 6B 20 64 79 62 30 20 5A 78 52 45 33 4F 9E 00</patch>
+        <patch offset="0x023C46">02 C8 D8 26 BA C0</patch>
+		<patch offset="0x02971C">8C 89 7D E5 02 73 E1 9C</patch>
+		<patch offset="0x029946">DE FF 3A 26 25 39 A1 0D</patch>
+		<patch offset="0x02a3d6">30 60 8F 7F 04 B7 50 BE</patch>
+		<patch offset="0x02A3EA">05 E7 89 00 B3 17 2E F2</patch>
+		<patch offset="0x02A538">40 10 FE D2 40 A6 EE EC</patch>
+        <patch offset="0x02B1B4">D5 E2 AB AF C7 40 DC 3D</patch>
+		<patch offset="0x02b2a0">9F 7C 11 18 46 CD 0C 9E</patch>
+        <patch offset="0x02e81a">EF 53 FC 5B 7E 11</patch>
+        <patch offset="0x02ebe8">E7 85 4D 14 79 3F CD EB</patch>
+        <patch offset="0x0f0040">9D 45 A6 7F FD 3C 32 1E 63 53 16 F5 2A FE 73 E0 C8 3A 14 2D EA EC 85 52 7D 65 8D F9</patch>
+        <patch offset="0x0f1040">AF 46 B1 78 FB 4E EA 3F DB 3A 5A 0F 79 86 CC F1 8F 1E A9 CF 3C 31 17 1A 10 11 79 E9 14 40 57 FE F2 27 2E 59 C0 2F 13 93 53 9C 9A 6D</patch>
+        <patch offset="0x0f2040">E4 52 A3 AF DE CF CC 6A 83 67 2B 99 91 E1 D3 E5 5F EC E9 78 EE 1B 80 E9 26 E0 32 EF A6 53 1F A5 69 DD 46 C8 C6 BC 88 90 5D B9 D7 CE</patch>
+        <patch offset="0x0f3040">B1 EC 1B 18 07 E6 09 FE 4E 30 DE 11 8F 59 B2 44 C1 83 E2 2D EA 7B 42 9C 43 BC 91 C8 6F 37 6E 15</patch>
+        <patch offset="0x0f4040">E0 ED AC 5C AC 78 43 57 E1 5F F1 69 71 EE 64 31 0E 5B DA 89 7D E1 DF 40 D6 BB 90 CE 0C 87 C5 B1 C8 F1 C5 5B C2 19 8B F8 53 C2 5B A4 C7 2B BA 61 7D C7 99 B9 62 BE 74 AD 62 61 16 39 EA BE E4 EF 0A 85 A3 24 B7 95 EA 4A 94 F2 02 E9 C4 8B 69 06 5D EF 39 DE BA 29 FB 81 CD BD 12 11 D6 FF 42 74 E6 13 B7 63 BE A3 80 43 1B 5D C8 30 8A 76 73 1D DF EE 94 EC 19 BA 5B 99 4E BC F6 98 51 25 AF 1F C6 8E 86 6D CC 84 AE B4 D1 66 22 1D</patch>
+		<patch offset="0x0f5040">35 9F 70 F0 0C 0B AB A8 43 8B 87 75 8C 39 5A 5E 44 1B D9 91 B6 79 F7 35 22 AD 24 93 7A 70 4F 9D A4 66 1C 2A 9F 40 A3 3F 67 77 A6 A3 29 3F 23 5C 2A 8F 5C 68 A4 E0 93 3C 52 21 F4 8C 84 3E 40 A3 20 9A 2B AA 71 E6 EC 8E 1F 3F B3 CA C1 81 68 44 56 38 E6 15 D7 CE D2 72 99 AF 59 6E BF 06 52 18 1B A2 90 84 04 D8 C7 67 1D FF 9A FC DB 92 59 86 86 4C 54 33 27 0C 6F 10 FF CA 0A 97 04 32 57 42 54 57 83 98 C1 65 C3 56 41 35 A2 23 DF 2A B7 7D 3F 00 EE B0 7E 5A F5 55 F2 61 EA 91 5D AC A4 01 A5 69 17 8B</patch>
+		<patch offset="0x0f6040">93 5C 83 16 C1 3D 08 58 84 A9 60 B4 0D 33 5E 9E BC 31 28 30 2C C3 79 57 CA 5D C3 B0 34 95 7E C5 3F 27 DF F1 63 A7 1D 84 06 92 65 2A 9D 1B 9A 8D 2B DC F8 9C 08 1E B0 23 A3 CF D7 FB AB 94 46 71 8F BF E2 E7 C5 20</patch>
+		<patch offset="0x0f7040">1D D6 76 A6 D7 29 D4 29 68 44 5A C9 1A 5A 62 8F 7C CC 6E 61 05 77 F7 71 61 26 08 31 84 7A 0A 1D FE 09 2C 9B 92 93 E6 85 F5 0B FE 0B D2 53 C3 CF D1 28 49 2F 92 91 9E D4 05 5B F5 E1 CF 20 9F A0 EA 08 53 91 C9 46 F5 EE 7B 47 7C BB 96 9B B3 25 CC 61 1A AE 1D 03 B7 61 63 F1 5E 5F C0 F1 0B 43 68 5E 2F 78 EC 23 BE 4A 4E F6 91 1E 71 F8 9C F2 A0 D6 CE EB 5F 00 0B 91 A8 09 9A 57 0C 10 8C 9D 30 D8 83 AE 0B 2D 92 29 8B 8B 54 8A 92 9A</patch>
+		<patch offset="0x0FF040">5C 5E 8D 92 00 B4 69 18 9B FC 57 A1 15 9C 6C CF 5A 82 ED FF A9 43 4C BF CD 84 6F 7F DF D9 6E 20 EC 4A AA 5F 43 6A 6C 2C 2F 23 05 9A 04 34 D8 27 21 08 B7 83 A4 A2 76 0A 69 B0 E3 45 53 97 F4 68 8A D5 DC 48 93 0A 8A 65 28 86 0D 07 D7 42 7D F5 5E C1 B3 DB 83 65 B5 B4 46 F8 31 54 6B E9 48 25 61 BF 61 ED E4 F7 99 F8 0D 6F 3D F9 1B 71 C6 FE A4 4E 91 5A 63 78 5C A7 E8 6D 12 10 00 3E 8D B2 37 DB 78 83 37 9C E5 A4 D3 7F 77 BD 4D 92 36 6D 97 07 5D 5E 24 72 53 9F 11 56 56 78 28 1D 40 EE 20 2D 0B 77 28 72 D2 EE 78 E0 ED 2F 61 14 51 9C B4 11 D4 C9 B8 5D B0 E3 F6 C5 9D 32 DB AB 77 99 D3 30 E5 2B 60 A6 DB 57 8C 0A 45 56 E1 9C 1B 7E 58 93 2B 3C 81 9D 47 DB DD 72 93 40 B6 11 21 74 3F 7D B2 F4 7F C0 7C 68 0E 47 D1 D5 B2 77 5B A1 CB 9E 05 0A B7 A8 1B 05 C6 BD 57 AF ED AC 2D B2 62 21 99 92 3D 51 47 33 37 64 31 06 57 2E 3F F1 25 B2 EB E6 50 83 FB 11 DB D7 BC 37 94 32 F5 37 E6 EA D1 DA 34 A4 9D 7B 08 A8 DF 0C E6 DF D1 5F 3E 19 CC BA E7 AA 61 37 53 AB 42 B8 CD 87 64 C7 16 44 5C 5C C7 85 3A BA 0B 02 CF B7 A3 0C 9C B4 A9 EE A2 15 C6 71 9C 52 91 C3 CC 0B F6 7E 92 E9 F9 F9 A2 49 F9 78 2E 22 35 65 C7 1B C6 E0 C8 A7 F1 B1 8B F1 17 31 89 42 D2 D5 38 CA 53 07 81 EA 14 2F 49 20 D7 36 DE 2A A5 7C 2B 59 AE A5 CC B6 0C 92 FE 09 C6 AD 79 6A B4 C7 A6 D0 FB 9A 9F 41 89 14 22 47 21 A3 B5 EE BC 2B 29 8B 72 8A 7A 41 C6 0E CF F5 CC F3 56 58 B2 4C 21 57 ED 48 65 EA A6 FB 71 4A 44 03 B2 53 4A F6 36 C1 20 9F 97 96 56 7B 4B 54 DD 0F 40 21 7E 90 89 37 78 8D 57 51 A8 32 10 DE 03 C6 D0 8A 6D 02 EC 02 65 EA 8B B1 40 17 5F A5 88 C4 7E E1 DA EE B7 5A EA 7C B4 F8 60 55 30 A7 DE CF 16 24 ED 66 C7 73 84 CB 5B DF B2 8A 92 07 5F BB 10 7D 2A CE D0 A8 74 2A B4 2E 03 F1 4F EA CA 13 C7 DC 1C F6 36 F4 3F 32 2C 6B 7E 44 08 6E 6D B6 AF 68 24 37 65 75 84 AC EA 23 D8 7B A5 8E 1A AE 88 AD AF DA 04 0B 34 55 42 A1 54 AB F6 98 1A 8A CE DD F0 F3 07 AC 6C 72 13 9D 9B 84 7C 4C 47 FC 5C 40 FD 43 29 EE 2B 3A 01 E1 FE BA 10 19 34 EC C1 46 8F 04 F0 1E E1 9D 1B 22 F6 A8 DB C7 76 16 A1 90 D6 88 88 98 B4 03 FD BD 3D 0A 60 5A B2 60 9B 8D 25 5F A9 F2 83 35 A7 7B 92 7C 4E 5B F8 DE BA 13 5C 85 F0 B7 E8 8A C7 76 AB CC F2 1B 4B 43 96 72 45 61 20 7C 8E 76 EC E6 73 A0 EF D8 1D B5 2D 46 2F 32 B7 86 B5 BA 4B 54 B1 47 C7 48 4B DC B3 A7 6B 65 3D 8B 92 03 77 B8 08 DF C2 74 DD 12 72 28 AB 26 F5 77 8E 2A 4A 18 61 21 1D B5 2F 56 AA B9 56 F7 08 21 0E EC 5B 29 98 64 5C 36 45 71 51 DE FB 8B 89 27 C8 BB 50 9A 28 93 76 C6 95 6C 7B 67 78 DD 61 2A AF FC 6B 86 91 5C 64 0C 0E 1B 46 C1 1F 08 D4 88 AF 85 0C DC 36 99 23 C2 D3 EA 80 AA B9 45 19 9D 59 A2 98 9A 07 C0 95 72 F1 F4 55 7B 82 9F 03 2C BB 70 45 E1 72 BD E3 5C C8 A1 7A 4B 66 6C 2C 15 CA 80 98 AF 95 C1 DA 54 4D F0 77 D5 6C 5A 6D 85 41 01 AC E4 6E CD 50 A8 83 26 8E 94 08 34 CD 78 8E E9 62 FF 0A 5A EE D7 52 EC 93 B5 1D DA 5C A3 13 56 42 F0 97 F3 DE 2E 80 9F 98 7C DA 60 A2 48 D3 FB F1 D0 0C EE 40 B6 ED 82 E7 AF 78 51 05 C4 F3 23 3E FB F6 00 9A F5 4A C6 0F 92 7E 4B E0 D0 77 B9 2E 00 75 49 02 E7 A1 85 F6 DD 67 31 A1 8B 01 5D E5 EF D2 08 45 E4 18 D1 A7 78 72 70 48 3A BE 3C 4E 1E 54 B6 A0 81 19 4A 25 A1 1F E1 EF 17 5C 34 CD 6F BE E1 9C 16 29 1F E7 18 AA 86 BD 5E 90 91 F2 A0 4F AA D4 B6 D4 ED 4A 9E C2 E8 CB B7 92 4E 55 39 83 B3 81 7B EF 7D DA DB 11 8B 86 CD 32 28 A0 C3 73 04 9F 99 CD B0 F9 93 33 FC 54 5E 46 7A 6E 65 ED C1 D4 21 51 B4 55 EF CC 01 B2 6B B8 8C A2 22 3E 3E B0 3D FA 50 DC BB 88 86 E3 3A 87 62 87 A0 1F A5 50 7A 3B FC 15 B7 85 C2 F8 53 42 69 30 DE 34 37 8F 49 BA 7B E3 3C 11 AA C7 FD 15 24 DD 0A 1A 54 44 3B BE EA 81 CA 4D 25 2B C5 98 23 8B 06 A3 1E 9B 14 63 2B 15 D4 73 64 2A 59 2C 8A 21 92 F5 2C 38 C4 22 75 B9 B4 CB 27 1A D4 CD E4 65 E2 CB B3 E2 50 FD EE 43 C3 27 3D 9C 7C 49 94 F1 A7 07 D1 C2 83 49 9E 95 CF 3F 42 7D 04 65 88 5F 7B 07 51 54 C9 60 19 A0 A9 4F CE 9D C4 34 09 18 21 F6 9C 48 B4 C5 4E 18 9F D2 26 2D 0E EF 5C C6 E4 38 78 99 EE CA 30 F4 47 25 DA EB 3A 32 13 98 72 11 D3 9B E3 EB 14 F5 19 34 9B ED 66 D2 01 5C 97 FB A1 7D 8B 2E 71 7F 73 3F 20 00 F4 35 B1 ED 90 C6 D9 D8 99 B6 7E 58 65 04 8D 18 B4 81 36 9B 38 E9 7D 81 EB F6 DD 64 90 06 28 37 F9 B2 DF E8 FC D5 61 4F 15 92 8C B7 3A BC 94 DD EE 47 DB C5 80 41 97 7A 6F 26 CB A2 3B 22 30 32 EF 29 04 80 C1 C8 F2 2D B2 BE E0 8C 06 D9 E4 B4 D3 D2 ED 07 DA D3 28 90 8C B4 EB C5 38 C7 FF 23 2E 47 BB AE A1 79 ED B3 41 03 38 D4 47 6C DB 6B 44 82 CB 14 78 14 77 3D 6C CA 60 A4 83 96 F4 C5 09 FD 1F EF 54 57 9B A0 28 3C DD B6 2C 94 77 E9 12 9F 89 AA 23 AE EF B9 AB 06 99 3C 0C 70 0B A7 0B 6A 38 30 9F EE 7D F3 24 6C E2 14 1B 35 46 10 27 18 00 48 D2 49 22 74 B6 92 9F 89 16 28 DC D3 B2 15 B6 85 52 F2 6F F8 40 AC 1A FA DD F3 26 C2 90 95 B0 5C 0F 78 34 7E 58 7D FB 9D EA 38 BD D1 D5 CF E5 F5 DF 4B 0E 81 8E 4A F0 3E 0B 0C 8C 6D 45 8D 8F 58 87 DB 6D 9F 74 52 D7 BB BD A0 0E 56 E4 19 E1 10 F3 5D E9 66 6B FC 4A 8D 76 0C 4C A3 0F 8F 86 4A 26 10 AD 23 B8 AB CC F2 56 40 9F EB 90 63 E9 C7 B1 EF 24 58 53 A7 5D 0D B7 48 95 00 F3 54 72 27 E4 0A B4 4D 7E 31 4B A3 A3 51 46 59 C7 8F D2 B4 74 38 67 E9 FB AC E4 13 E7 FA A0 EE 23 FF 42 D9 B0 B4 B6 E1 B4 CD 3B 23 BB D8 FD 56 6A 81 8D 12 B2 C4 8B 9D CA D0 31 36 40 89 49 0D E1 CA 92 8F 61 4C 1F 76 96 B7 24 45 85 06 93 A3 44 88 2E 88 C2 58 81 E7 43 6F 97 4F D0 BF 38 E6 47 E1 71 32 F1 E7 17 E8 5F 89 8C 33 C7 D7 52 A7 7C F5 D0 32 47 AC 7B 58 4D B1 60 99 93 FE 99 33 09 92 73 4C 4B D8 1B 60 FD 7F 50 16 D0 05 19 BE 98 0C DB 83 3D 47 F4 70 8C 5D AB FF DD 8F 88 3C 56 72 82 60 EF A6 5F FF 4D 10 51 6B CA D9 A7 58 63 DD 3D 07 1D 84 F5 C9 5A 4C 93 73 48 1D 9D 19 1A AC 91 A2 CE 03 D2 D2 C5 21 52 DF BF 75 B9 5A 6D 16 BA DF BF 12 3A 6A E0 C2 C4 42 2B A1 46 7F 25 52 9F 2D 9C 90 2A B4 C0 2A 7B D3 45 74 6A 6B 4F B1 72 97 BC 80 5E 1E B4 99 4E BF BE 5B 65 C1 DF 43 0F CC 09 75 0A 33 48 9E 79 56 FD 03 21 7F 2C 16 14 FC BE 57 1B 3C 5F AF CC 7D 96 0F AF 70 12 41 E1 E1 BA 5F F7 07 56 96 3C 6A 4C B8 01 7B B4 E7 45 7A C6 AC 97 ED F8 CD B0 4B CE 8D F5 50 8E 32 2D 9D EB 60 38 2A 95 14 42 EE B0 87 EB FC 58 49 34 35 79 05 42 17 86 12 44 05 7A 79 E4 01 88 1E 52 22 B3 FC 3B 6A FB 13 85 CE E6 12 35 E6 A8 9E BE 9F B7 A4 1B 39 57 AE 98 C0 DC F4 F6 C6 09 78 4E 4C 82 83 2B 5F A1 99 09 B7 17 B4 DD 71 23 29 75 96 7C 38 76 A7 45 0A B1 1E 19 3E 1D 8A 03 03 B3 28 A9 20 CF D9 10 C0 78 BA 31 0F B8 4B 34 0E 76 1A 3A 2D D1 24 4E B4 9F 40 B5 48 82 49 03 B5 3A F6 FA BE 54 6E D0 AB 22 14 8E 5D 43 DA A5 A6 C5 A1 97 FC 1F F7 1E AD B4 32 D9 FF 61 AA B6 C8 DB E9 07 B2 3B 32 4A 17 5B EF F9 22 DF E8 A8 5D C8 F3 0A 29 99 0C BD 76 55 79 97 1F BA A9 5C B6 32 60 65 E5 E2 B0 10 FB B9 B5 5A AB 8F A9 4C 9F 1C 8B C3 45 A4 E0 64 4C 2A E5 40 0A 2B F8 09 34 1D 31 FE A2 A4 94 45 85 DC 01 5D 8E 74 15 B4 75 75 A0 49 18 7F E7 EA 42 A0 C1 D8 E1 8F 27 13 1A 96 53 6D 08 A9 7F 5B 4A 7A 77 46 88 97 B5 C2 60 61 65 35 8B 5F 01 FA 42 AD 15 1A 44 A9 08 14 6E F8 26 35 36 D7 DE 8B 5C BC 73 A9 21 97 63 B6 92 46 B2 71 24 6E BE 44 CC BA 5F AA 1C 76 33 96 66 03 74 F0 75 66 12 B0 BE E0 2A BD 52 AB 52 F5 6C 3E 3C 9E 20 12 AE 47 A8 D0 D9 B2 17 97 C0 6B 1B 26 51 8D 86 FE AC 36 FF 59 8D 35 B1 2D F0 0A F6 2D 2A 29 2A 60 C6 A6 EE 3E 13 02 71 65 76 56 A3 3B 5A 29 45 E6 33 B1 C5 04 FB 4A 24 B5 30 6E 2C 3C 3A 9A 73 82 CD 3C 4E B5 1F F8 51 63 89 5E F8 48 75 62 58 DD 1F 62 A5 55 19 91 8B 68 91 78 AB A5 6C 9C 33 A5 96 29 E7 CD 96 A4 84 C2 33 74 2B CD 28 6C 3F F6 95 22 BB 1C D2 D7 E2 9E 1F 79 26 28 A8 FA E6 89 3F 4F AB DE 45 5C F0 C2 CA 34 4B D1 83 F1 8A DD A2 2F 3B 68 A2 E8 9E 10 D9 9F CC 76 C0 AB C3 EF F5 6F 04 AD A9 EA F0 43 4A E5 B1 BC E2 78 70 A3 D5 A3 A7 2F 8B 18 F3 44 5A D8 5E F3 6B 09 D0 FF 44 50 DB AD 86 7B B7 57 2C 1F AB 0C 26 E5 95 80 0C 65 33 8C 89 9A A6 31 F7 F2 2C 78 65 98 8F AD C0 7F 67 CB 97 CD C1 47 FC CA F6 70 0A BC 43 37 E9 58 3F 22 B9 9B BD EE CD C6 6F 81 B0 4C 17 98 E4 7F 40 8D B3 5E 4C 61 3B F9 77 99 39 3D 37 8E 38 8E 05 83 A0 0B 85 7A AF 1B 29 28 F0 70 ED 56 39 B6 57 C5 21 79 03 53 7F 7A 35 80 9C 70 8F FC EF 93 EA 82 00 14 B6 CA 9E C5 2C B6 FC 67 94 E9 15 93 B1 68 BA 62 3C B4 B6 92 68 2F 14 C9 9D 5C 4F FF E8 DF 47 57 98 08 FC 65 E7 01 0D 16 A9 0F AC 1D B3 B3 78 A0 A2 1A 23 B2 39 79</patch>
+    </rom>
+    <rom index="1">
+        <part>00</part>
+    </rom>
+    <rom index="2">
+        <part>01 12 01 00 00 01 00 00 00 00 00 00 00 00 00 00 01 01 01 01 01 01 01 00 00 00 00 00 00 00 00 00 06 98 00 29 5a 53 4a 33 5a 20 52 45 20 4f 20 33 01 12 01 00 00 01 00 00 00 00 00 00 00 00 00 00 01 01 01 01 01 01 01 00 00 00 00 00 00 00 00 00 06 98 00 29 5a 53 4a 33 5a 20 52 45 20 4f 20 33 00 00 0f 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</part>
+    </rom>
+    <nvram index="2" size="128"/>
+    <buttons names="Light Punch,Middle Punch,Heavy Punch,Light Kick,Middle Kick,Heavy Kick,Start,Coin,Core credits" default="Y,X,B,A,L,R,Select,Start,-" count="6"/>
+</misterromdescription>
