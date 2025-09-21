@@ -81,11 +81,17 @@
         <!-- QSound firmware - starts at 0x2840014 -->
         <part name="dl-1425.bin" crc="d6cf5ef5" length="0x2000"/>
         <!-- Total 0x2842014 bytes - 41224 kBytes -->
-        <patch offset="0x213a">b7 58 11 4c 35 c1 b6 be df 8d</patch>
-        <patch offset="0xcdd2">d5 f1 c3 d2 98 33 5d db bc c0 ff 32 19 3d c1 cb 71 a5 84 7b 94 60 84 28 b2 47 e3 12 eb 7b 1d 67 9e c7 b4 5f 2a 8d 6c 7f 92 22 9c 8a dc 41 7c a3 f6 99 5c 83 5f f4 28 d7 9b 1b 76 ae 6f 73 7b ee</patch>
-        <patch offset="0xd0e4">77 fb 0e 3f 65 a3 c3 a3 36 9d 85 dd ff b4 13 e0 f6 58 27 7c c7 9c 45 0e 40 31 fe 03 9d 24 f0 96 57 54 43 17 b2 f3 5e c1 f9 0d 8f 8d cb db 31 58 ff 73 a9 ce 77 b5 f8 88 6f 96 1e 06 33 75 e6 f5 08 56 b6 a5 aa 5a 71 9a 2f 03 c4 78 49 8a 71 06 52 0c 15 ce cf 60 3b c0 7a 67 ef 47 64 91 98 dd 33 c8 7c aa d0 da a1 2b</patch>
-        <patch offset="0x9eca8">43 20 59 20 42 20 45 20 52 20 42 20 4f 20 54 20 53 20 20 20 20 20 20 20 2f 20 40 09 20 04 20 20 43 41 45 43 53 53 4d 20 44 4f 4b 20 6c 79 57 65 09 2f 04 4c 20 20 20 20 20 20 35 39 34 30 34 32 45 20 52 55</patch>
-        <patch offset="0x3ef2f0">2d 0c 03 00 e5 00 38 66 2e 0c 31 00 01 01 06 66 7c 1d 06 00 89 03 2e 0c 61 00 01 01 06 66 7c 1d 07 00 89 03 2e 0c 51 00 01 01 06 66 7c 1d 08 00 89 03 2e 0c 71 00 01 01 06 66 7c 1d 09 00 89 03 75 4e 40 1b 2d 6a 2d 0c 0a 00 2d 6a 06 66 7c 1b 09 00 2d 6a 2d 0c 0b 00 2d 6a 06 66 7c 1b 07 00 2d 6a 75 4e </patch>
+        <patch offset="0x0000213a">b7 58 11 4c 35 c1 b6 be df 8d</patch>
+        <patch offset="0x0000cdd2">d5 f1 3e d7 df 7c 5d db bc c0 ff 32 19 3d c1 cb 71 a5 84 7b</patch>
+        <patch offset="0x0000cdfe">dc 41 38 75 b2 01 5c 83 5f f4 28 d7 9b 1b 76 ae 6f 73 7b ee</patch>
+        <patch offset="0x0000d0e4">77 fb 0e 3f 65 a3 c3 a3</patch>
+        <patch offset="0x0000d104">57 54 43 17 b2 f3 5e c1</patch>
+        <patch offset="0x0000d124">08 56 b6 a5 aa 5a 71 9a</patch>
+        <patch offset="0x0000d144">33 c8 7c aa d0 da a1 2b</patch>
+        <patch offset="0x0009eca8">43 20 59 20 42 20 45 20 52 20 42 20 4f 20 54 20 53 20 20 20 20 20</patch>
+        <patch offset="0x0009ecc8">43 41 45 43 53 53 4d 20 44 4f 4b 20 6c 79 57 65</patch>
+        <patch offset="0x0009ece2">35 39 34 30 34 32 45 20 52 55</patch>
+        <patch offset="0x000f2606">6a 8e 66 d5 2e ef c0 fc 78 a6 2e 34 30 30 46 fc 01 97 e1 fd c8 1d e9 f0 2d 85 2e 39 f2 56 a4 dc 8b e9 0c 20 7e 8a 46 48 f5 46 c6 5e 08 7d 45 89 1c 27 b9 c1 af 59 4a cd 3f 98 a2 fd 2e 3a 0c e9 af 82 0f 0e 6d 9d 71 2d 3b 4f 13 af 71 52 ba 2b a7 e8 61 50 92 63 f9 3a 46 2b 08 f2 73 08 41 fd 76 33 a4 5c</patch>
     </rom>
     <rom index="1">
         <part>00</part>
