@@ -17,7 +17,7 @@
               You can read the whole license file in
               https://opensource.org/licenses/gpl-2.0.php
 			  
-			  Stage Select, Event Mode and Round count hack by D.Owls
+			  Stage Select, Event Mode, Round select hack by D.Owls
 
 -->
 
@@ -86,6 +86,8 @@
         <!-- Total 0x17C2014 bytes - 24328 kBytes -->
             <!-- ssf2xj stage-select: COIN on char-select = highlighted characters stage. v5: event-mode lock held through win-quote/quick-continue, releases only at true session end. offset=CPU+0x40 -->
         <patch offset="0x0039E6">97 c6 47 61 61 ef</patch>
+        <!-- ranking default #1 name: "POO " -> "OWL " (D.Owls). plaintext data record @ maincpu 0xC06; MRA off = +0x40 -->
+        <patch offset="0xC46">57 4F 20 4C</patch>
         <patch offset="0x00E9F8">b3 e1 f1 52 e2 1f</patch>
         <patch offset="0x00FB26">e4 65 a1 7f 35 fe</patch>
         <patch offset="0x00E066">8b d7 97 a9 8d 62</patch>
