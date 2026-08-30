@@ -1,0 +1,109 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2026. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+			  
+			  Stage Select, Event Mode, Round select hack by D.Owls
+
+-->
+
+<misterromdescription>
+    <about author="jotego" webpage="https://patreon.com/jotego" twitter="@topapate" source="https://jotego/jtcores"/>
+    <rotation>horizontal</rotation>
+    <name>Hyper Street Fighter II: The Anniversary Edition Stage Select + Event Mode + Round Select (USA 040202)</name>
+    <setname>hsf2</setname>
+    <mameversion>0282</mameversion>
+    <year>2004</year>
+    <manufacturer>Capcom</manufacturer>
+    <players>2</players>
+    <rbf>jtcps2</rbf>
+    <joystick>8</joystick>
+    <region>World</region>
+    <rom index="0" zip="hsf2.zip|qsound.zip" md5="None" address="0x30000000" asm_md5="88b106b19af3f0b9670729d6be1e1ef8">
+        <!--  -->
+        <part>
+            00 10 00 11 00 31 00 B1
+            FF FF FF FF FF FF FF FF
+            32 FF 00 02 04 06 26 28
+            2A 2C 2E 00 00 30 02 04
+            08 30 FF FF FF FF FF FF
+            FC FF FF FF </part>
+        <!-- key - starts at 0x0 - length 0x14 (5 bits) -->
+        <part name="hsf2.key" crc="fc9b18c9"/>
+        <!-- maincpu - starts at 0x14 - length 0x400000 (22 bits) -->
+        <part name="hs2u.03" crc="b308151e"/>
+        <part name="hs2u.04" crc="327aa49c"/>
+        <part name="hs2.05" crc="dde34a35"/>
+        <part name="hs2.06" crc="f4e56dda"/>
+        <part name="hs2.07" crc="ee4420fc"/>
+        <part name="hs2.08" crc="c9441533"/>
+        <part name="hs2.09" crc="3fc638a8"/>
+        <part name="hs2.10" crc="20d0f9e4"/>
+        <!-- audiocpu - starts at 0x400014 - length 0x40000 (18 bits) -->
+        <part name="hs2.01" crc="c1a13786"/>
+        <part name="hs2.02" crc="2d8794aa"/>
+        <!-- qsound - starts at 0x440014 - length 0x800000 (23 bits) -->
+        <interleave output="16">
+            <part name="hs2.11m" crc="0e15c359" map="12"/>
+        </interleave>
+        <!-- gfx - starts at 0xC40014 - length 0x2000000 (25 bits) -->
+        <interleave output="64">
+            <part name="hs2.13m" crc="a6ecab17" map="00000021"/>
+            <part name="hs2.15m" crc="10a0ae4d" map="00002100"/>
+            <part name="hs2.17m" crc="adfa7726" map="00210000"/>
+            <part name="hs2.19m" crc="bb3ae322" map="21000000"/>
+        </interleave>
+        <!-- firmware - starts at 0x2C40014 - length 0x2000 (13 bits) -->
+        <part name="dl-1425.bin" crc="d6cf5ef5" length="0x2000"/>
+        <!-- Total 0x2C42014 bytes - 45320 kBytes -->
+    
+        <patch offset="0x775C">81 43 79 83 b5 cf 65 f9 ba d4 7d 3b 2b 64 d6 c9 1a f1</patch>
+        <patch offset="0xDC3CE">27 8e</patch>
+        <patch offset="0xDC4CA">96 8b 23 6f 27 f4 b2 03 06 ab 16 81</patch>
+        <patch offset="0xEDFA0">02 28 42 cf 2d e8 66 aa b9 ba 92 62 cc 3d 03 52 6a ee 2d a9 fd e4 a6 d6 44 00 04 1b ea c2 ce ec 6f b8 f1 64 2c 3c 37 73 f4 16 49 5f bd e3 65 e8 3d 64 2e 16 38 07 37 f0 02 04 03 06 01 02 04 08 05 0a 0a 00 11 00 18 00 1f 00 26 00 54 13 46 1b 32 54 13 00 1b 54 54 46 00 33 54 13 46 1b 31 54 13 00 1b 54 54 46 00 34 54 13 46 1b 35 54 ff 00</patch>
+
+        <patch offset="0x1EB6">b1 8f 88 81 29 5c</patch>
+        <patch offset="0x3FDA">03 1b 10 90 fb 92 fd 93</patch>
+        <patch offset="0xD780">df 8d c9 01 00 27</patch>
+        <patch offset="0x11BAC">20 22 90 41 be b5 8d 8b</patch>
+        <patch offset="0xEE040">a2 18 0d 54 77 99 43 2b 00 18 bf ab 7d 46 c5 5e 3c 39 99 87 a5 73 4e 81 58 9b 0a b2 d0 57 f3 1b 50 6b 1b df 50 89 27 21 03 b9 e7 84 7f 27 3c 6e 18 eb 58 e5 a6 c2 a8 ac d3 3b 00 6e b0 c2 15 9b f2 82 9f 1c e4 57 47 00 8b 6c 27 2e 6f 72 ca 88 af 05 1b 40 42 57 c7 eb 96 ee a1 d8 cc 9f 11 61 51 50 ca 3f bf 94 a3 a9 61 4d 99 90 b1 ed e6 c4 9a a8 b4 8c 05 d7 47 38 33 b6 8c c9 c2 b4 ee a0 b3 0b cb 5f f4 73 8e 69 d9 51 ac ad 79 9b 53 34 a5 a5 14 da d7 fe b6 a5 48 5f 77 4a 01 df f1 4e f8 46 15 d0 b2 b1 b4 00 1a 63 13 62 74 6e b3 85 7e e5 60 54 c2 8d 85 70 fd 95 0a b5 1b f8 89 6a 20 39 44 81 c3 07 14 85 ce f3 71 a9 47 a5 a9 e3 22 20 c6 af 47 e4 0c f7 87 3f 94 39 63 82 14 bb de 35 a8 52 dd 98 a9 bd 5f 7d fd a2 a8 42 c5 ed ce 2b ae c4 f3 45 e2 7e 43 c0 e1 7a 53 f5 bb e1 ad d2 dc 51 50 cd 02 ce 94 32 e7 78 1e 20 25 ff 31 8b 55 6a c6 64 38 68 d1 82 65 5f 1b 20 2a 21 6f 35 39 11 44 2a bc 01 da 0d 58 d5 23 93 fc d9 90 50 d2 39 23 24 c1 90 a8 e0 46 93 60 9d 57 57 cd 5d 74 a5 69 44 28 6d a5 52 47 6c ea 81</patch>
+
+        <patch offset="0x1340">57 4f 20 4c</patch>
+        </rom>
+    <rom index="2">
+        <part>
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 24 02
+01 03 01 00 01 01 00 00 02 04 41 02 53 48 55 46
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 24 02
+01 03 01 00 01 01 00 00 02 04 41 02 53 48 55 46
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+</part>
+    </rom>
+    <nvram index="2" size="128"/>
+    <rom index="1">
+        <part>00 80</part>
+    </rom>
+    <switches page_id="1" page_name="Switches" base="16" default="ff,ff">
+        <DSWA/>
+        <DSWB/>
+        <DSWC/>
+    </switches>
+    <buttons names="Light Punch,Middle Punch,Heavy Punch,Light Kick,Middle Kick,Heavy Kick,Start,Coin" default="A,B,X,Y,L,R,Start,Select,-" count="6"/>
+</misterromdescription>

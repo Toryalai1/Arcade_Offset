@@ -55,6 +55,7 @@
         <patch offset="0xE5840">E7 48 00 C0 2D 08 01 00 E0 02 06 66 2D 42 7E FF 38 60 2D 0C 14 00 21 00 30 66 2D 10 72 00 2D 12 73 00 01 46 01 C0 00 08 00 00 0C 67 6D 1B 4F 06 7F FF 7C 1B 01 00 7E FF 00 08 01 00 0C 67 6D 1B 4F 09 7F FF 7C 1B 01 00 7E FF DF 4C 03 00 6D 3B 7A 00 7C 00 75 4E</patch>
         <patch offset="0xE58A0">2D 4A 7E FF 10 67 00 2F 00 70 2D 10 7F FF 40 3B BE 09 1F 20 75 4E 71 3B 00 00 BE 09 75 4E FF FF 2D 08 06 00 88 00 08 67 2D 0C 02 00 D5 02 75 4E 2D 0C 02 00 D5 02 18 67 2D 0C 03 00 D5 02 10 66 AD 08 00 00 E0 02 6D 42 40 06 2D 0C 03 00 D5 02 75 4E</patch>
         <patch offset="0xE5900">2D 08 06 00 88 00 08 67 2D 0C 01 00 D5 02 75 4E 2D 0C 01 00 D5 02 18 67 2D 0C 03 00 D5 02 10 66 AD 08 01 00 E0 02 6D 42 40 09 2D 0C 03 00 D5 02 75 4E</patch>
+        <patch offset="0x40518">57 4F 20 4C</patch>
         <!-- audiocpu - starts at 0x180000 - length 0x10000 (16 bits) -->
         <part name="s92_09.11a" crc="08f6b60e"/>
         <!-- oki - starts at 0x190000 - length 0x40000 (18 bits) -->
